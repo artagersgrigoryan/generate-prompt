@@ -13,6 +13,7 @@ interface ResultScreenProps {
   loading: boolean;
 }
 
+
 type PlatformId = "bolt" | "lovable" | "arena" | "cursor" | "v0";
 
 export function ResultScreen({
@@ -87,9 +88,6 @@ export function ResultScreen({
       <div className="flex flex-wrap gap-3">
         <Button onClick={handleCopy} variant="primary">
           {copied ? t("copied") : t("copy")}
-        </Button>
-        <Button onClick={onRegenerate} variant="secondary" disabled={loading}>
-          {loading ? t("regenerating") : t("regenerate")}
         </Button>
         <Button onClick={onStartOver} variant="ghost">
           {t("startOver")}
