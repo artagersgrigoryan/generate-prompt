@@ -48,9 +48,10 @@ export function ResultScreen({
     logo: string;
     steps: string[];
     tip?: string;
+    lovableBug?: boolean;
   }[] = [
     { id: "bolt",    label: t("boltName"),    url: "https://bolt.new",    logo: "/logos/bolt.svg",    steps: steps("bolt",    4) },
-    { id: "lovable", label: t("lovableName"), url: "https://lovable.dev", logo: "/logos/lovable.svg", steps: steps("lovable", 4) },
+    { id: "lovable", label: t("lovableName"), url: "https://lovable.dev", logo: "/logos/lovable.svg", steps: steps("lovable", 4), lovableBug: true },
     { id: "arena",   label: t("arenaName"),   url: "https://arena.ai",    logo: "/logos/arena.ico",   steps: steps("arena",   5), tip: rm.arenaTip },
     { id: "cursor",  label: t("cursorName"),  url: "https://cursor.com",  logo: "/logos/cursor.svg",  steps: steps("cursor",  4) },
     { id: "v0",      label: t("v0Name"),      url: "https://v0.dev",      logo: "/logos/v0.svg",      steps: steps("v0",      4) },
@@ -161,6 +162,26 @@ export function ResultScreen({
             <div className="flex gap-3 rounded-xl border border-violet-100 bg-violet-50 px-4 py-3">
               <span className="shrink-0 text-sm text-violet-500">💡</span>
               <p className="text-xs text-violet-700">{active.tip}</p>
+            </div>
+          )}
+
+          {/* Lovable blank preview bug notice */}
+          {active.lovableBug && (
+            <div className="space-y-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <div className="flex gap-2.5">
+                <span className="shrink-0 text-base leading-none">⚠️</span>
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold text-amber-900">Preview might appear blank</p>
+                  <p className="text-xs leading-relaxed text-amber-700">
+                    Lovable sometimes builds the site successfully but shows a white screen in the editor preview. This is a known bug — your website is ready. Click <strong>"Open preview in new tab"</strong> (the arrow icon in the top-right of the preview panel) to see the result.
+                  </p>
+                </div>
+              </div>
+              <img
+                src="/lovable-preview-bug.png"
+                alt="Lovable blank preview bug — click Open preview in new tab"
+                className="w-full rounded-lg border border-amber-200 object-cover"
+              />
             </div>
           )}
         </div>

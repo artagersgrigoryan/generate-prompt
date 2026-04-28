@@ -198,6 +198,55 @@ export default async function HomePage({
           </div>
         </section>
 
+        {/* ── Real examples ────────────────────────────────────────────────── */}
+        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-24">
+          <div className="mx-auto max-w-5xl space-y-12">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-bold text-neutral-900">
+                {t("examplesTitle")}
+              </h2>
+              <p className="text-neutral-500">{t("examplesSubtitle")}</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                { platform: "Lovable", logo: "/logos/lovable.svg", img: "/examples/lovable.png", url: "https://id-preview--2118436b-021d-4d75-bbdd-04253c8bebe5.lovable.app/", time: "7–10" },
+                { platform: "v0",      logo: "/logos/v0.svg",      img: "/examples/v0.png",      url: "https://v0-portfolio-website-build-black-mu.vercel.app/",               time: "6–8"  },
+                { platform: "Bolt",    logo: "/logos/bolt.svg",    img: "/examples/bolt.png",    url: "https://artagers-grigoryan-v-ficr.bolt.host/",                          time: "5–7"  },
+              ].map((ex) => (
+                <a
+                  key={ex.platform}
+                  href={ex.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="overflow-hidden border-b border-neutral-100">
+                    <img
+                      src={ex.img}
+                      alt={`${ex.platform} example`}
+                      className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      style={{ height: "220px" }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <img src={ex.logo} alt="" className="h-4 w-4 rounded-sm object-contain" />
+                      <span className="text-sm font-semibold text-neutral-700">{ex.platform}</span>
+                    </div>
+                    <span className="flex items-center gap-1 rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-500">
+                      <svg className="h-3 w-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+                        <circle cx="8" cy="8" r="6.5" />
+                        <path d="M8 5v3.5l2 1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {ex.time} {t("examplesMins")}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── Final CTA ────────────────────────────────────────────────────── */}
         <section className="bg-black px-6 py-24 text-center">
           <div className="mx-auto max-w-xl space-y-5">
