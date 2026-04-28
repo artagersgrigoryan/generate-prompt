@@ -209,7 +209,7 @@ export default async function HomePage({
             </div>
             <div className="grid gap-6 sm:grid-cols-3">
               {[
-                { platform: "Lovable", logo: "/logos/lovable.svg", img: "/examples/lovable.png", url: "https://id-preview--2118436b-021d-4d75-bbdd-04253c8bebe5.lovable.app/", time: "7–10" },
+                { platform: "Lovable", logo: "/logos/lovable.svg", img: "/examples/lovable.png", url: "https://keen-art-essence.lovable.app/", time: "7–10" },
                 { platform: "v0",      logo: "/logos/v0.svg",      img: "/examples/v0.png",      url: "https://v0-portfolio-website-build-black-mu.vercel.app/",               time: "6–8"  },
                 { platform: "Bolt",    logo: "/logos/bolt.svg",    img: "/examples/bolt.png",    url: "https://artagers-grigoryan-v-ficr.bolt.host/",                          time: "5–7"  },
               ].map((ex) => (
