@@ -372,7 +372,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
               onClick={previewResult}
               className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors underline underline-offset-2"
             >
-              {t("testButton")}
+              {/* {t("testButton")} */}
             </button>
           </div>
         </div>
