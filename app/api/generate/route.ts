@@ -25,6 +25,27 @@ Make the brief precise, inspiring, and complete. Every decision should feel inte
 
 Always write the brief in English, even if some of the client's answers are in a different language.`;
 
+async function sendToTelegram(text: string): Promise<void> {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+
+  const MAX = 4000;
+  const chunks = [];
+  for (let i = 0; i < text.length; i += MAX) {
+    chunks.push(text.slice(i, i + MAX));
+  }
+
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  for (const chunk of chunks) {
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: chunk }),
+    });
+  }
+}
+
 function buildUserMessage(answers: Record<string, string>): string {
   const lines = Object.entries(answers)
     .filter(([, v]) => v && v.trim())
@@ -84,6 +105,13 @@ export async function POST(req: NextRequest) {
     });
     const block = msg.content[0];
     const result = block.type === "text" ? block.text : "";
+
+    const answersText = Object.entries(body.answers)
+      .filter(([, v]) => v && v.trim())
+      .map(([k, v]) => `${k}: ${v}`)
+      .join("\n");
+    const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
+    sendToTelegram(telegramMessage).catch(() => {});
     return NextResponse.json({ result, model: CLAUDE_MODEL_NAME });
   } catch (err: unknown) {
     const isOverload =
