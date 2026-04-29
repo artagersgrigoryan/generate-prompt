@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations, useMessages } from "next-intl";
 import { questions } from "@/lib/questions";
 import { ProgressBar } from "@/components/wizard/ProgressBar";
@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/Button";
 type Phase = "wizard" | "review" | "loading" | "result";
 
 const TOTAL = questions.length;
+const SESSION_KEY = "wpg_wizard";
 
 const SECTION_KEY: Record<string, string> = {
   "Basics": "basics",
@@ -62,6 +63,35 @@ export default function GeneratorPage() {
   const [result, setResult] = useState("");
   const [resultModel, setResultModel] = useState("");
   const [apiError, setApiError] = useState("");
+
+  const restoredRef = useRef(false);
+
+  useEffect(() => {
+    if (!restoredRef.current) {
+      restoredRef.current = true;
+      try {
+        const raw = sessionStorage.getItem(SESSION_KEY);
+        if (!raw) return;
+        const s = JSON.parse(raw) as Partial<{
+          step: number;
+          answers: Record<number, string>;
+          phase: Phase;
+          result: string;
+          resultModel: string;
+        }>;
+        if (s.step !== undefined) setStep(s.step);
+        if (s.answers) setAnswers(s.answers);
+        if (s.phase && s.phase !== "loading") setPhase(s.phase);
+        if (s.result) setResult(s.result);
+        if (s.resultModel) setResultModel(s.resultModel);
+      } catch {}
+      return;
+    }
+    if (phase === "loading") return;
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ step, answers, phase, result, resultModel }));
+    } catch {}
+  }, [step, answers, phase, result, resultModel]);
 
   const currentQ = step >= 1 && step <= TOTAL ? questions[step - 1] : null;
 
@@ -284,6 +314,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   }
 
   function startOver() {
+    try { sessionStorage.removeItem(SESSION_KEY); } catch {}
     setStep(0);
     setAnswers({});
     setErrors({});
