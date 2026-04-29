@@ -28,7 +28,10 @@ Always write the brief in English, even if some of the client's answers are in a
 async function sendToTelegram(text: string): Promise<void> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) return;
+  if (!token || !chatId) {
+    console.error("[Telegram] env vars missing");
+    return;
+  }
 
   const MAX = 4000;
   const chunks = [];
@@ -38,11 +41,18 @@ async function sendToTelegram(text: string): Promise<void> {
 
   const url = `https://api.telegram.org/bot${token}/sendMessage`;
   for (const chunk of chunks) {
-    await fetch(url, {
+    const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text: chunk }),
+      body: JSON.stringify({ chat_id: parseInt(chatId, 10), text: chunk }),
+      cache: "no-store",
     });
+    const data = await res.json();
+    if (!data.ok) {
+      console.error("[Telegram] API error:", JSON.stringify(data));
+    } else {
+      console.log("[Telegram] message sent OK");
+    }
   }
 }
 
@@ -111,7 +121,7 @@ export async function POST(req: NextRequest) {
       .map(([k, v]) => `${k}: ${v}`)
       .join("\n");
     const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
-    await sendToTelegram(telegramMessage).catch(() => {});
+    await sendToTelegram(telegramMessage).catch((e) => console.error("[Telegram] unexpected error:", e));
     return NextResponse.json({ result, model: CLAUDE_MODEL_NAME });
   } catch (err: unknown) {
     const isOverload =
