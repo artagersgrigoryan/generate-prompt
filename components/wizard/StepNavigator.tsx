@@ -82,10 +82,10 @@ function Circle({ id, state, label, onNavigate, size = "sm" }: CircleProps) {
         "flex shrink-0 items-center justify-center rounded-full font-semibold transition-all active:scale-95",
         dim,
         state === "done"
-          ? "bg-black text-white hover:bg-neutral-700"
+          ? "bg-black text-white hover:bg-neutral-700 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
           : state === "current"
-          ? "bg-black text-white ring-2 ring-black ring-offset-2"
-          : "border border-neutral-300 bg-white text-neutral-400 hover:border-neutral-500 hover:text-neutral-600",
+          ? "bg-black text-white ring-2 ring-black ring-offset-2 dark:bg-white dark:text-black dark:ring-white dark:ring-offset-neutral-950"
+          : "border border-neutral-300 bg-white text-neutral-400 hover:border-neutral-500 hover:text-neutral-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-500 dark:hover:border-neutral-400 dark:hover:text-neutral-300",
       ].join(" ")}
     >
       {state === "done" ? <Checkmark /> : id}
@@ -155,7 +155,7 @@ export function StepNavigator({
                 <div className="mb-4 h-px w-6 shrink-0 bg-neutral-300" />
               )}
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                   {getSectionShort(section.label)}
                 </span>
                 <div className="flex gap-2">
@@ -182,10 +182,10 @@ export function StepNavigator({
           {SECTION_DEFS.map((section, si) => (
             <div key={section.label} className="flex items-end gap-2">
               {si > 0 && (
-                <div className="mb-3.5 h-px w-4 shrink-0 bg-neutral-200" />
+                <div className="mb-3.5 h-px w-4 shrink-0 bg-neutral-200 dark:bg-neutral-700" />
               )}
               <div className="flex flex-col gap-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                   {getSectionShort(section.label)}
                 </span>
                 <div className="flex gap-1.5">

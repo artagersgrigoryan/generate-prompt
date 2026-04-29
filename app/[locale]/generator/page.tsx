@@ -28,7 +28,7 @@ function LoadingDots({ text }: { text: string }) {
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="inline-block h-2 w-2 rounded-full bg-black"
+            className="inline-block h-2 w-2 rounded-full bg-black dark:bg-white"
             style={{ animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite` }}
           />
         ))}
@@ -297,7 +297,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   // ── Result ──────────────────────────────────────────────────────────────────
   if (phase === "result") {
     return (
-      <main className="min-h-screen bg-white px-4 py-16">
+      <main className="min-h-screen bg-white px-4 py-16 dark:bg-neutral-950">
         <div className="mx-auto max-w-2xl">
           <ResultScreen
             result={result}
@@ -318,7 +318,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   // ── Loading ─────────────────────────────────────────────────────────────────
   if (phase === "loading") {
     return (
-      <main className="min-h-screen bg-white px-4 py-16 flex items-center justify-center">
+      <main className="min-h-screen bg-white px-4 py-16 flex items-center justify-center dark:bg-neutral-950">
         <LoadingDots text={t("loading")} />
       </main>
     );
@@ -345,20 +345,20 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   // ── Intro (step 0) ──────────────────────────────────────────────────────────
   if (step === 0) {
     return (
-      <main className="min-h-screen bg-white px-4 py-16">
+      <main className="min-h-screen bg-white px-4 py-16 dark:bg-neutral-950">
         <div className="mx-auto max-w-2xl space-y-10">
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
             {t("brand")}
           </p>
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold text-neutral-900">
+            <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
               {t("introTitle")}
             </h1>
-            <p className="text-neutral-500">{t("introDesc")}</p>
+            <p className="text-neutral-500 dark:text-neutral-400">{t("introDesc")}</p>
           </div>
 
           {apiError && (
-            <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
+            <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600 dark:bg-red-950 dark:border-red-900 dark:text-red-400">
               {apiError}
             </p>
           )}
@@ -386,7 +386,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   const translatedSection = getSectionLabel(q.section);
 
   return (
-    <main className="min-h-screen bg-white px-4 py-10">
+    <main className="min-h-screen bg-white px-4 py-10 dark:bg-neutral-950">
       <div className="mx-auto max-w-2xl space-y-6">
         <ProgressBar current={step} total={TOTAL} section={translatedSection} />
         <StepNavigator
@@ -401,11 +401,11 @@ Content handling: Use realistic placeholder content matching the brand voice abo
 
         <section className="space-y-5">
           <div className="flex items-start gap-2">
-            <h2 className="text-xl font-semibold text-neutral-900 leading-snug">
+            <h2 className="text-xl font-semibold text-neutral-900 leading-snug dark:text-neutral-100">
               {getQuestionLabel(q.id)}
             </h2>
             {!q.required && (
-              <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-400">
+              <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-400 dark:bg-neutral-800 dark:text-neutral-500">
                 {t("optional")}
               </span>
             )}
@@ -430,7 +430,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
         </section>
 
         {apiError && (
-          <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
+          <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600 dark:bg-red-950 dark:border-red-900 dark:text-red-400">
             {apiError}
           </p>
         )}

@@ -69,7 +69,7 @@ export default async function HomePage({
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-neutral-950">
       <main>
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <section className="px-6 py-24 sm:py-32 text-center">
@@ -79,21 +79,21 @@ export default async function HomePage({
               {t("badge")}
             </div>
 
-            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.1]">
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.1] dark:text-neutral-100">
               {t("heroLine1")}{" "}
               <span className="italic text-neutral-400">{t("heroEmphasis")}</span>
               <br />
               {t("heroLine2")}
             </h1>
 
-            <p className="mx-auto max-w-xl text-lg text-neutral-500 leading-relaxed">
+            <p className="mx-auto max-w-xl text-lg text-neutral-500 leading-relaxed dark:text-neutral-400">
               {t("heroSubtitle")}
             </p>
 
             <div className="pt-2">
               <Link
                 href="/generator"
-                className="inline-flex items-center gap-2 rounded-xl bg-black px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-neutral-800 active:bg-neutral-900"
+                className="inline-flex items-center gap-2 rounded-xl bg-black px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-neutral-800 active:bg-neutral-900 dark:bg-white dark:text-black dark:hover:bg-neutral-100"
               >
                 {t("heroCta")}
               </Link>
@@ -102,7 +102,7 @@ export default async function HomePage({
         </section>
 
         {/* ── Platform trust strip ─────────────────────────────────────────── */}
-        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-5">
+        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-5 dark:border-neutral-800 dark:bg-neutral-900">
           <div className="mx-auto max-w-4xl flex flex-wrap items-center justify-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mr-1">
               {t("platformsLabel")}
@@ -110,7 +110,7 @@ export default async function HomePage({
             {PLATFORMS.map((p) => (
               <span
                 key={p}
-                className="rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-neutral-700 shadow-sm"
+                className="rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
               >
                 {p}
               </span>
@@ -121,12 +121,12 @@ export default async function HomePage({
         {/* ── How it works ─────────────────────────────────────────────────── */}
         <section className="px-6 py-24">
           <div className="mx-auto max-w-2xl">
-            <h2 className="mb-16 text-center text-3xl font-bold text-neutral-900">
+            <h2 className="mb-16 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-100">
               {t("howItWorksTitle")}
             </h2>
 
             <div className="relative">
-              <div className="absolute left-[1.375rem] top-11 h-[calc(100%-5.5rem)] w-px bg-neutral-200" />
+              <div className="absolute left-[1.375rem] top-11 h-[calc(100%-5.5rem)] w-px bg-neutral-200 dark:bg-neutral-700" />
               <div className="space-y-12">
                 {steps.map((s, i) => (
                   <div key={i} className="relative flex gap-7">
@@ -134,10 +134,10 @@ export default async function HomePage({
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <div className="space-y-1.5 pt-2">
-                      <h3 className="text-lg font-bold text-neutral-900">
+                      <h3 className="text-lg font-bold text-neutral-900 dark:text-neutral-100">
                         {s.title}
                       </h3>
-                      <p className="text-neutral-500 leading-relaxed">{s.desc}</p>
+                      <p className="text-neutral-500 leading-relaxed dark:text-neutral-400">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -147,24 +147,24 @@ export default async function HomePage({
         </section>
 
         {/* ── What the 13 questions cover ──────────────────────────────────── */}
-        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-20">
+        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-20 dark:border-neutral-800 dark:bg-neutral-900">
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900">
+            <h2 className="mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-neutral-100">
               {t("coveredTitle")}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {covered.map((c, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-neutral-200 bg-white p-6 space-y-3"
+                  className="rounded-2xl border border-neutral-200 bg-white p-6 space-y-3 dark:border-neutral-700 dark:bg-neutral-800"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-black text-xs font-bold text-white">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-black text-xs font-bold text-white dark:bg-white dark:text-black">
                       {i + 1}
                     </span>
-                    <h3 className="font-bold text-neutral-900">{c.title}</h3>
+                    <h3 className="font-bold text-neutral-900 dark:text-neutral-100">{c.title}</h3>
                   </div>
-                  <p className="text-sm text-neutral-500 leading-relaxed">
+                  <p className="text-sm text-neutral-500 leading-relaxed dark:text-neutral-400">
                     {c.items}
                   </p>
                 </div>
@@ -177,19 +177,19 @@ export default async function HomePage({
         <section className="px-6 py-24">
           <div className="mx-auto max-w-3xl">
             <div className="mb-12 text-center space-y-3">
-              <h2 className="text-3xl font-bold text-neutral-900">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
                 {t("outputTitle")}
               </h2>
-              <p className="text-neutral-500">{t("outputSubtitle")}</p>
+              <p className="text-neutral-500 dark:text-neutral-400">{t("outputSubtitle")}</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
               {outputItems.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-neutral-50 px-4 py-3.5"
+                  className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-neutral-50 px-4 py-3.5 dark:border-neutral-800 dark:bg-neutral-900"
                 >
                   <CheckIcon />
-                  <span className="text-sm font-medium text-neutral-700">
+                  <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                     {item}
                   </span>
                 </div>
@@ -199,13 +199,13 @@ export default async function HomePage({
         </section>
 
         {/* ── Real examples ────────────────────────────────────────────────── */}
-        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-24">
+        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-24 dark:border-neutral-800 dark:bg-neutral-900">
           <div className="mx-auto max-w-5xl space-y-12">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl font-bold text-neutral-900">
+              <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
                 {t("examplesTitle")}
               </h2>
-              <p className="text-neutral-500">{t("examplesSubtitle")}</p>
+              <p className="text-neutral-500 dark:text-neutral-400">{t("examplesSubtitle")}</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-3">
               {[
@@ -218,9 +218,9 @@ export default async function HomePage({
                   href={ex.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800"
                 >
-                  <div className="overflow-hidden border-b border-neutral-100">
+                  <div className="overflow-hidden border-b border-neutral-100 dark:border-neutral-700">
                     <img
                       src={ex.img}
                       alt={`${ex.platform} example`}
@@ -231,9 +231,9 @@ export default async function HomePage({
                   <div className="flex items-center justify-between px-4 py-3">
                     <div className="flex items-center gap-2">
                       <img src={ex.logo} alt="" className="h-4 w-4 rounded-sm object-contain" />
-                      <span className="text-sm font-semibold text-neutral-700">{ex.platform}</span>
+                      <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">{ex.platform}</span>
                     </div>
-                    <span className="flex items-center gap-1 rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-500">
+                    <span className="flex items-center gap-1 rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-500 dark:bg-neutral-700 dark:text-neutral-400">
                       <svg className="h-3 w-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
                         <circle cx="8" cy="8" r="6.5" />
                         <path d="M8 5v3.5l2 1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -262,7 +262,7 @@ export default async function HomePage({
         </section>
       </main>
 
-      <footer className="border-t border-neutral-100 bg-white px-6 py-10">
+      <footer className="border-t border-neutral-100 bg-white px-6 py-10 dark:border-neutral-800 dark:bg-neutral-950">
         <div className="mx-auto max-w-5xl flex flex-col items-center gap-6">
           <p className="text-xs text-neutral-400">{t("footer")}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
@@ -270,7 +270,7 @@ export default async function HomePage({
               href="https://t.me/artagers"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               {/* Telegram */}
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -283,7 +283,7 @@ export default async function HomePage({
               href="https://www.instagram.com/artagers.grigoryan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               {/* Instagram */}
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -296,7 +296,7 @@ export default async function HomePage({
               href="https://www.linkedin.com/in/artagers-grigoryan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               {/* LinkedIn */}
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -307,7 +307,7 @@ export default async function HomePage({
             <span className="text-neutral-200 select-none">·</span>
             <a
               href="mailto:artagersgrigoryan@gmail.com"
-              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+              className="flex items-center gap-1.5 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
             >
               {/* Email */}
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

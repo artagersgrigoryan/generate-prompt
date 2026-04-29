@@ -69,15 +69,15 @@ export function ReviewScreen({
   const t = useTranslations("review");
 
   return (
-    <main className="min-h-screen bg-white px-4 py-10">
+    <main className="min-h-screen bg-white px-4 py-10 dark:bg-neutral-950">
       <div className="mx-auto max-w-2xl space-y-8">
         {/* Header */}
         <div className="space-y-1">
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
             {t("subtitle")}
           </p>
-          <h1 className="text-2xl font-bold text-neutral-900">{t("title")}</h1>
-          <p className="text-sm text-neutral-500">{t("desc")}</p>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{t("title")}</h1>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{t("desc")}</p>
         </div>
 
         {/* Answer groups */}
@@ -87,7 +87,7 @@ export function ReviewScreen({
               <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
                 {getSectionLabel(section.label)}
               </h2>
-              <div className="divide-y divide-neutral-100 rounded-xl border border-neutral-200 overflow-hidden">
+              <div className="divide-y divide-neutral-100 rounded-xl border border-neutral-200 overflow-hidden dark:divide-neutral-800 dark:border-neutral-700">
                 {section.ids.map((id) => {
                   const q = questions[id - 1];
                   const formatted = formatAnswer(q, answers[id] ?? "");
@@ -96,18 +96,18 @@ export function ReviewScreen({
                   return (
                     <div
                       key={id}
-                      className="flex items-start justify-between gap-4 px-4 py-3 bg-white hover:bg-neutral-50 transition-colors group"
+                      className="flex items-start justify-between gap-4 px-4 py-3 bg-white hover:bg-neutral-50 transition-colors group dark:bg-neutral-900 dark:hover:bg-neutral-800"
                     >
                       <div className="min-w-0 flex-1 space-y-0.5">
                         <p className="text-xs text-neutral-400">
                           {getQuestionLabel(id)}
                         </p>
                         {skipped ? (
-                          <p className="text-sm italic text-neutral-300">
+                          <p className="text-sm italic text-neutral-300 dark:text-neutral-600">
                             {q.required ? t("notAnswered") : t("skipped")}
                           </p>
                         ) : (
-                          <p className="text-sm font-medium text-neutral-900 break-words">
+                          <p className="text-sm font-medium text-neutral-900 break-words dark:text-neutral-100">
                             {formatted}
                           </p>
                         )}
@@ -115,7 +115,7 @@ export function ReviewScreen({
                       <button
                         type="button"
                         onClick={() => onEdit(id)}
-                        className="shrink-0 rounded-md px-2.5 py-1 text-xs font-medium text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-100 hover:text-neutral-700"
+                        className="shrink-0 rounded-md px-2.5 py-1 text-xs font-medium text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-neutral-100 hover:text-neutral-700 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"
                       >
                         {t("editBtn")}
                       </button>
@@ -128,7 +128,7 @@ export function ReviewScreen({
         </div>
 
         {apiError && (
-          <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
+          <p className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600 dark:bg-red-950 dark:border-red-900 dark:text-red-400">
             {apiError}
           </p>
         )}

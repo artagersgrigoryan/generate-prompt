@@ -78,7 +78,7 @@ export function ResultScreen({
         <p className="text-xs font-medium uppercase tracking-wide text-neutral-400">
           {t("generatedWith", { modelName })}
         </p>
-        <h2 className="text-xl font-semibold text-neutral-900">{t("title")}</h2>
+        <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">{t("title")}</h2>
       </div>
 
       {/* Attach reminder */}
@@ -93,7 +93,7 @@ export function ResultScreen({
       )}
 
       {/* Result text */}
-      <div className="max-h-96 overflow-y-auto rounded-xl border border-neutral-200 bg-neutral-50 p-5 text-sm leading-relaxed text-neutral-800 whitespace-pre-wrap">
+      <div className="max-h-96 overflow-y-auto rounded-xl border border-neutral-200 bg-neutral-50 p-5 text-sm leading-relaxed text-neutral-800 whitespace-pre-wrap dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200">
         {result}
       </div>
 
@@ -120,10 +120,10 @@ export function ResultScreen({
 
       {/* Where to use — tabbed */}
       <div className="border-t border-neutral-100 pt-6 space-y-4">
-        <p className="text-sm font-semibold text-neutral-900">{t("whereToUseTitle")}</p>
+        <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">{t("whereToUseTitle")}</p>
 
         {/* Free notice */}
-        <div className="flex gap-2.5 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+        <div className="flex gap-2.5 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-900">
           <span className="mt-0.5 shrink-0 text-neutral-400">
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clipRule="evenodd" />
@@ -133,7 +133,7 @@ export function ResultScreen({
         </div>
 
         {/* Tab bar */}
-        <div className="flex gap-1 overflow-x-auto border-b border-neutral-200 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: "none" }}>
+        <div className="flex gap-1 overflow-x-auto border-b border-neutral-200 dark:border-neutral-700 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: "none" }}>
           {PLATFORMS.map((p) => (
             <button
               key={p.id}
@@ -142,8 +142,8 @@ export function ResultScreen({
               className={[
                 "relative flex shrink-0 items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors",
                 activeTab === p.id
-                  ? "text-neutral-900 after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-0.5 after:bg-black"
-                  : "text-neutral-400 hover:text-neutral-600",
+                  ? "text-neutral-900 after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-0.5 after:bg-black dark:text-neutral-100 dark:after:bg-white"
+                  : "text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300",
               ].join(" ")}
             >
               <img src={p.logo} alt="" className="h-4 w-4 rounded-sm object-contain" />
@@ -159,7 +159,7 @@ export function ResultScreen({
             href={active.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
+            className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:text-neutral-100"
           >
             <img src={active.logo} alt="" className="h-4 w-4 rounded-sm object-contain" />
             {t("openBtn", { platform: active.label })}
@@ -175,7 +175,7 @@ export function ResultScreen({
                 <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white">
                   {i + 1}
                 </div>
-                <p className="pt-0.5 text-sm text-neutral-700">{step}</p>
+                <p className="pt-0.5 text-sm text-neutral-700 dark:text-neutral-300">{step}</p>
               </div>
             ))}
           </div>
