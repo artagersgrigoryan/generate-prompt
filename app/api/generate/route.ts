@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
       .map(([k, v]) => `${k}: ${v}`)
       .join("\n");
     const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
-    sendToTelegram(telegramMessage).catch(() => {});
+    await sendToTelegram(telegramMessage).catch(() => {});
     return NextResponse.json({ result, model: CLAUDE_MODEL_NAME });
   } catch (err: unknown) {
     const isOverload =
