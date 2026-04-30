@@ -12,10 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title:
-      "Website Prompt Generator — AI briefs for any coding tool (Bolt, Cursor, v0, Lovable, Replit, Windsurf, ChatGPT)",
+    title: "Website Prompt Generator — AI brief for any coding tool",
     description:
-      "Answer 13 focused questions about your website. Claude AI writes a complete, professional brief — paste it into any AI builder or coding tool. Verified for Bolt, Cursor, v0, Lovable, Arena.ai. Also works with Replit, Windsurf, ChatGPT, Claude, GitHub Copilot, and more.",
+      "Answer 13 questions and Claude AI writes a complete website brief. Paste it into Bolt, Cursor, v0, Lovable, or any AI builder. Free. 2 minutes.",
     openGraph: {
       title: "Website Prompt Generator",
       description:
