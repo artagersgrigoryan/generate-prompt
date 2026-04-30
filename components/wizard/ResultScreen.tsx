@@ -30,19 +30,6 @@ export function ResultScreen({
 
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<PlatformId>("bolt");
-  const [tgStatus, setTgStatus] = useState<"idle" | "sending" | "ok" | "err">("idle");
-
-  async function handleTestTelegram() {
-    setTgStatus("sending");
-    try {
-      const res = await fetch("/api/test-telegram");
-      setTgStatus(res.ok ? "ok" : "err");
-    } catch {
-      setTgStatus("err");
-    }
-    setTimeout(() => setTgStatus("idle"), 3000);
-  }
-
   async function handleCopy() {
     await navigator.clipboard.writeText(result);
     setCopied(true);
@@ -105,17 +92,6 @@ export function ResultScreen({
         <Button onClick={onStartOver} variant="ghost">
           {t("startOver")}
         </Button>
-        <button
-          type="button"
-          onClick={handleTestTelegram}
-          disabled={tgStatus === "sending"}
-          className="rounded-lg border border-neutral-200 px-3 py-1.5 text-xs font-medium text-neutral-400 transition-colors hover:border-neutral-300 hover:text-neutral-600 disabled:opacity-50"
-        >
-          {tgStatus === "sending" && "Sending…"}
-          {tgStatus === "ok" && "✅ Sent"}
-          {tgStatus === "err" && "❌ Failed"}
-          {tgStatus === "idle" && "Test Telegram"}
-        </button>
       </div>
 
       {/* Where to use — tabbed */}
