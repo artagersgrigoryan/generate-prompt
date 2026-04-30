@@ -12,15 +12,39 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Website Prompt Generator",
-  description:
-    "Answer 12 quick questions and generate a detailed AI brief for your website.",
-};
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+function buildAlternates(locale: string, path: string = "") {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!siteUrl) return {};
+  return {
+    canonical: `${siteUrl}/${locale}${path}`,
+    languages: {
+      ...Object.fromEntries(
+        routing.locales.map((l) => [l, `${siteUrl}/${l}${path}`])
+      ),
+      "x-default": `${siteUrl}/en${path}`,
+    },
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: "Website Prompt Generator",
+    description:
+      "Answer 12 quick questions and generate a detailed AI brief for your website.",
+    alternates: buildAlternates(locale),
+  };
+}
+
+export { buildAlternates };
 
 export default async function LocaleLayout({
   children,
