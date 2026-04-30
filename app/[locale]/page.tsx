@@ -380,7 +380,7 @@ export default async function HomePage({
                   </div>
                   <div className="flex items-center justify-between px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <img src={ex.logo} alt="" className="h-4 w-4 rounded-sm object-contain" />
+                      <img src={ex.logo} alt={`${ex.platform} logo`} className="h-4 w-4 rounded-sm object-contain" />
                       <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">{ex.platform}</span>
                     </div>
                     <span className="flex items-center gap-1 rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-500 dark:bg-neutral-700 dark:text-neutral-400">
