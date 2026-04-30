@@ -21,6 +21,24 @@ export async function generateMetadata({
       description:
         "13 focused questions → a complete AI brief that works in any AI builder. Verified for Bolt, Cursor, v0, Lovable, Arena.ai. Also pastes cleanly into Replit, Windsurf, ChatGPT, and more. Free. Under 2 minutes.",
       type: "website",
+      url: process.env.NEXT_PUBLIC_SITE_URL
+        ? `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`
+        : undefined,
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1512,
+          height: 784,
+          alt: "Website Prompt Generator — build your AI brief in 2 minutes",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Website Prompt Generator",
+      description:
+        "13 focused questions → a complete AI brief for any AI builder. Free. Under 2 minutes.",
+      images: ["/og-image.png"],
     },
     alternates: buildAlternates(locale),
   };
