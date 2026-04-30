@@ -399,13 +399,15 @@ Content handling: Use realistic placeholder content matching the brand voice abo
             <Button onClick={() => setStep(1)} className="w-full sm:w-auto">
               {t("startButton")}
             </Button>
-            <button
-              type="button"
-              onClick={previewResult}
-              className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors underline underline-offset-2"
-            >
-              {t("testButton")}
-            </button>
+            {process.env.NODE_ENV === 'development' && (
+              <button
+                type="button"
+                onClick={previewResult}
+                className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors underline underline-offset-2"
+              >
+                {t("testButton")}
+              </button>
+            )}
           </div>
         </div>
       </main>
