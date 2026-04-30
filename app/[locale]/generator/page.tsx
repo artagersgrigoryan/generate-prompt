@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslations, useMessages } from "next-intl";
 import { questions } from "@/lib/questions";
+import { WIZARD_SESSION_KEY } from "@/lib/draft";
 import { ProgressBar } from "@/components/wizard/ProgressBar";
 import { StepNavigator } from "@/components/wizard/StepNavigator";
 import { QuestionStep } from "@/components/wizard/QuestionStep";
@@ -13,7 +14,7 @@ import { Button } from "@/components/ui/Button";
 type Phase = "wizard" | "review" | "loading" | "result";
 
 const TOTAL = questions.length;
-const SESSION_KEY = "wpg_wizard";
+const SESSION_KEY = WIZARD_SESSION_KEY;
 
 const SECTION_KEY: Record<string, string> = {
   "Basics": "basics",
