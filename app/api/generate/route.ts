@@ -63,7 +63,7 @@ function buildUserMessage(answers: Record<string, string>): string {
   return `Here are the client's answers:\n\n${lines.join("\n")}`;
 }
 
-const MAX_ANSWER_LENGTH = 2000;
+const MAX_ANSWER_LENGTH = 3000;
 const MAX_ANSWERS = 20;
 
 function validateAnswers(raw: unknown): raw is Record<string, string> {
@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
     const client = new Anthropic({ apiKey });
     const msg = await client.messages.create({
       model: CLAUDE_MODEL_ID,
-      max_tokens: 2000,
+      max_tokens: 4096,
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userMessage }],
     });
