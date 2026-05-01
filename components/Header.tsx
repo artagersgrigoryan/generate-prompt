@@ -21,6 +21,9 @@ export function Header() {
           <span className="text-sm font-semibold tracking-tight text-neutral-900 transition-colors group-hover:text-neutral-600 dark:text-neutral-100 dark:group-hover:text-neutral-400">
             {t("brand")}
           </span>
+          <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+            Beta
+          </span>
         </Link>
 
         {/* Right side */}

@@ -65,8 +65,32 @@ All question config lives in `lib/questions.ts`. The wizard iterates `questions[
 
 After adding questions, add the corresponding translation keys to `messages/en.json`, then add only those new keys (with placeholder values) to `messages/hy.json` and `messages/ru.json`.
 
+### Telegram analytics side-effect
+
+`POST /api/generate` sends every user prompt + generated result to a Telegram bot after the Anthropic call succeeds. The feature is silently skipped when the env vars are absent — it must not block or affect the response.
+
+`app/api/test-telegram/route.ts` is a dev-only endpoint for verifying the bot connection.
+
+### Session persistence and resume banner
+
+`lib/draft.ts` owns the `sessionStorage` schema (`WIZARD_SESSION_KEY = "wpg_wizard"`). `readWizardDraft()` / `clearWizardDraft()` are helpers used by the generator page and `components/ResumeBanner.tsx` (shown on the landing page when an in-progress session exists).
+
+### Model identifier
+
+The Anthropic model ID and display name are centralised in `lib/models.ts` (`CLAUDE_MODEL_ID`, `CLAUDE_MODEL_NAME`). Update there to switch models.
+
+### Color palettes
+
+Preset color palette data lives in `lib/palettes.ts` and is consumed by `components/wizard/ColorPaletteSelector.tsx`.
+
+### Next.js 16 note
+
+This project runs **Next.js 16**, which has breaking changes from earlier versions. If a convention feels wrong, check `node_modules/next/dist/docs/` before assuming training-data defaults apply.
+
 ### Key env vars
 
 ```
-ANTHROPIC_API_KEY   # required — Claude Haiku is the only model used
+ANTHROPIC_API_KEY      # required — Claude Haiku (claude-haiku-4-5-20251001)
+TELEGRAM_BOT_TOKEN     # optional — analytics side-effect in /api/generate
+TELEGRAM_CHAT_ID       # optional — paired with TELEGRAM_BOT_TOKEN
 ```
