@@ -298,5 +298,18 @@
 
     "q13label": "Any references, inspiration, or extra context?",
     "q13placeholder": "e.g. I love stripe.com for its clarity. Budget ~$3k, need it live in 6 weeks."
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "displayName": "Display name",
+    "saveChanges": "Save changes",
+    "saving": "Saving…",
+    "saved": "Saved!",
+    "dangerZone": "Danger zone",
+    "deleteAccountDesc": "Permanently delete your account and all your saved prompts. This action cannot be undone.",
+    "deleteAccount": "Delete account",
+    "deleting": "Deleting…",
+    "deleteAccountConfirm": "Are you sure you want to delete your account? This will permanently erase all your prompts and cannot be undone."
   }
 }

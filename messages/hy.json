@@ -298,5 +298,18 @@
 
     "q13label": "Կա՞ն օրինակներ, ոգեշնչման աղբյուրներ կամ լրացուցիչ համատեքստ։",
     "q13placeholder": "օր.՝ սիրում եմ stripe.com-ը իր հստակության համար։ Բյուջեն ~$3k, պետք է գործարկվի 6 շաբաթից։"
+  },
+  "settings": {
+    "title": "",
+    "profile": "",
+    "displayName": "",
+    "saveChanges": "",
+    "saving": "",
+    "saved": "",
+    "dangerZone": "",
+    "deleteAccountDesc": "",
+    "deleteAccount": "",
+    "deleting": "",
+    "deleteAccountConfirm": ""
   }
 }

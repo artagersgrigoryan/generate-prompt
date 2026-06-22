@@ -298,5 +298,18 @@
 
     "q13label": "Есть ли референсы, источники вдохновения или дополнительный контекст?",
     "q13placeholder": "напр. мне нравится stripe.com за его ясность. Бюджет ~$3k, нужно запустить за 6 недель."
+  },
+  "settings": {
+    "title": "",
+    "profile": "",
+    "displayName": "",
+    "saveChanges": "",
+    "saving": "",
+    "saved": "",
+    "dangerZone": "",
+    "deleteAccountDesc": "",
+    "deleteAccount": "",
+    "deleting": "",
+    "deleteAccountConfirm": ""
   }
 }
