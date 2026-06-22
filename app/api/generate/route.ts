@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CLAUDE_MODEL_ID, CLAUDE_MODEL_NAME } from "@/lib/models";
+import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 const SYSTEM_PROMPT = `You are an expert web designer and senior developer writing a briefing document for an AI coding tool or developer. Based on the client answers, write a single cohesive prompt starting with "Build a website for..." that a developer can act on immediately without asking a single follow-up question.
 
@@ -122,6 +124,24 @@ export async function POST(req: NextRequest) {
       .join("\n");
     const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
     await sendToTelegram(telegramMessage).catch((e) => console.error("[Telegram] unexpected error:", e));
+
+    // Save to DB if user is authenticated (fire-and-forget, doesn't block response)
+    const session = await auth();
+    if (session?.user?.id) {
+      prisma.prompt
+        .create({
+          data: {
+            userId: session.user.id,
+            answers: body.answers as Record<string, string>,
+            result,
+            model: CLAUDE_MODEL_NAME,
+          },
+        })
+        .catch((e: unknown) =>
+          console.error("[Prompt] failed to save to DB:", e)
+        );
+    }
+
     return NextResponse.json({ result, model: CLAUDE_MODEL_NAME });
   } catch (err: unknown) {
     const isOverload =
