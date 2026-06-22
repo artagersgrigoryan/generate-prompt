@@ -37,7 +37,7 @@ export function UserMenu() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700 transition-opacity hover:opacity-80 dark:bg-neutral-700 dark:text-neutral-200"
+        className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-neutral-200 text-xs font-semibold text-neutral-700 transition-opacity hover:opacity-80 focus:outline-none dark:bg-neutral-700 dark:text-neutral-200"
         aria-label="User menu"
       >
         {user.image ? (

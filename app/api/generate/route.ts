@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { CLAUDE_MODEL_ID, CLAUDE_MODEL_NAME } from "@/lib/models";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { anonLimit, authLimit } from "@/lib/ratelimit";
 
 const SYSTEM_PROMPT = `You are an expert web designer and senior developer writing a briefing document for an AI coding tool or developer. Based on the client answers, write a single cohesive prompt starting with "Build a website for..." that a developer can act on immediately without asking a single follow-up question.
 
@@ -99,6 +100,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid answers payload" }, { status: 400 });
   }
 
+  const session = await auth();
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const limiter = session?.user?.id ? authLimit : anonLimit;
+  const identifier = session?.user?.id ?? ip;
+  const { success, reset } = await limiter.limit(identifier);
+  if (!success) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429, headers: { "Retry-After": String(Math.ceil((reset - Date.now()) / 1000)) } }
+    );
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Service not configured" }, { status: 503 });
@@ -125,8 +138,6 @@ export async function POST(req: NextRequest) {
     const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
     await sendToTelegram(telegramMessage).catch((e) => console.error("[Telegram] unexpected error:", e));
 
-    // Save to DB if user is authenticated (fire-and-forget, doesn't block response)
-    const session = await auth();
     if (session?.user?.id) {
       prisma.prompt
         .create({

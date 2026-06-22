@@ -2,7 +2,10 @@
   "nav": {
     "brand": "Website Prompt Generator",
     "getStarted": "Get started",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "howItWorks": "How it works",
+    "examples": "Examples",
+    "faq": "FAQ"
   },
   "home": {
     "badge": "Beta · Free · No sign-up · Powered by Claude",
@@ -307,11 +310,15 @@
     "saveChanges": "Save changes",
     "saving": "Saving…",
     "saved": "Saved!",
+    "saveError": "Failed to save. Try again.",
     "dangerZone": "Danger zone",
     "deleteAccountDesc": "Permanently delete your account and all your saved prompts. This action cannot be undone.",
     "deleteAccount": "Delete account",
     "deleting": "Deleting…",
-    "deleteAccountConfirm": "Are you sure you want to delete your account? This will permanently erase all your prompts and cannot be undone."
+    "deleteAccountConfirm": "Are you sure you want to delete your account? This will permanently erase all your prompts and cannot be undone.",
+    "deleteError": "Failed to delete account. Please try again.",
+    "cancel": "Cancel",
+    "confirmDeleteLabel": "Yes, delete account"
   },
   "auth": {
     "signIn": "Sign in",
@@ -340,6 +347,9 @@
     "viewAll": "View all",
     "noPrompts": "No prompts yet",
     "generateFirst": "Generate your first prompt →",
-    "noFavorites": "No favorites yet — star a prompt to save it here"
+    "noFavorites": "No favorites yet — star a prompt to save it here",
+    "pageOf": "Page {page} of {total}",
+    "previous": "Previous",
+    "next": "Next"
   }
 }

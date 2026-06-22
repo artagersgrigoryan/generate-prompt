@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
-import { redirect } from "next/navigation";
 
 export default async function HistoryPage({
   params,
@@ -15,15 +14,14 @@ export default async function HistoryPage({
   setRequestLocale(locale);
 
   const session = await auth();
-  if (!session?.user?.id) redirect("/en/auth/signin");
   const t = await getTranslations("dashboard");
   const { page: pageParam } = await searchParams;
   const page = Math.max(1, parseInt(pageParam ?? "1", 10));
   const limit = 20;
 
-  const userId = session.user.id;
+  const userId = session!.user.id;
 
-  const [prompts, total] = await prisma.$transaction([
+  const [prompts, total] = await Promise.all([
     prisma.prompt.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
@@ -57,7 +55,7 @@ export default async function HistoryPage({
           {totalPages > 1 && (
             <div className="flex items-center justify-between border-t border-neutral-100 pt-4 dark:border-neutral-800">
               <p className="text-sm text-neutral-400">
-                Page {page} of {totalPages}
+                {t("pageOf", { page, total: totalPages })}
               </p>
               <div className="flex gap-2">
                 {page > 1 && (
@@ -65,7 +63,7 @@ export default async function HistoryPage({
                     href={`?page=${page - 1}`}
                     className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
                   >
-                    Previous
+                    {t("previous")}
                   </a>
                 )}
                 {page < totalPages && (
@@ -73,7 +71,7 @@ export default async function HistoryPage({
                     href={`?page=${page + 1}`}
                     className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
                   >
-                    Next
+                    {t("next")}
                   </a>
                 )}
               </div>

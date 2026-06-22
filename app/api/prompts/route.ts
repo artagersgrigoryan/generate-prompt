@@ -1,24 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { requireAuth } from "@/lib/api-auth";
 
 export async function GET(req: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const userId = await requireAuth();
+  if (userId instanceof NextResponse) return userId;
 
   const { searchParams } = new URL(req.url);
   const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10));
   const limit = 20;
   const favoritesOnly = searchParams.get("favorites") === "true";
 
-  const [prompts, total] = await prisma.$transaction([
+  const where = {
+    userId,
+    ...(favoritesOnly ? { isFavorite: true } : {}),
+  };
+
+  const [prompts, total] = await Promise.all([
     prisma.prompt.findMany({
-      where: {
-        userId: session.user.id,
-        ...(favoritesOnly ? { isFavorite: true } : {}),
-      },
+      where,
       orderBy: { createdAt: "desc" },
       skip: (page - 1) * limit,
       take: limit,
@@ -30,12 +30,7 @@ export async function GET(req: NextRequest) {
         createdAt: true,
       },
     }),
-    prisma.prompt.count({
-      where: {
-        userId: session.user.id,
-        ...(favoritesOnly ? { isFavorite: true } : {}),
-      },
-    }),
+    prisma.prompt.count({ where }),
   ]);
 
   return NextResponse.json({ prompts, total, page, limit });

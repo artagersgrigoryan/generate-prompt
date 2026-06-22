@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
 import { Link } from "@/i18n/routing";
-import { redirect } from "next/navigation";
 
 export default async function DashboardPage({
   params,
@@ -14,12 +13,11 @@ export default async function DashboardPage({
   setRequestLocale(locale);
 
   const session = await auth();
-  if (!session?.user?.id) redirect("/en/auth/signin");
   const t = await getTranslations("dashboard");
 
-  const userId = session.user.id;
+  const userId = session!.user.id;
 
-  const [prompts, total, favoriteCount] = await prisma.$transaction([
+  const [prompts, total, favoriteCount] = await Promise.all([
     prisma.prompt.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
@@ -37,7 +35,7 @@ export default async function DashboardPage({
           {t("title")}
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          {session.user.name ?? session.user.email}
+          {session!.user.name ?? session!.user.email}
         </p>
       </div>
 

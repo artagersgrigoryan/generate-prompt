@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data:",
+              "img-src 'self' data: https://lh3.googleusercontent.com https://avatars.githubusercontent.com",
               "connect-src 'self'",
               "frame-ancestors 'none'",
             ].join("; "),

@@ -4,6 +4,9 @@ import { Link } from "@/i18n/routing";
 import HeroCta from "@/components/HeroCta";
 import ResumeBanner from "@/components/ResumeBanner";
 import { buildAlternates } from "@/app/[locale]/layout";
+import { AnimatedGroup } from "@/components/ui/animated-group";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
 export async function generateMetadata({
   params,
@@ -43,7 +46,6 @@ export async function generateMetadata({
   };
 }
 
-const PLATFORMS = ["Bolt", "Lovable", "Cursor", "v0", "Arena.ai"];
 
 function CheckIcon({ className = "h-4 w-4 shrink-0 text-black dark:text-white" }: { className?: string }) {
   return (
@@ -150,50 +152,145 @@ export default async function HomePage({
       <ResumeBanner />
       <main>
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
-        <section className="px-6 py-24 sm:py-32 text-center">
-          <div className="mx-auto max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-1.5 text-xs font-semibold text-neutral-500 tracking-wide dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-              {t("badge")}
-            </div>
+        <section className="bg-white dark:bg-neutral-950 px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center overflow-hidden">
+          <div className="mx-auto max-w-4xl">
+            <AnimatedGroup
+              variants={{
+                container: {
+                  visible: {
+                    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+                  },
+                },
+                item: {
+                  hidden: { opacity: 0, filter: "blur(12px)", y: 16 },
+                  visible: {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    y: 0,
+                    transition: { type: "spring", bounce: 0.3, duration: 1.4 },
+                  },
+                },
+              }}
+            >
+              {/* Badge */}
+              <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+                {t("badge")}
+                <svg className="h-3.5 w-3.5 text-neutral-400 dark:text-neutral-500" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10m0 0L9 4m4 4l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
 
-            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.1] dark:text-neutral-100">
-              {t("heroH1Lead")}{" "}
-              <span className="italic text-neutral-400">{t("heroH1Emphasis")}</span>
-            </h1>
+              {/* Headline */}
+              <h1 className="text-balance text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+                {t("heroH1Lead")}{" "}
+                <em className="italic text-neutral-500 dark:text-neutral-400">{t("heroH1Emphasis")}</em>
+              </h1>
 
-            <p className="mx-auto max-w-xl text-lg text-neutral-500 leading-relaxed dark:text-neutral-400">
-              {t("heroSubtitle")}
-            </p>
-
-            <div className="pt-2 space-y-3">
-              <HeroCta />
-              <p className="text-xs text-neutral-400 dark:text-neutral-500">
-                {t("heroMicrocopy")}
+              {/* Subtitle */}
+              <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {t("heroSubtitle")}
               </p>
-            </div>
+
+              {/* CTAs */}
+              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <HeroCta />
+                <a
+                  href="#how-it-works"
+                  className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
+                >
+                  {t("footerHowLink")} →
+                </a>
+              </div>
+              <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-600">{t("heroMicrocopy")}</p>
+
+              {/* Brief preview card */}
+              <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl border border-neutral-200 bg-white text-left shadow-xl shadow-black/10 dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/40">
+                {/* Card header bar */}
+                <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-5 py-3 dark:border-neutral-800 dark:bg-neutral-950">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+                    Generated brief
+                  </span>
+                  <span className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:border-green-900 dark:bg-green-950/60 dark:text-green-400">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+                    Ready to paste
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="relative h-72 overflow-x-auto overflow-y-hidden p-6">
+                  <pre className="min-w-0 select-none whitespace-pre-wrap font-mono text-[0.8rem] leading-[1.75] text-neutral-600 dark:text-neutral-400">
+{`# Coffee Shop Website Brief
+
+**Client**    Brew & Grounds Café, Portland OR
+**Goal**      Online presence + online ordering
+**Audience**  Coffee enthusiasts aged 25–42
+
+## Visual Direction
+Warm-modern editorial. Generous white space,
+earth-toned accents, high-contrast typography.
+Reference: Blue Bottle Coffee, Kinfolk magazine.
+
+## Pages & Hierarchy
+1. Home    — hero story + featured drinks
+2. Menu    — filterable by category
+3. About   — origin + team profiles
+4. Order   — integrated third-party widget
+5. Contact — map, hours, reservation link
+
+## Code & Tech
+Next.js 14 · Tailwind CSS · TypeScript
+Mobile-first. WCAG 2.1 AA. No CMS for v1.`}
+                  </pre>
+                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent" />
+                </div>
+              </div>
+            </AnimatedGroup>
           </div>
         </section>
 
-        {/* ── Platform trust strip ─────────────────────────────────────────── */}
-        <section className="border-y border-neutral-100 bg-neutral-50 px-6 py-5 dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="mx-auto max-w-4xl space-y-2.5">
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <span className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mr-1">
-                {t("platformsLabel")}
-              </span>
-              {PLATFORMS.map((p) => (
-                <span
-                  key={p}
-                  className="rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-neutral-700 shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300"
-                >
-                  {p}
-                </span>
-              ))}
+        {/* ── Platform slider ───────────────────────────────────────────────── */}
+        <section className="bg-white dark:bg-neutral-950 pb-20 border-b border-neutral-100 dark:border-neutral-800">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex flex-col items-center md:flex-row">
+              <div className="shrink-0 md:max-w-44 border-neutral-200 dark:border-neutral-800 md:border-r md:pr-6">
+                <p className="text-center text-sm text-neutral-500 md:text-end">
+                  {t("platformsLabel")}
+                </p>
+              </div>
+              <div className="relative w-full py-6 md:w-[calc(100%-11rem)]">
+                <InfiniteSlider duration={40} gap={80}>
+                  {[
+                    { src: "/logos/bolt.svg", alt: "Bolt", h: "h-5" },
+                    { src: "/logos/cursor.svg", alt: "Cursor", h: "h-5" },
+                    { src: "/logos/lovable.svg", alt: "Lovable", h: "h-5" },
+                    { src: "/logos/v0.svg", alt: "v0", h: "h-5" },
+                  ].map((logo) => (
+                    <div key={logo.alt} className="flex items-center">
+                      <img
+                        src={logo.src}
+                        alt={`${logo.alt} logo`}
+                        className={`${logo.h} w-auto opacity-40 dark:invert dark:opacity-50`}
+                      />
+                    </div>
+                  ))}
+                  <div className="flex items-center">
+                    <span className="text-sm font-semibold text-neutral-400 dark:text-neutral-600">Arena.ai</span>
+                  </div>
+                </InfiniteSlider>
+
+                <ProgressiveBlur
+                  className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                  direction="left"
+                  blurIntensity={1}
+                />
+                <ProgressiveBlur
+                  className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                  direction="right"
+                  blurIntensity={1}
+                />
+              </div>
             </div>
-            <p className="text-center text-xs text-neutral-400 dark:text-neutral-500">
-              {t("platformsCaption")}
-            </p>
           </div>
         </section>
 

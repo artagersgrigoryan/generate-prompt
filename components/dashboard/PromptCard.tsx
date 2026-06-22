@@ -14,11 +14,11 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
   const [expanded, setExpanded] = useState(false);
   const [favorite, setFavorite] = useState(prompt.isFavorite);
   const [deleted, setDeleted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [favLoading, setFavLoading] = useState(false);
 
   async function toggleFavorite(e: React.MouseEvent) {
     e.stopPropagation();
-    setLoading(true);
+    setFavLoading(true);
     try {
       const res = await fetch(`/api/prompts/${prompt.id}/favorite`, {
         method: "PATCH",
@@ -28,7 +28,7 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
         setFavorite(data.isFavorite);
       }
     } finally {
-      setLoading(false);
+      setFavLoading(false);
     }
   }
 
@@ -41,7 +41,7 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
 
   if (deleted) return null;
 
-  const date = new Date(prompt.createdAt).toLocaleDateString("en-US", {
+  const date = new Date(prompt.createdAt).toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -60,14 +60,14 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
             <p className="text-xs text-neutral-400 dark:text-neutral-500">
               {date}
             </p>
-            <p className="mt-1 text-sm text-neutral-700 dark:text-neutral-300">
+            <p className="mt-1 break-words text-sm text-neutral-700 dark:text-neutral-300">
               {expanded ? prompt.result : `${preview}${prompt.result.length > 160 ? "…" : ""}`}
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5 pt-4">
+          <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
             <button
               onClick={toggleFavorite}
-              disabled={loading}
+              disabled={favLoading}
               className={`rounded-lg p-1.5 transition-colors ${
                 favorite
                   ? "text-amber-500"

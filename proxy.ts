@@ -16,7 +16,8 @@ function isProtected(pathname: string): boolean {
 
 export default auth((req) => {
   if (isProtected(req.nextUrl.pathname) && !req.auth) {
-    const signInUrl = new URL("/en/auth/signin", req.nextUrl);
+    const locale = req.nextUrl.pathname.match(/^\/(en|hy|ru)/)?.[1] ?? "en";
+    const signInUrl = new URL(`/${locale}/auth/signin`, req.nextUrl);
     signInUrl.searchParams.set("callbackUrl", req.nextUrl.pathname);
     return NextResponse.redirect(signInUrl);
   }

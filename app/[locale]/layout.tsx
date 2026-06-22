@@ -15,6 +15,7 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

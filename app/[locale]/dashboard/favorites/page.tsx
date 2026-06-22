@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
-import { redirect } from "next/navigation";
 
 export default async function FavoritesPage({
   params,
@@ -13,11 +12,10 @@ export default async function FavoritesPage({
   setRequestLocale(locale);
 
   const session = await auth();
-  if (!session?.user?.id) redirect("/en/auth/signin");
   const t = await getTranslations("dashboard");
 
   const prompts = await prisma.prompt.findMany({
-    where: { userId: session.user.id, isFavorite: true },
+    where: { userId: session!.user.id, isFavorite: true },
     orderBy: { createdAt: "desc" },
     select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
   });
