@@ -78,7 +78,7 @@ export default async function DashboardPage({
           </div>
         ) : (
           <div className="space-y-2">
-            {prompts.map((p) => (
+            {prompts.map((p: (typeof prompts)[number]) => (
               <PromptCard
                 key={p.id}
                 prompt={{ ...p, createdAt: p.createdAt.toISOString() }}
