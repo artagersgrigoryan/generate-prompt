@@ -1,22 +1,33 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
 import { Link } from "@/i18n/routing";
+import { redirect } from "next/navigation";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const session = await auth();
+  if (!session?.user?.id) redirect("/en/auth/signin");
   const t = await getTranslations("dashboard");
+
+  const userId = session.user.id;
 
   const [prompts, total, favoriteCount] = await prisma.$transaction([
     prisma.prompt.findMany({
-      where: { userId: session!.user.id },
+      where: { userId },
       orderBy: { createdAt: "desc" },
       take: 5,
       select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
     }),
-    prisma.prompt.count({ where: { userId: session!.user.id } }),
-    prisma.prompt.count({ where: { userId: session!.user.id, isFavorite: true } }),
+    prisma.prompt.count({ where: { userId } }),
+    prisma.prompt.count({ where: { userId, isFavorite: true } }),
   ]);
 
   return (
@@ -26,7 +37,7 @@ export default async function DashboardPage() {
           {t("title")}
         </h1>
         <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          {session!.user.name ?? session!.user.email}
+          {session.user.name ?? session.user.email}
         </p>
       </div>
 

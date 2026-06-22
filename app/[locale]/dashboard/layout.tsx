@@ -1,15 +1,20 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Link } from "@/i18n/routing";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export default async function DashboardLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const session = await auth();
-  if (!session) redirect("/en/auth/signin");
+  if (!session?.user?.id) redirect("/en/auth/signin");
 
   const t = await getTranslations("dashboard");
 

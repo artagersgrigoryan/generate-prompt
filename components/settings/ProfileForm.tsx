@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 interface ProfileFormProps {
   name: string;
@@ -8,6 +9,7 @@ interface ProfileFormProps {
 }
 
 export function ProfileForm({ name: initialName, email }: ProfileFormProps) {
+  const t = useTranslations("settings");
   const [name, setName] = useState(initialName);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<"idle" | "saved" | "error">("idle");
@@ -33,7 +35,7 @@ export function ProfileForm({ name: initialName, email }: ProfileFormProps) {
   }
 
   async function handleDelete() {
-    if (!confirm("This will permanently delete your account and all your prompts. Are you sure?")) return;
+    if (!confirm(t("deleteAccountConfirm"))) return;
     setDeleting(true);
     try {
       const res = await fetch("/api/user", { method: "DELETE" });
@@ -48,11 +50,11 @@ export function ProfileForm({ name: initialName, email }: ProfileFormProps) {
   return (
     <div className="space-y-8">
       <section>
-        <h2 className="text-lg font-semibold mb-4">Profile</h2>
+        <h2 className="text-lg font-semibold mb-4">{t("profile")}</h2>
         <form onSubmit={handleSave} className="space-y-4 max-w-sm">
           <div>
             <label htmlFor="display-name" className="block text-sm font-medium mb-1">
-              Display name
+              {t("displayName")}
             </label>
             <input
               id="display-name"
@@ -69,9 +71,9 @@ export function ProfileForm({ name: initialName, email }: ProfileFormProps) {
               disabled={saving}
               className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
             >
-              {saving ? "Saving…" : "Save"}
+              {saving ? t("saving") : t("saveChanges")}
             </button>
-            {status === "saved" && <span className="text-sm text-green-600">Saved!</span>}
+            {status === "saved" && <span className="text-sm text-green-600">{t("saved")}</span>}
             {status === "error" && <span className="text-sm text-red-600">Failed to save. Try again.</span>}
           </div>
           <p className="text-sm text-neutral-500">{email}</p>
@@ -79,16 +81,16 @@ export function ProfileForm({ name: initialName, email }: ProfileFormProps) {
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold mb-4">Danger zone</h2>
+        <h2 className="text-lg font-semibold mb-4">{t("dangerZone")}</h2>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
-          This will permanently delete your account and all your prompts.
+          {t("deleteAccountDesc")}
         </p>
         <button
           onClick={handleDelete}
           disabled={deleting}
           className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-50"
         >
-          {deleting ? "Deleting…" : "Delete account"}
+          {deleting ? t("deleting") : t("deleteAccount")}
         </button>
       </section>
     </div>

@@ -1,28 +1,37 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
+import { redirect } from "next/navigation";
 
 export default async function HistoryPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ page?: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const session = await auth();
+  if (!session?.user?.id) redirect("/en/auth/signin");
   const t = await getTranslations("dashboard");
   const { page: pageParam } = await searchParams;
   const page = Math.max(1, parseInt(pageParam ?? "1", 10));
   const limit = 20;
 
+  const userId = session.user.id;
+
   const [prompts, total] = await prisma.$transaction([
     prisma.prompt.findMany({
-      where: { userId: session!.user.id },
+      where: { userId },
       orderBy: { createdAt: "desc" },
       skip: (page - 1) * limit,
       take: limit,
       select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
     }),
-    prisma.prompt.count({ where: { userId: session!.user.id } }),
+    prisma.prompt.count({ where: { userId } }),
   ]);
 
   const totalPages = Math.ceil(total / limit);

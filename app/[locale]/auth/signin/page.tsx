@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { signIn } from "@/lib/auth";
-import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
 
 export default async function SignInPage({
@@ -35,12 +34,7 @@ export default async function SignInPage({
           <form
             action={async () => {
               "use server";
-              try {
-                await signIn("google", { redirectTo });
-              } catch (e) {
-                if (e instanceof AuthError) throw e;
-                throw e;
-              }
+              await signIn("google", { redirectTo });
             }}
           >
             <button
@@ -73,12 +67,7 @@ export default async function SignInPage({
           <form
             action={async () => {
               "use server";
-              try {
-                await signIn("github", { redirectTo });
-              } catch (e) {
-                if (e instanceof AuthError) throw e;
-                throw e;
-              }
+              await signIn("github", { redirectTo });
             }}
           >
             <button
@@ -110,12 +99,7 @@ export default async function SignInPage({
             "use server";
             const email = formData.get("email") as string;
             if (!email) return;
-            try {
-              await signIn("resend", { email, redirectTo });
-            } catch (e) {
-              if (e instanceof AuthError) throw e;
-              throw e;
-            }
+            await signIn("resend", { email, redirectTo });
             redirect("/en/auth/verify-email");
           }}
           className="space-y-3"
