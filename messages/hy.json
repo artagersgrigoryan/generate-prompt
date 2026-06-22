@@ -1,7 +1,8 @@
 {
   "nav": {
     "brand": "Կայքի պրոմպտի գեներատոր",
-    "getStarted": "Սկսել"
+    "getStarted": "Սկսել",
+    "signIn": "Sign in"
   },
   "home": {
     "badge": "Beta · Անվճար · Առանց գրանցման · Աշխատում է Claude-ի վրա",
@@ -311,5 +312,34 @@
     "deleteAccount": "",
     "deleting": "",
     "deleteAccountConfirm": ""
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signInSubtitle": "Save your prompts and access them anywhere",
+    "signOut": "Sign out",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGitHub": "Continue with GitHub",
+    "orContinueWith": "or continue with",
+    "emailPlaceholder": "your@email.com",
+    "sendMagicLink": "Send magic link",
+    "checkYourEmail": "Check your email",
+    "checkYourEmailDesc": "We sent a magic link to your email address. Click the link to sign in.",
+    "termsNotice": "By signing in, you agree to our terms of service.",
+    "errorDefault": "Something went wrong. Please try again.",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "history": "History",
+    "favorites": "Favorites",
+    "totalPrompts": "Total prompts",
+    "totalFavorites": "Favorites",
+    "recentPrompts": "Recent prompts",
+    "viewAll": "View all",
+    "noPrompts": "No prompts yet",
+    "generateFirst": "Generate your first prompt →",
+    "noFavorites": "No favorites yet — star a prompt to save it here"
   }
 }
