@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Script from "next/script";
 import { Header } from "@/components/Header";
+import { Providers } from "@/components/Providers";
+import { auth } from "@/lib/auth";
 import "../globals.css";
 
 const geist = Geist({
@@ -62,6 +64,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const session = await auth();
 
   return (
     <html lang={locale} className={`${geist.variable} h-full antialiased`}>
@@ -99,10 +102,12 @@ export default async function LocaleLayout({
           />
         </noscript>
   
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
-        </NextIntlClientProvider>
+        <Providers session={session}>
+          <NextIntlClientProvider messages={messages}>
+            <Header />
+            {children}
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );
