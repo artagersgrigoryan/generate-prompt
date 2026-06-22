@@ -4,9 +4,12 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
+import { UserMenu } from "./UserMenu";
+import { useSession } from "next-auth/react";
 
 export function Header() {
   const t = useTranslations("nav");
+  const { data: session, status } = useSession();
 
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-950">
@@ -30,6 +33,18 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <LanguageSwitcher />
+          {status === "loading" ? (
+            <div className="h-8 w-8 animate-pulse rounded-full bg-neutral-200 dark:bg-neutral-700" />
+          ) : session ? (
+            <UserMenu />
+          ) : (
+            <Link
+              href="/auth/signin"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
+            >
+              {t("signIn")}
+            </Link>
+          )}
         </div>
       </div>
     </header>
