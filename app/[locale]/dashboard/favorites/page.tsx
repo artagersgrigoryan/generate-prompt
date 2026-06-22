@@ -30,7 +30,7 @@ export default async function FavoritesPage({
         <p className="text-sm text-neutral-400 dark:text-neutral-500">{t("noFavorites")}</p>
       ) : (
         <div className="space-y-2">
-          {prompts.map((p) => (
+          {prompts.map((p: (typeof prompts)[number]) => (
             <PromptCard
               key={p.id}
               prompt={{ ...p, createdAt: p.createdAt.toISOString() }}
