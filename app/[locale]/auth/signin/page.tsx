@@ -14,7 +14,7 @@ export default async function SignInPage({
   if (welcome === "1") {
     const session = await auth();
     return (
-      <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center px-6 py-12">
+      <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-12">
         <SignInSuccess name={session?.user?.name} locale={locale} />
       </div>
     );
@@ -62,7 +62,7 @@ export default async function SignInPage({
   ];
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center px-6 py-12">
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm space-y-6">
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
@@ -99,8 +99,7 @@ export default async function SignInPage({
           ))}
         </div>
 
-        {/* TODO: re-enable magic link when domain is verified in Resend */}
-        {/* <div className="relative">
+        <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-neutral-200 dark:border-neutral-700" />
           </div>
@@ -116,8 +115,10 @@ export default async function SignInPage({
             "use server";
             const email = formData.get("email") as string;
             if (!email) return;
+            // Auth.js sends the magic-link email and then redirects to the
+            // verifyRequest page (configured in auth.config.ts). `redirectTo`
+            // is the post-authentication destination after the link is clicked.
             await signIn("resend", { email, redirectTo });
-            redirect(`/${locale}/auth/verify-email`);
           }}
           className="space-y-3"
         >
@@ -134,7 +135,7 @@ export default async function SignInPage({
           >
             {t("sendMagicLink")}
           </button>
-        </form> */}
+        </form>
 
         <p className="text-center text-xs text-neutral-400 dark:text-neutral-500">
           {t("termsNotice")}

@@ -4,7 +4,7 @@ export default async function VerifyEmailPage() {
   const t = await getTranslations("auth");
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center px-6 py-12">
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 py-12">
       <div className="max-w-sm space-y-3 text-center">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-800">
           <svg

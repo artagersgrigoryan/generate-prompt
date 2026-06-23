@@ -106,7 +106,15 @@ export default async function LocaleLayout({
         <Providers session={session}>
           <NextIntlClientProvider messages={messages}>
             <Header />
-            {children}
+            {/*
+              The <Header> is `position: fixed`, so it's out of the document
+              flow and does NOT push content down. This wrapper reserves the
+              header's height (h-16 / 64px) for EVERY page, so individual pages
+              never need to add their own header offset.
+              Pages that intentionally want content to sit *under* the
+              transparent header (e.g. the landing hero) opt out with `-mt-16`.
+            */}
+            <div className="pt-16">{children}</div>
           </NextIntlClientProvider>
         </Providers>
       </body>

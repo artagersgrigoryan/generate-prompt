@@ -148,7 +148,10 @@ export default async function HomePage({
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    /* -mt-16 cancels the layout's header offset (pt-16) for the whole landing
+       page, so the hero sits under the transparent header (which turns into a
+       glass pill on scroll). Other pages keep the offset and clear the header. */
+    <div className="-mt-16 min-h-screen bg-white dark:bg-neutral-950">
       <ResumeBanner />
       <main>
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
