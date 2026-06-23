@@ -12,6 +12,7 @@ export default async function SignInPage({
   const t = await getTranslations("auth");
   const redirectTo =
     callbackUrl?.startsWith("/") ? callbackUrl : `/${locale}/dashboard`;
+  const redirectToWithWelcome = `${redirectTo}${redirectTo.includes("?") ? "&" : "?"}welcome=1`;
 
   const providers = [
     {
@@ -73,7 +74,7 @@ export default async function SignInPage({
               key={id}
               action={async () => {
                 "use server";
-                await signIn(id, { redirectTo });
+                await signIn(id, { redirectTo: redirectToWithWelcome });
               }}
             >
               <button

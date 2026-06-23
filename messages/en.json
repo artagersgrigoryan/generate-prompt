@@ -334,7 +334,9 @@
     "termsNotice": "By signing in, you agree to our terms of service.",
     "errorDefault": "Something went wrong. Please try again.",
     "dashboard": "Dashboard",
-    "settings": "Settings"
+    "settings": "Settings",
+    "welcomeTitle": "Welcome, {name}!",
+    "welcomeSubtitle": "You're signed in"
   },
   "dashboard": {
     "title": "Dashboard",

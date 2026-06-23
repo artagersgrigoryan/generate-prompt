@@ -2,6 +2,8 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Link } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
+import { WelcomeBanner } from "@/components/WelcomeBanner";
 
 export default async function DashboardLayout({
   children,
@@ -45,6 +47,9 @@ export default async function DashboardLayout({
         </aside>
         <main className="min-w-0 flex-1">{children}</main>
       </div>
+      <Suspense>
+        <WelcomeBanner name={session?.user?.name} />
+      </Suspense>
     </div>
   );
 }
