@@ -3,9 +3,10 @@
     "brand": "Կայքի պրոմպտի գեներատոր",
     "getStarted": "Սկսել",
     "signIn": "Sign in",
-    "howItWorks": "",
-    "examples": "",
-    "faq": ""
+    "howItWorks": "Ինչպես է աշխատում",
+    "examples": "Օրինակներ",
+    "faq": "ՀՏՀ",
+    "blog": "Բլոգ"
   },
   "home": {
     "badge": "Beta · Անվճար · Առանց գրանցման · Աշխատում է Claude-ի վրա",
@@ -304,7 +305,7 @@
     "saved": "Պահպանված է",
     "saveError": "Խնդիր... Խնդրում ենք փորձել կրկին։",
     "dangerZone": "Վտանգավոր գոտի",
-    "deleteAccountDesc": "",
+    "deleteAccountDesc": "Ոչնչացնել Հաշիվը",
     "deleteAccount": "Ոչնչացնել հաշիվը",
     "deleting": "Ընթացքի",
     "deleteAccountConfirm": "Ոչնչացնել հաշիվը",
@@ -345,5 +346,9 @@
     "pageOf": "{total}-ի {page} էջը",
     "previous": "Նախորդ",
     "next": "Հաջորդ"
+  },
+  "tools": {
+    "galleryTitle": "Ձեր գործիքները",
+    "galleryDesc": "Փոքր, նպատակային AI գործիքներ, որոնք մի քանի պատասխանից ստեղծում են պատրաստի արդյունք։"
   }
 }

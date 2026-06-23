@@ -5,7 +5,8 @@
     "signIn": "Sign in",
     "howItWorks": "How it works",
     "examples": "Examples",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "blog": "Blog"
   },
   "home": {
     "badge": "Beta · Free · No sign-up · Powered by Claude",
@@ -353,5 +354,9 @@
     "pageOf": "Page {page} of {total}",
     "previous": "Previous",
     "next": "Next"
+  },
+  "tools": {
+    "galleryTitle": "Your toolkit",
+    "galleryDesc": "Small, focused AI tools that turn a few answers into something you can use right away."
   }
 }

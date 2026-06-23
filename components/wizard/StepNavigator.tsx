@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useMessages } from "next-intl";
-import { questions } from "@/lib/questions";
+import { useEffect, useMemo, useRef } from "react";
+import type { Question } from "@/lib/questions";
 
 interface StepNavigatorProps {
   currentStep: number;
   answers: Record<number, string>;
   onNavigate: (step: number) => void;
+  questions: Question[];
+  /** Translated step (question) label by id, for tooltips/aria. */
+  getQuestionLabel: (id: number) => string;
+  /** Translated short section label by English section name. */
+  getSectionShort: (section: string) => string;
 }
 
 type StepState = "done" | "current" | "future";
@@ -27,24 +31,6 @@ function hasAnswer(value: string | undefined): boolean {
     /* not JSON */
   }
   return value.trim().length > 0;
-}
-
-// Maps question.section (English key) → messages.sections key
-const SECTION_KEY: Record<string, string> = {
-  "Basics": "basics",
-  "Audience & Brand": "audience",
-  "Content & Pages": "content",
-  "Features & Tech": "tech",
-};
-
-const SECTION_DEFS: { label: string; ids: number[] }[] = [];
-const seen = new Set<string>();
-for (const q of questions) {
-  if (!seen.has(q.section)) {
-    seen.add(q.section);
-    SECTION_DEFS.push({ label: q.section, ids: [] });
-  }
-  SECTION_DEFS[SECTION_DEFS.length - 1].ids.push(q.id);
 }
 
 const Checkmark = () => (
@@ -97,13 +83,22 @@ export function StepNavigator({
   currentStep,
   answers,
   onNavigate,
+  questions,
+  getQuestionLabel,
+  getSectionShort,
 }: StepNavigatorProps) {
-  const messages = useMessages();
-  const secMsgs = (messages.sections ?? {}) as Record<
-    string,
-    { label: string; short: string }
-  >;
-  const qmsgs = (messages.questions ?? {}) as Record<string, string>;
+  const SECTION_DEFS = useMemo(() => {
+    const defs: { label: string; ids: number[] }[] = [];
+    const seen = new Set<string>();
+    for (const q of questions) {
+      if (!seen.has(q.section)) {
+        seen.add(q.section);
+        defs.push({ label: q.section, ids: [] });
+      }
+      defs[defs.length - 1].ids.push(q.id);
+    }
+    return defs;
+  }, [questions]);
 
   const mobileRef = useRef<HTMLDivElement>(null);
   const desktopRef = useRef<HTMLDivElement>(null);
@@ -129,15 +124,6 @@ export function StepNavigator({
     if (id === currentStep) return "current";
     if (hasAnswer(answers[id])) return "done";
     return "future";
-  }
-
-  function getSectionShort(sectionLabel: string): string {
-    const key = SECTION_KEY[sectionLabel] ?? sectionLabel;
-    return secMsgs[key]?.short ?? sectionLabel;
-  }
-
-  function getQuestionLabel(id: number): string {
-    return qmsgs[`q${id}label`] || questions[id - 1]?.label || "";
   }
 
   return (

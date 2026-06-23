@@ -1,0 +1,234 @@
+---
+title: "AI Website Prompt Examples: 4 Briefs That Actually Work"
+description: "Four real AI website prompts — for a SaaS landing page, a portfolio, a local business, and an e-commerce store — with a breakdown of what makes each one work."
+date: "2026-06-23"
+author: "Artagers Grigoryan"
+tags: ["prompting", "examples", "guide", "ai-builders"]
+category: "website-prompt-generator"
+---
+
+The difference between a useful AI website builder output and a generic one is
+almost always the prompt. Here are four complete briefs — for four common site
+types — with notes on why each element is there.
+
+Copy, adapt, and paste into Bolt, v0, Lovable, Cursor, or any AI builder.
+
+## What a good AI website brief contains
+
+Before the examples: every brief that produces good first-draft output covers
+these eight things:
+
+1. **Project identity** — what it is and who it's for
+2. **Design direction** — visual style, color palette, typography
+3. **Tone** — the voice of headings and CTAs
+4. **Pages and structure** — what sections exist on each page
+5. **Functionality** — forms, interactions, integrations
+6. **Code quality** — accessibility, responsiveness, error states
+7. **Tech stack** — framework and why it fits
+8. **Content** — what's provided vs. what the AI should write
+
+The briefs below follow this structure. Use them as templates.
+
+---
+
+## Example 1: SaaS landing page
+
+**Project:** Planr — a project planning tool for freelance designers.
+
+---
+
+> **Project identity**
+> Build a marketing landing page for Planr, a project planning SaaS for
+> freelance designers. The target user is an independent designer (graphic,
+> UX, or brand) who juggles 3–8 client projects at once and needs a simple
+> way to track deadlines, deliverables, and client feedback without using a
+> spreadsheet.
+>
+> **Design direction**
+> Clean and editorial. Generous whitespace. Type-led layout with minimal
+> decoration. Color palette: background `#FAFAF9` (warm off-white), text
+> `#0A0A0A` (near-black), accent `#7C3AED` (violet). Body font: Inter.
+> Display font: Cal Sans or a geometric serif at large sizes.
+>
+> **Tone**
+> Direct and calm. No hype or startup jargon. Speak designer-to-designer.
+> Headlines are short, confident statements. CTAs are action verbs, not
+> imperatives: "Start planning" not "Sign up now."
+>
+> **Pages and sections**
+> Single long page. Sections: sticky nav (logo, Pricing, Log in, "Start free"
+> button), hero (headline + subheadline + mockup screenshot), social proof
+> (logos of 6 design studios), three key features (each with icon + heading +
+> 2-sentence description), pricing (two tiers: Free and Pro), FAQ (5 items),
+> footer (links + tagline).
+>
+> **Functionality**
+> "Start free" CTA links to /signup. Sticky nav hides on scroll down, reappears
+> on scroll up. FAQ items expand/collapse. No forms on this page.
+>
+> **Code quality**
+> Semantic HTML. All images need alt text. Fully responsive (mobile-first).
+> Buttons must have focus states. No placeholder images — use solid color
+> blocks with label text.
+>
+> **Tech stack**
+> Next.js 14 App Router with Tailwind CSS. No additional libraries unless
+> necessary for animation.
+>
+> **Content**
+> I will provide final copy. Use realistic placeholder copy that matches the
+> tone described above — not lorem ipsum.
+
+---
+
+**Why this works:** The color palette includes actual hex values. The typography
+names specific fonts. The tone section explains who "designer-to-designer" means
+in practice. The content section tells the AI whether to invent copy or wait —
+a small detail that prevents a lot of revision.
+
+---
+
+## Example 2: Portfolio / personal site
+
+**Project:** A UX designer's portfolio.
+
+---
+
+> **Project identity**
+> Build a personal portfolio site for Maya Chen, a senior UX designer
+> specializing in fintech and healthcare products. Her audience is hiring
+> managers and heads of design at mid-size tech companies. The site needs to
+> communicate craft, process, and personality — not just a list of projects.
+>
+> **Design direction**
+> Minimal and confident. Lots of white space. Case study images take center
+> stage. Color: white background `#FFFFFF`, body text `#1A1A1A`, accent
+> `#0066CC` (calm blue) for links and hover states. Font: Söhne or system-ui
+> stack. No decorative graphics — let the work speak.
+>
+> **Tone**
+> Thoughtful and human. First person throughout. Describe decisions, not just
+> deliverables. "I redesigned the onboarding flow" + why + what changed.
+>
+> **Pages and sections**
+> Homepage: short bio (2 sentences), 4 case study cards (project title +
+> company + role + hero image). Case study template: project overview, problem,
+> process (with images), outcome, key learnings. About: longer bio + a
+> non-work section (what I read, where I've lived). Contact: email link only.
+>
+> **Functionality**
+> Case study cards link to individual case study pages. Email link uses
+> `mailto:`. No contact form. No social media icons (not relevant to her
+> audience). Dark mode support.
+>
+> **Code quality**
+> All images lazy-loaded with width/height set to avoid layout shift. No
+> JavaScript unless strictly necessary — pure CSS animations only.
+>
+> **Tech stack**
+> Next.js with MDX for case studies. Tailwind CSS.
+>
+> **Content**
+> I will write all copy. Use placeholder text that matches tone — short,
+> first-person sentences.
+
+---
+
+## Example 3: Local business
+
+**Project:** A specialty coffee roastery.
+
+---
+
+> **Project identity**
+> Build a website for Arev Roasters, a small-batch specialty coffee roastery
+> in Yerevan, Armenia. They sell online (whole bean, 250g bags) and have a
+> cafe/retail space. Audience: coffee enthusiasts, gift buyers, and people
+> looking for a distinctive local brand.
+>
+> **Design direction**
+> Warm and artisan. Earthy tones: background `#F5F0E8`, text `#2C1A0E` (dark
+> espresso brown), accent `#C2622A` (burnt orange). Texture-forward: think
+> craft paper, not tech startup. Font: a warm serif (Playfair Display or
+> Georgia) for display, clean sans for body (Lato or system-ui).
+>
+> **Tone**
+> Unhurried and knowledgeable. They care about origin, process, and taste —
+> not discounts or flash sales. Write like someone who takes their time.
+>
+> **Pages and sections**
+> Homepage: hero (image + tagline), current offerings (3 featured bags with
+> name/origin/tasting notes/price), about (founder story, 150 words), find us
+> (map embed + cafe hours), footer.
+> Shop page: product grid. Each product: photo, name, origin, roast level,
+> tasting notes, weight options, add to cart.
+> About page: longer story + values section + photos.
+>
+> **Functionality**
+> Simple cart + Stripe checkout. Cafe hours shown with "open now / closed"
+> status based on current time. Newsletter signup (email input, no fancy form).
+>
+> **Code quality**
+> Fully accessible. Product images need descriptive alt text. Mobile-first.
+>
+> **Tech stack**
+> Next.js with a headless Shopify backend for the shop. Tailwind CSS.
+>
+> **Content**
+> Write placeholder product descriptions in the style of specialty coffee
+> tasting notes (origin, process, flavor profile). I will replace with real
+> copy before launch.
+
+---
+
+## Example 4: Tool / SaaS app (not a landing page)
+
+**Project:** An invoice generator web app.
+
+---
+
+> **Project identity**
+> Build a single-page web application: an invoice generator for freelancers.
+> Users fill out a form (their details, client details, line items) and
+> download a clean PDF invoice. No accounts required — client-side only.
+>
+> **Design direction**
+> Utility-first. Clean and fast. Two-column layout on desktop: form on the
+> left, live PDF preview on the right. Color: white + light gray `#F4F4F5`
+> for surfaces, `#18181B` for text, `#3B82F6` (blue) for the primary action.
+> Font: Inter everywhere.
+>
+> **Tone**
+> The UI copy should be brief and instructional. Labels are nouns, not
+> sentences. Error messages are specific: "Invoice date is required" not
+> "Please fill in all fields."
+>
+> **Functionality**
+> Form fields: your name, your email, your address (optional), client name,
+> client email, invoice number (auto-incremented, editable), date, due date,
+> line items (description + qty + unit price, add/remove rows), tax rate
+> (optional), notes (optional). Live preview updates on each keystroke.
+> Download button generates the PDF client-side using `@react-pdf/renderer`.
+>
+> **Code quality**
+> Form validation inline (not on submit). All fields keyboard-navigable.
+> PDF output must be accessible (tagged PDF). No data leaves the browser.
+>
+> **Tech stack**
+> React with Vite. Tailwind CSS. `@react-pdf/renderer` for PDF generation.
+> No backend.
+
+---
+
+## The pattern across all four
+
+Every brief that works does the same thing: it **removes guesswork**. The AI
+doesn't have to infer your color palette, guess your tech stack, or decide
+whether to write content or leave placeholders. Every choice is stated.
+
+The examples above took time to write. If you'd rather answer questions and have
+the brief assembled for you, the [Website Prompt Generator](/en/tools/website-prompt-generator)
+does exactly that — it asks the same questions implied by these briefs and
+outputs a complete, structured prompt in about three minutes.
+
+[Build your brief →](/en/tools/website-prompt-generator)

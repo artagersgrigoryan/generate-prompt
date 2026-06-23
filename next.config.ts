@@ -4,6 +4,23 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["gray-matter"],
+  async redirects() {
+    // The website tool moved from /generator to /tools/website-prompt-generator.
+    // Preserve SEO with permanent (301) redirects, including locale-prefixed URLs.
+    return [
+      {
+        source: "/generator",
+        destination: "/en/tools/website-prompt-generator",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|hy|ru)/generator",
+        destination: "/:locale/tools/website-prompt-generator",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

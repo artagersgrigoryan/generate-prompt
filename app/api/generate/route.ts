@@ -3,30 +3,7 @@ import { CLAUDE_MODEL_ID, CLAUDE_MODEL_NAME } from "@/lib/models";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { anonLimit, authLimit } from "@/lib/ratelimit";
-
-const SYSTEM_PROMPT = `You are an expert web designer and senior developer writing a briefing document for an AI coding tool or developer. Based on the client answers, write a single cohesive prompt starting with "Build a website for..." that a developer can act on immediately without asking a single follow-up question.
-
-Cover every section below in this exact order, written as flowing professional prose — no bullet points, no markdown headers, no numbered lists:
-
-1. Project identity — what the website is, who it serves, what makes it unique, and the core value it delivers to visitors.
-
-2. Design direction — visual style, color palette with specific hex values when provided, typography mood (e.g. geometric sans for modernity, editorial serif for authority), spacing feel (tight and dense vs open and airy), and the overall aesthetic the UI should evoke.
-
-3. Tone and copy — the voice of the website, how headlines should feel, how CTAs should be phrased, the emotional register of all writing across the site.
-
-4. Pages and content — each required page with a clear description of its purpose, the key sections or content blocks it must contain, and the hierarchy of information within it.
-
-5. Features and functionality — every interactive element, form, animation, third-party integration, and special behaviour the site needs, described precisely enough to implement without guessing.
-
-6. Code quality and architecture — specify the component breakdown and naming conventions, semantic HTML requirements, accessibility standards to meet (ARIA roles, keyboard navigation, focus management, colour contrast), performance practices to follow (lazy loading images, minimal JavaScript, code splitting if applicable), error states and loading states that must be handled, and any patterns or shortcuts to avoid.
-
-7. Tech stack — the recommended platform or framework and the clear reasoning behind the choice given this project's scale, content, and functionality needs.
-
-8. Content handling — state exactly what content is ready to use, what should use realistic placeholder text that matches the brand, and what copy the developer or AI should write from scratch guided by the tone described above. If the client has indicated they have existing copy or images ready, explicitly instruct the developer to look for that content attached directly after this prompt and to use it as the primary source — it overrides any placeholder or AI-written copy for those sections.
-
-Make the brief precise, inspiring, and complete. Every decision should feel intentional.
-
-Always write the brief in English, even if some of the client's answers are in a different language.`;
+import { getTool, DEFAULT_TOOL_SLUG } from "@/lib/tools";
 
 async function sendToTelegram(text: string): Promise<void> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -89,7 +66,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Request too large" }, { status: 413 });
   }
 
-  let body: { answers: unknown };
+  let body: { answers: unknown; toolSlug?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -98,6 +75,14 @@ export async function POST(req: NextRequest) {
 
   if (!validateAnswers(body.answers)) {
     return NextResponse.json({ error: "Invalid answers payload" }, { status: 400 });
+  }
+
+  // Resolve the tool (defaults to the website tool for backward compatibility).
+  const toolSlug =
+    typeof body.toolSlug === "string" ? body.toolSlug : DEFAULT_TOOL_SLUG;
+  const tool = getTool(toolSlug);
+  if (!tool) {
+    return NextResponse.json({ error: "Unknown tool" }, { status: 400 });
   }
 
   const session = await auth();
@@ -124,8 +109,8 @@ export async function POST(req: NextRequest) {
     const client = new Anthropic({ apiKey });
     const msg = await client.messages.create({
       model: CLAUDE_MODEL_ID,
-      max_tokens: 4096,
-      system: SYSTEM_PROMPT,
+      max_tokens: tool.maxOutputTokens ?? 4096,
+      system: tool.systemPrompt,
       messages: [{ role: "user", content: userMessage }],
     });
     const block = msg.content[0];
@@ -143,6 +128,7 @@ export async function POST(req: NextRequest) {
         .create({
           data: {
             userId: session.user.id,
+            toolSlug: tool.slug,
             answers: body.answers as Record<string, string>,
             result,
             model: CLAUDE_MODEL_NAME,

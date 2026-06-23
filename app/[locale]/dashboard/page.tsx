@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PromptCard } from "@/components/dashboard/PromptCard";
 import { Link } from "@/i18n/routing";
+import { DEFAULT_TOOL_SLUG } from "@/lib/tools/slugs";
 
 export default async function DashboardPage({
   params,
@@ -70,7 +71,7 @@ export default async function DashboardPage({
           <div className="rounded-xl border border-dashed border-neutral-200 p-8 text-center dark:border-neutral-700">
             <p className="text-sm text-neutral-400 dark:text-neutral-500">{t("noPrompts")}</p>
             <Link
-              href="/generator"
+              href={`/tools/${DEFAULT_TOOL_SLUG}`}
               className="mt-3 inline-block text-sm font-medium text-neutral-700 underline underline-offset-2 dark:text-neutral-300"
             >
               {t("generateFirst")}

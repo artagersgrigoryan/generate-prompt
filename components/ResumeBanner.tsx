@@ -9,6 +9,9 @@ import {
   readWizardDraft,
   type WizardDraft,
 } from "@/lib/draft";
+import { DEFAULT_TOOL_SLUG } from "@/lib/tools/slugs";
+
+const TOOL_HREF = `/tools/${DEFAULT_TOOL_SLUG}`;
 
 export default function ResumeBanner() {
   const t = useTranslations("home");
@@ -16,7 +19,7 @@ export default function ResumeBanner() {
   const [draft, setDraft] = useState<WizardDraft | null>(null);
 
   useEffect(() => {
-    setDraft(readWizardDraft());
+    setDraft(readWizardDraft(DEFAULT_TOOL_SLUG));
   }, []);
 
   if (!draft) return null;
@@ -35,9 +38,9 @@ export default function ResumeBanner() {
   }
 
   function handleStartFresh() {
-    clearWizardDraft();
+    clearWizardDraft(DEFAULT_TOOL_SLUG);
     setDraft(null);
-    router.push("/generator");
+    router.push(TOOL_HREF);
   }
 
   return (
@@ -62,7 +65,7 @@ export default function ResumeBanner() {
             {t("resumeStartFresh")}
           </button>
           <Link
-            href="/generator"
+            href={TOOL_HREF}
             className="rounded-lg bg-black px-3.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-100"
           >
             {t("resumeContinue")}

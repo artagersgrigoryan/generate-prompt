@@ -1,4 +1,11 @@
-export const WIZARD_SESSION_KEY = "wpg_wizard";
+// Per-tool wizard draft persistence (sessionStorage).
+//
+// Drafts are namespaced by tool slug so multiple tools never clobber each
+// other's in-progress state. Key format: `wpg_wizard:<slug>`.
+
+export const WIZARD_SESSION_PREFIX = "wpg_wizard";
+
+/** Total questions in the flagship website tool — used by the homepage ResumeBanner. */
 export const WIZARD_TOTAL_QUESTIONS = 13;
 
 export type WizardPhase = "wizard" | "review" | "result" | "loading";
@@ -10,10 +17,15 @@ export type WizardDraft = {
   result: string;
 };
 
-export function readWizardDraft(): WizardDraft | null {
+/** sessionStorage key for a given tool's draft. */
+export function wizardKey(slug: string): string {
+  return `${WIZARD_SESSION_PREFIX}:${slug}`;
+}
+
+export function readWizardDraft(slug: string): WizardDraft | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = window.sessionStorage.getItem(WIZARD_SESSION_KEY);
+    const raw = window.sessionStorage.getItem(wizardKey(slug));
     if (!raw) return null;
     const s = JSON.parse(raw) as Partial<WizardDraft>;
     const step = s.step ?? 0;
@@ -32,9 +44,9 @@ export function readWizardDraft(): WizardDraft | null {
   }
 }
 
-export function clearWizardDraft(): void {
+export function clearWizardDraft(slug: string): void {
   if (typeof window === "undefined") return;
   try {
-    window.sessionStorage.removeItem(WIZARD_SESSION_KEY);
+    window.sessionStorage.removeItem(wizardKey(slug));
   } catch {}
 }

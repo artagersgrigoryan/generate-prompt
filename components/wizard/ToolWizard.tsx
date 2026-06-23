@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useTranslations, useMessages } from "next-intl";
-import { questions } from "@/lib/questions";
-import { WIZARD_SESSION_KEY } from "@/lib/draft";
+import type { Question } from "@/lib/questions";
+import type { ToolSection } from "@/lib/tools/types";
+import { wizardKey } from "@/lib/draft";
 import { ProgressBar } from "@/components/wizard/ProgressBar";
 import { StepNavigator } from "@/components/wizard/StepNavigator";
 import { QuestionStep } from "@/components/wizard/QuestionStep";
@@ -13,15 +14,15 @@ import { Button } from "@/components/ui/Button";
 
 type Phase = "wizard" | "review" | "loading" | "result";
 
-const TOTAL = questions.length;
-const SESSION_KEY = WIZARD_SESSION_KEY;
-
-const SECTION_KEY: Record<string, string> = {
-  "Basics": "basics",
-  "Audience & Brand": "audience",
-  "Content & Pages": "content",
-  "Features & Tech": "tech",
-};
+interface ToolWizardProps {
+  toolSlug: string;
+  questions: Question[];
+  sections: ToolSection[];
+  /** Answer values that mean "I already have content" — shows the attach reminder. */
+  existingContentOptions?: string[];
+  /** Optional dev-only sample result for the preview button. */
+  devPreviewResult?: string;
+}
 
 function LoadingDots({ text }: { text: string }) {
   return (
@@ -46,7 +47,13 @@ function LoadingDots({ text }: { text: string }) {
   );
 }
 
-export default function GeneratorPage() {
+export function ToolWizard({
+  toolSlug,
+  questions,
+  sections,
+  existingContentOptions,
+  devPreviewResult,
+}: ToolWizardProps) {
   const t = useTranslations("generator");
   const messages = useMessages();
   const qmsgs = (messages.questions ?? {}) as Record<string, string>;
@@ -54,6 +61,21 @@ export default function GeneratorPage() {
     string,
     { label: string; short: string }
   >;
+
+  const TOTAL = questions.length;
+  const SESSION_KEY = wizardKey(toolSlug);
+
+  // Map English Question.section -> i18n sections key.
+  const sectionKey = useMemo(() => {
+    const m: Record<string, string> = {};
+    for (const s of sections) m[s.name] = s.key;
+    return m;
+  }, [sections]);
+
+  const byId = useMemo(
+    () => new Map(questions.map((q) => [q.id, q])),
+    [questions]
+  );
 
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -92,20 +114,25 @@ export default function GeneratorPage() {
     try {
       sessionStorage.setItem(SESSION_KEY, JSON.stringify({ step, answers, phase, result, resultModel }));
     } catch {}
-  }, [step, answers, phase, result, resultModel]);
+  }, [SESSION_KEY, step, answers, phase, result, resultModel]);
 
-  const currentQ = step >= 1 && step <= TOTAL ? questions[step - 1] : null;
+  const currentQ = step >= 1 && step <= TOTAL ? byId.get(step) ?? null : null;
 
   function getQuestionLabel(id: number): string {
-    return qmsgs[`q${id}label`] || questions[id - 1]?.label || "";
+    return qmsgs[`q${id}label`] || byId.get(id)?.label || "";
   }
 
   function getSectionLabel(section: string): string {
-    const key = SECTION_KEY[section] ?? section;
+    const key = sectionKey[section] ?? section;
     return secMsgs[key]?.label ?? section;
   }
 
-  function isAnswerEmpty(q: (typeof questions)[0], val: string): boolean {
+  function getSectionShort(section: string): string {
+    const key = sectionKey[section] ?? section;
+    return secMsgs[key]?.short ?? section;
+  }
+
+  function isAnswerEmpty(q: Question, val: string): boolean {
     if (!val || !val.trim()) return true;
     if (q.type === "multi") {
       try {
@@ -281,7 +308,7 @@ export default function GeneratorPage() {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers: buildPayload() }),
+        body: JSON.stringify({ toolSlug, answers: buildPayload() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Generation failed");
@@ -295,21 +322,8 @@ export default function GeneratorPage() {
   }
 
   function previewResult() {
-    setResult(
-      `Build a website for Sunrise Bakery, a family-owned artisan bakery in Portland, Oregon, specialising in sourdough bread, seasonal pastries, and custom celebration cakes. The primary goal is to drive online pre-orders and in-store visits from local food enthusiasts who value craft and quality.
-
-Design direction: Warm and inviting — cream (#FDF6EC) and warm brown (#6B4226) as the primary palette, with terracotta (#C87941) as an accent. Typography should feel approachable: a round serif for headings paired with a humanist sans-serif for body text. Spacing should be generous to let food photography breathe.
-
-Tone and copy: Friendly and personal — like a note from the baker. Headlines should be evocative ("Baked at 5am. Gone by noon."). CTAs should feel inviting: "Order your loaf," "Reserve a cake."
-
-Pages and content: Home — hero with full-bleed photography, a brief origin story, daily specials highlight, and a CTA to the menu. Menu — a grid of products by category (Breads, Pastries, Cakes) with pricing and availability. Order — a pre-order form with product, quantity, pickup date, and contact details. About — founders' story with family photography and sourcing philosophy. Contact — address, hours, map embed, phone, and email.
-
-Features and functionality: Daily specials updatable via a simple CMS or JSON file. Order form with validation, date picker, and email confirmation. "Sold out" state for unavailable items. Subtle hover animations on product cards.
-
-Tech stack: Next.js with static generation for content pages, server-side for the order form. Deployed on Vercel. Tailwind CSS for styling.
-
-Content handling: Use realistic placeholder content matching the brand voice above. Photography placeholders should indicate warm, natural-light food photography of artisan bread and pastries.`
-    );
+    if (!devPreviewResult) return;
+    setResult(devPreviewResult);
     setResultModel("Claude Haiku");
     setPhase("result");
   }
@@ -326,6 +340,10 @@ Content handling: Use realistic placeholder content matching the brand voice abo
     setPhase("wizard");
   }
 
+  const hasExistingContent = (existingContentOptions ?? []).some((opt) =>
+    Object.values(answers).includes(opt)
+  );
+
   // ── Result ──────────────────────────────────────────────────────────────────
   if (phase === "result") {
     return (
@@ -334,10 +352,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
           <ResultScreen
             result={result}
             modelName={resultModel}
-            hasExistingContent={[
-              "I have all text and images ready",
-              "I have text but need image guidance",
-            ].some((opt) => Object.values(answers).includes(opt))}
+            hasExistingContent={hasExistingContent}
             onRegenerate={generate}
             onStartOver={startOver}
             loading={false}
@@ -360,6 +375,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   if (phase === "review") {
     return (
       <ReviewScreen
+        questions={questions}
         answers={answers}
         onEdit={handleEditFromReview}
         onGenerate={generate}
@@ -399,7 +415,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
             <Button onClick={() => setStep(1)} className="w-full sm:w-auto">
               {t("startButton")}
             </Button>
-            {process.env.NODE_ENV === 'development' && (
+            {process.env.NODE_ENV === "development" && devPreviewResult && (
               <button
                 type="button"
                 onClick={previewResult}
@@ -415,7 +431,7 @@ Content handling: Use realistic placeholder content matching the brand voice abo
   }
 
   // ── Wizard steps 1–N ────────────────────────────────────────────────────────
-  const q = questions[step - 1];
+  const q = currentQ!;
   const isLast = step === TOTAL;
   const translatedSection = getSectionLabel(q.section);
 
@@ -431,6 +447,9 @@ Content handling: Use realistic placeholder content matching the brand voice abo
             setSkipWarning(false);
             setStep(s);
           }}
+          questions={questions}
+          getQuestionLabel={getQuestionLabel}
+          getSectionShort={getSectionShort}
         />
 
         <section className="space-y-5">

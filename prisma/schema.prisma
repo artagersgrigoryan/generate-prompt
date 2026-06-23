@@ -48,6 +48,7 @@ model VerificationToken {
 model Prompt {
   id         String   @id @default(cuid())
   userId     String
+  toolSlug   String   @default("website-prompt-generator")
   answers    Json
   result     String   @db.Text
   model      String
@@ -57,4 +58,5 @@ model Prompt {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
+  @@index([toolSlug, createdAt])
 }

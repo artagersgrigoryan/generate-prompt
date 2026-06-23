@@ -72,6 +72,19 @@ export function Header() {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                href="/blog"
+                className={cn(
+                  "text-sm transition-colors",
+                  isScrolled
+                    ? "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                    : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+                )}
+              >
+                {t("blog")}
+              </Link>
+            </li>
           </ul>
 
           {/* Right: controls + auth */}
@@ -133,6 +146,13 @@ export function Header() {
                 {t(item.key)}
               </a>
             ))}
+            <Link
+              href="/blog"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+            >
+              {t("blog")}
+            </Link>
             {!session && (
               <Link
                 href="/auth/signin"

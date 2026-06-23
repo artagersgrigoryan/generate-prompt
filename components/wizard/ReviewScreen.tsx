@@ -1,10 +1,12 @@
 "use client";
 
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { questions, Question } from "@/lib/questions";
+import type { Question } from "@/lib/questions";
 import { Button } from "@/components/ui/Button";
 
 interface ReviewScreenProps {
+  questions: Question[];
   answers: Record<number, string>;
   onEdit: (step: number) => void;
   onGenerate: () => void;
@@ -44,20 +46,8 @@ function formatAnswer(q: Question, raw: string): string | null {
   return cleaned.trim() || null;
 }
 
-const SECTIONS = (() => {
-  const map: { label: string; ids: number[] }[] = [];
-  const seen = new Set<string>();
-  for (const q of questions) {
-    if (!seen.has(q.section)) {
-      seen.add(q.section);
-      map.push({ label: q.section, ids: [] });
-    }
-    map[map.length - 1].ids.push(q.id);
-  }
-  return map;
-})();
-
 export function ReviewScreen({
+  questions,
   answers,
   onEdit,
   onGenerate,
@@ -67,6 +57,24 @@ export function ReviewScreen({
   getSectionLabel,
 }: ReviewScreenProps) {
   const t = useTranslations("review");
+
+  const SECTIONS = useMemo(() => {
+    const map: { label: string; ids: number[] }[] = [];
+    const seen = new Set<string>();
+    for (const q of questions) {
+      if (!seen.has(q.section)) {
+        seen.add(q.section);
+        map.push({ label: q.section, ids: [] });
+      }
+      map[map.length - 1].ids.push(q.id);
+    }
+    return map;
+  }, [questions]);
+
+  const byId = useMemo(
+    () => new Map(questions.map((q) => [q.id, q])),
+    [questions]
+  );
 
   return (
     <main className="min-h-screen bg-white px-4 py-10 dark:bg-neutral-950">
@@ -89,7 +97,7 @@ export function ReviewScreen({
               </h2>
               <div className="divide-y divide-neutral-100 rounded-xl border border-neutral-200 overflow-hidden dark:divide-neutral-800 dark:border-neutral-700">
                 {section.ids.map((id) => {
-                  const q = questions[id - 1];
+                  const q = byId.get(id)!;
                   const formatted = formatAnswer(q, answers[id] ?? "");
                   const skipped = formatted === null;
 

@@ -1,0 +1,143 @@
+---
+title: "Why AI Website Builders Keep Getting It Wrong (And How to Fix It)"
+description: "If Bolt, Lovable, or v0 keeps generating sites that miss the mark, the problem is almost never the tool. Here's what's actually going wrong and how to fix it."
+date: "2026-06-23"
+author: "Artagers Grigoryan"
+tags: ["ai-builders", "prompting", "guide"]
+category: "website-prompt-generator"
+---
+
+You've tried Bolt. Or Lovable. Or v0. You typed something like "build me a
+modern website for my consulting business" and got back something that looked
+like every other AI-generated site you've seen: a dark hero section, three
+feature boxes, a generic CTA.
+
+You tried again with more words. Still generic. Maybe slightly different
+generic.
+
+So you searched for whether the tool is actually any good, whether there's a
+trick, whether you're missing something.
+
+Here's what's actually going on.
+
+## The AI isn't guessing badly. It's guessing with no information.
+
+When you type "modern website for my consulting business," the AI knows:
+- It's a website
+- It's for a consulting business
+- You want it to look modern
+
+That's three data points. To generate a site that actually represents you, it
+needs around thirty. Brand voice. Target client. Differentiator. Color palette.
+Typography preference. Page structure. Specific services. Tech stack. Whether
+you're providing copy or want it generated. Whether you care about performance,
+accessibility, animations.
+
+Without those, the AI produces the statistical average of every consulting
+website it's ever seen. Which is why yours looks exactly like everyone else's.
+
+This isn't a limitation of the tools. It's a fundamental property of how they
+work.
+
+## The most common prompt mistakes
+
+### 1. Describing the result instead of the requirements
+
+"A clean, professional website" describes what you want the output to feel like.
+The AI can't infer from "professional" whether you want navy blue or white, a
+serif or a sans-serif, a single scrolling page or five separate pages.
+
+Tell it the requirements, not just the aesthetic label. "White background,
+Inter font, navy `#1E3A5F` as the accent color, single-page layout" is
+actionable. "Professional" is not.
+
+### 2. Omitting the target audience
+
+Every design decision — density of information, formality of copy, size of
+imagery, prominence of pricing — depends on who the site is for.
+
+A landing page for enterprise procurement managers should feel different from
+one for individual freelancers, even if the product is the same. If you don't
+tell the AI who you're targeting, it picks someone, and that someone is usually
+wrong.
+
+### 3. Not specifying the tech stack
+
+AI builders support multiple frameworks and approaches. Without a preference,
+they'll pick one — and it might not be the one you wanted to use, the one your
+team knows, or the one that fits your deployment target.
+
+Always state the stack: "React with Vite and Tailwind" or "Next.js 14 App Router
+with Tailwind CSS" or "plain HTML, CSS, and vanilla JS." One line saves hours of
+refactoring.
+
+### 4. Leaving content open-ended
+
+Should the AI write the headline copy? Or use a placeholder for your real copy?
+It'll make a choice either way. If it writes copy and you didn't ask it to, you
+get placeholder-quality marketing language that you have to rip out entirely. If
+it leaves empty strings where copy should be, the design breaks.
+
+Tell it: "Write placeholder copy that matches the tone described — direct and
+concise, not marketing speak" or "Leave all copy as `[placeholder]` — I'll fill
+it in." Two seconds of clarification, hours saved.
+
+### 5. Writing one paragraph instead of a structured brief
+
+The length of your prompt matters less than the structure. A 50-word structured
+brief can outperform a 500-word paragraph because the AI can parse discrete
+pieces of information without having to infer what category they belong to.
+
+Compare these two prompts for the same project:
+
+**Paragraph form:**
+> I need a website for my design studio. We do brand identity and web design
+> for startups. I want something minimal and modern with a portfolio section.
+> Use a dark theme. We're based in Berlin. The site should be fast.
+
+**Structured form:**
+> **Project:** Brand identity and web design studio for tech startups.
+> **Audience:** Founders at seed-to-Series A startups in Europe.
+> **Design:** Dark theme. Background `#0A0A0A`, text `#FAFAF9`, accent
+> `#C084FC` (soft purple). Minimal, type-led layout. Font: Neue Haas Grotesk
+> or system-ui fallback.
+> **Pages:** Home (hero + selected work + services + contact), Work (project
+> grid), About (team + process), Contact (form: name, email, project brief).
+> **Stack:** Next.js, Tailwind CSS, deployed to Vercel.
+> **Content:** I will provide all copy. Use short, confident placeholder text.
+
+Same project. Very different outputs.
+
+## The fix: treat it like a creative brief
+
+Designers and developers who work with AI builders consistently produce better
+results when they think of the prompt not as a chat message but as a creative
+brief — the same document you'd hand to a freelance developer or a design agency.
+
+A good brief covers:
+
+1. What the project is and who it's for
+2. Design direction (palette, type, mood)
+3. Tone and copy voice
+4. Page and section structure
+5. Specific functionality
+6. Code quality standards
+7. Tech stack
+8. Content: what's provided, what the AI should write
+
+Writing that from scratch every time is the part that slows most people down.
+
+## A faster way to write the brief
+
+The [Website Prompt Generator](/en/tools/website-prompt-generator) asks you
+these questions one at a time — your project, your audience, your design
+preferences, your tech choices — and assembles a complete structured brief you
+can paste directly into Bolt, v0, Lovable, Cursor, or whatever tool you're
+using.
+
+It takes about three minutes. The output is the kind of brief described above —
+structured, specific, and ready to paste.
+
+If your AI builder keeps getting it wrong, that's where to start.
+
+[Write your brief →](/en/tools/website-prompt-generator)

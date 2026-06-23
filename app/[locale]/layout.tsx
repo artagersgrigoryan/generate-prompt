@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Script from "next/script";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { auth } from "@/lib/auth";
 import "../globals.css";
@@ -40,7 +41,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   return {
+    // Absolute base for resolving OG/Twitter image URLs (incl. opengraph-image
+    // routes). Without this, Next falls back to localhost.
+    ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
     title: "Website Prompt Generator",
     description:
       "Answer 12 quick questions and generate a detailed AI brief for your website.",
@@ -70,39 +75,33 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${geist.variable} h-full antialiased`}>
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Analytics */}
         <Script
-          id="gtm-script"
-          strategy="beforeInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-M5R9TQ7Y78"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="ga-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-W2P8MNK9');
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-M5R9TQ7Y78');
             `,
           }}
         />
-  
+
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()`,
           }}
         />
       </head>
-      
+
       <body className="min-h-full bg-white font-[family-name:var(--font-geist-sans)] dark:bg-neutral-950">
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-W2P8MNK9"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-  
+
         <Providers session={session}>
           <NextIntlClientProvider messages={messages}>
             <Header />
@@ -115,6 +114,7 @@ export default async function LocaleLayout({
               transparent header (e.g. the landing hero) opt out with `-mt-16`.
             */}
             <div className="pt-16">{children}</div>
+            <Footer />
           </NextIntlClientProvider>
         </Providers>
       </body>
