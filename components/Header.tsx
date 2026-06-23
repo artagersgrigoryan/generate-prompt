@@ -90,7 +90,7 @@ export function Header() {
                   "hidden rounded-lg px-3 py-1.5 text-sm font-medium transition-colors sm:block",
                   isScrolled
                     ? "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800"
-                    : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:text-white"
+                    : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white"
                 )}
               >
                 {t("signIn")}
