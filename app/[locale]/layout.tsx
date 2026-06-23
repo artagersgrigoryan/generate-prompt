@@ -75,6 +75,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${geist.variable} h-full antialiased`}>
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-M5R9TQ7Y78"

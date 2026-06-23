@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import HeroCta from "@/components/HeroCta";
@@ -6,7 +7,6 @@ import ResumeBanner from "@/components/ResumeBanner";
 import { buildAlternates } from "@/app/[locale]/layout";
 import { DEFAULT_TOOL_SLUG } from "@/lib/tools/slugs";
 import { ToolsGallery } from "@/components/ToolsGallery";
-import { AnimatedGroup } from "@/components/ui/animated-group";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
@@ -154,31 +154,15 @@ export default async function HomePage({
        page, so the hero sits under the transparent header (which turns into a
        glass pill on scroll). Other pages keep the offset and clear the header. */
     <div className="-mt-16 min-h-screen bg-white dark:bg-neutral-950">
-      <ResumeBanner />
+      <div className="pt-16">
+        <ResumeBanner />
+      </div>
       <main>
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <section className="bg-white dark:bg-neutral-950 px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center overflow-hidden">
           <div className="mx-auto max-w-4xl">
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-                  },
-                },
-                item: {
-                  hidden: { opacity: 0, filter: "blur(12px)", y: 16 },
-                  visible: {
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    y: 0,
-                    transition: { type: "spring", bounce: 0.3, duration: 1.4 },
-                  },
-                },
-              }}
-            >
               {/* Badge */}
-              <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300">
+              <div className="animate-hero-in mb-8 inline-flex items-center gap-2.5 rounded-full border border-neutral-200 bg-neutral-100 px-4 py-1.5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300" style={{ animationDelay: '100ms' }}>
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
                 {t("badge")}
                 <svg className="h-3.5 w-3.5 text-neutral-400 dark:text-neutral-500" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -187,18 +171,18 @@ export default async function HomePage({
               </div>
 
               {/* Headline */}
-              <h1 className="text-balance text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
+              <h1 className="animate-hero-in text-balance text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05]" style={{ animationDelay: '180ms' }}>
                 {t("heroH1Lead")}{" "}
                 <em className="italic text-neutral-500 dark:text-neutral-400">{t("heroH1Emphasis")}</em>
               </h1>
 
               {/* Subtitle */}
-              <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              <p className="animate-hero-in mx-auto mt-6 max-w-2xl text-pretty text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed" style={{ animationDelay: '260ms' }}>
                 {t("heroSubtitle")}
               </p>
 
               {/* CTAs */}
-              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <div className="animate-hero-in mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center" style={{ animationDelay: '340ms' }}>
                 <HeroCta />
                 <a
                   href="#how-it-works"
@@ -207,10 +191,10 @@ export default async function HomePage({
                   {t("footerHowLink")} →
                 </a>
               </div>
-              <p className="mt-3 text-xs text-neutral-500 dark:text-neutral-600">{t("heroMicrocopy")}</p>
+              <p className="animate-hero-in mt-3 text-xs text-neutral-500 dark:text-neutral-600" style={{ animationDelay: '420ms' }}>{t("heroMicrocopy")}</p>
 
               {/* Brief preview card */}
-              <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl border border-neutral-200 bg-white text-left shadow-xl shadow-black/10 dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/40">
+              <div className="animate-hero-in mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl border border-neutral-200 bg-white text-left shadow-xl shadow-black/10 dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/40" style={{ animationDelay: '500ms' }}>
                 {/* Card header bar */}
                 <div className="flex items-center justify-between border-b border-neutral-200 bg-neutral-50 px-5 py-3 dark:border-neutral-800 dark:bg-neutral-950">
                   <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
@@ -250,7 +234,6 @@ Mobile-first. WCAG 2.1 AA. No CMS for v1.`}
                   <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-neutral-900 to-transparent" />
                 </div>
               </div>
-            </AnimatedGroup>
           </div>
         </section>
 
@@ -279,6 +262,7 @@ Mobile-first. WCAG 2.1 AA. No CMS for v1.`}
                         src={logo.src}
                         alt={`${logo.alt} logo`}
                         className={`${logo.h} w-auto opacity-40 dark:invert dark:opacity-50`}
+                        loading="lazy"
                       />
                     </div>
                   ))}
@@ -475,16 +459,20 @@ Mobile-first. WCAG 2.1 AA. No CMS for v1.`}
                   className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800"
                 >
                   <div className="overflow-hidden border-b border-neutral-100 dark:border-neutral-700">
-                    <img
+                    <Image
                       src={ex.img}
                       alt={`${ex.platform} example`}
+                      width={2000}
+                      height={1154}
                       className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                       style={{ height: "220px" }}
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 33vw"
                     />
                   </div>
                   <div className="flex items-center justify-between px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <img src={ex.logo} alt={`${ex.platform} logo`} className="h-4 w-4 rounded-sm object-contain" />
+                      <img src={ex.logo} alt={`${ex.platform} logo`} className="h-4 w-4 rounded-sm object-contain" loading="lazy" />
                       <span className="text-sm font-semibold text-neutral-700 dark:text-neutral-300">{ex.platform}</span>
                     </div>
                     <span className="flex items-center gap-1 rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-500 dark:bg-neutral-700 dark:text-neutral-400">
