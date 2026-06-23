@@ -1,18 +1,29 @@
 import { getTranslations } from "next-intl/server";
-import { signIn } from "@/lib/auth";
+import { auth, signIn } from "@/lib/auth";
+import { SignInSuccess } from "@/components/SignInSuccess";
 
 export default async function SignInPage({
   params,
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ callbackUrl?: string; error?: string }>;
+  searchParams: Promise<{ callbackUrl?: string; error?: string; welcome?: string }>;
 }) {
-  const [{ locale }, { callbackUrl, error }] = await Promise.all([params, searchParams]);
+  const [{ locale }, { callbackUrl, error, welcome }] = await Promise.all([params, searchParams]);
+
+  if (welcome === "1") {
+    const session = await auth();
+    return (
+      <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center px-6 py-12">
+        <SignInSuccess name={session?.user?.name} locale={locale} />
+      </div>
+    );
+  }
+
   const t = await getTranslations("auth");
   const redirectTo =
     callbackUrl?.startsWith("/") ? callbackUrl : `/${locale}/dashboard`;
-  const redirectToWithWelcome = `${redirectTo}${redirectTo.includes("?") ? "&" : "?"}welcome=1`;
+  const redirectToWithWelcome = `/${locale}/auth/signin?welcome=1`;
 
   const providers = [
     {
