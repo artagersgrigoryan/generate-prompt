@@ -19,5 +19,6 @@ export const authConfig: NextAuthConfig = {
   ],
   pages: {
     signIn: "/en/auth/signin",
+    verifyRequest: "/en/auth/verify-email",
   },
 };

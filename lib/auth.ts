@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import Resend from "next-auth/providers/resend";
 import { prisma } from "@/lib/prisma";
 import { authConfig } from "@/auth.config";
+import { sendVerificationRequest } from "@/lib/email";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -11,6 +12,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Resend({
       apiKey: process.env.RESEND_API_KEY!,
       from: process.env.AUTH_RESEND_FROM ?? "noreply@example.com",
+      sendVerificationRequest,
     }),
   ],
   adapter: PrismaAdapter(prisma),
