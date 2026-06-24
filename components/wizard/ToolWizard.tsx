@@ -639,7 +639,7 @@ export function ToolWizard({
               </button>
             ) : (
               <a
-                href="/en/auth/signin"
+                href={signInHref}
                 className="text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors underline underline-offset-2"
               >
                 Sign in to save your details for next time
