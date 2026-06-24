@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { CLAUDE_MODEL_ID, CLAUDE_MODEL_NAME } from "@/lib/models";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { anonLimit, authLimit } from "@/lib/ratelimit";
+import { anonLimit, authLimit, getAnonFreeCount, incrAnonFreeCount } from "@/lib/ratelimit";
 import { getTool, DEFAULT_TOOL_SLUG } from "@/lib/tools";
 
 async function sendToTelegram(text: string): Promise<void> {
@@ -43,7 +43,7 @@ function buildUserMessage(answers: Record<string, string>): string {
   return `Here are the client's answers:\n\n${lines.join("\n")}`;
 }
 
-const MAX_ANSWER_LENGTH = 3000;
+const MAX_ANSWER_LENGTH = 8000;
 const MAX_ANSWERS = 20;
 
 function validateAnswers(raw: unknown): raw is Record<string, string> {
@@ -62,7 +62,7 @@ function validateAnswers(raw: unknown): raw is Record<string, string> {
 export async function POST(req: NextRequest) {
   // Reject bodies over 64 KB
   const contentLength = req.headers.get("content-length");
-  if (contentLength && parseInt(contentLength, 10) > 65536) {
+  if (contentLength && parseInt(contentLength, 10) > 131072) {
     return NextResponse.json({ error: "Request too large" }, { status: 413 });
   }
 
@@ -97,6 +97,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Free-tier gate: anonymous users get 3 generations total (across all tools).
+  if (!session?.user?.id) {
+    const freeCount = await getAnonFreeCount(ip);
+    if (freeCount >= 3) {
+      return NextResponse.json(
+        { error: "Sign in to continue generating", requiresAuth: true },
+        { status: 401 }
+      );
+    }
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return NextResponse.json({ error: "Service not configured" }, { status: 503 });
@@ -122,6 +133,12 @@ export async function POST(req: NextRequest) {
       .join("\n");
     const telegramMessage = `📋 USER ANSWERS\n\n${answersText}\n\n${"─".repeat(30)}\n\n✨ GENERATED PROMPT\n\n${result}`;
     await sendToTelegram(telegramMessage).catch((e) => console.error("[Telegram] unexpected error:", e));
+
+    if (!session?.user?.id) {
+      incrAnonFreeCount(ip).catch((e) =>
+        console.error("[FreeLimit] failed to increment counter:", e)
+      );
+    }
 
     if (session?.user?.id) {
       prisma.prompt
