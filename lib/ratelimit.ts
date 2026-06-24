@@ -41,6 +41,8 @@ export async function getAnonFreeCount(ip: string): Promise<number> {
 
 export async function incrAnonFreeCount(ip: string): Promise<void> {
   if (!redis) return;
-  await redis.incr(`free:anon:${ip}`);
-  await redis.expire(`free:anon:${ip}`, FREE_LIMIT_TTL_SECONDS);
+  const pipe = redis.pipeline();
+  pipe.incr(`free:anon:${ip}`);
+  pipe.expire(`free:anon:${ip}`, FREE_LIMIT_TTL_SECONDS);
+  await pipe.exec();
 }

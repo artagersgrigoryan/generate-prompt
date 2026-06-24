@@ -103,7 +103,10 @@ export function ToolWizard({
   const [profileSaved, setProfileSaved] = useState(false);
 
   const locale = useLocale();
-  const [freeGenCount, setFreeGenCount] = useState<number>(0);
+  const [freeGenCount, setFreeGenCount] = useState<number>(() => {
+    if (typeof window === "undefined") return 0;
+    return parseInt(localStorage.getItem("free_gen_count") ?? "0", 10) || 0;
+  });
 
   const restoredRef = useRef(false);
 

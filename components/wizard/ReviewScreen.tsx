@@ -151,8 +151,11 @@ export function ReviewScreen({
             {t("backBtn")}
           </Button>
           {isGated && signInHref ? (
-            <a href={signInHref}>
-              <Button>{t("signInToGenerate")}</Button>
+            <a
+              href={signInHref}
+              className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black bg-black text-white hover:bg-neutral-800 active:bg-neutral-900 dark:bg-white dark:text-black dark:hover:bg-neutral-100"
+            >
+              {t("signInToGenerate")}
             </a>
           ) : (
             <Button onClick={onGenerate}>
