@@ -132,7 +132,8 @@
     "skipped": "Skipped",
     "editBtn": "Edit",
     "backBtn": "Back",
-    "generateBtn": "Generate prompt"
+    "generateBtn": "Generate prompt",
+    "signInToGenerate": "Sign in to generate"
   },
   "result": {
     "generatedWith": "Generated with {modelName}",
@@ -191,7 +192,10 @@
     "basics": { "label": "Basics", "short": "Basics" },
     "audience": { "label": "Audience & Brand", "short": "Brand" },
     "content": { "label": "Content & Pages", "short": "Content" },
-    "tech": { "label": "Features & Tech", "short": "Tech" }
+    "tech": { "label": "Features & Tech", "short": "Tech" },
+    "theJob": { "label": "The Job", "short": "Job" },
+    "yourBackground": { "label": "Your Background", "short": "You" },
+    "style": { "label": "Style", "short": "Style" }
   },
   "questions": {
     "q1label": "Tell us about your business",
@@ -302,7 +306,49 @@
     "q12opt6": "Write it myself",
 
     "q13label": "Any references, inspiration, or extra context?",
-    "q13placeholder": "e.g. I love stripe.com for its clarity. Budget ~$3k, need it live in 6 weeks."
+    "q13placeholder": "e.g. I love stripe.com for its clarity. Budget ~$3k, need it live in 6 weeks.",
+
+    "q20label": "Paste the job description",
+    "q20hint": "Copy the full posting from LinkedIn, Indeed, or the company's site",
+    "q20placeholder": "Copy the full posting from LinkedIn, Indeed, or the company's site",
+
+    "q21label": "Company & role (optional)",
+    "q21hint": "Leave blank — Claude will extract these from the job description",
+    "q21field_company_name_label": "Company name",
+    "q21field_company_name_placeholder": "e.g. Acme Corp",
+    "q21field_job_title_label": "Job title",
+    "q21field_job_title_placeholder": "e.g. Senior Product Manager",
+
+    "q22label": "Your details",
+    "q22field_name_label": "Your full name",
+    "q22field_name_placeholder": "e.g. Alex Johnson",
+    "q22field_current_role_label": "Current role or most recent title",
+    "q22field_current_role_placeholder": "e.g. Product Manager at Startup Co",
+
+    "q23label": "Your key skills",
+    "q23hint": "Pick the skills most relevant to this role",
+    "q23opt0": "Communication",
+    "q23opt1": "Project Management",
+    "q23opt2": "Leadership",
+    "q23opt3": "Data Analysis",
+    "q23opt4": "Problem Solving",
+    "q23opt5": "Customer Success",
+    "q23opt6": "Sales",
+    "q23opt7": "Marketing",
+    "q23opt8": "Software Development",
+    "q23opt9": "Design",
+    "q23opt10": "Research",
+    "q23opt11": "Team Collaboration",
+    "q23opt12": "Write it myself",
+
+    "q24label": "Your top achievement",
+    "q24hint": "One or two sentences — a specific result you're proud of",
+    "q24placeholder": "e.g. Grew customer retention by 40% by redesigning onboarding. Led a team of 8 to launch a product used by 50k users.",
+
+    "q25label": "Tone",
+    "q25opt0": "Professional",
+    "q25opt1": "Conversational",
+    "q25opt2": "Enthusiastic"
   },
   "settings": {
     "title": "Settings",
@@ -357,6 +403,17 @@
   },
   "tools": {
     "galleryTitle": "Your toolkit",
-    "galleryDesc": "Small, focused AI tools that turn a few answers into something you can use right away."
+    "galleryDesc": "Small, focused AI tools that turn a few answers into something you can use right away.",
+    "cover-letter-generator-name": "Cover Letter Generator",
+    "cover-letter-generator-desc": "Paste a job description and get a tailored cover letter in seconds."
+  },
+  "toolIntros": {
+    "cover-letter-generator": {
+      "brand": "Cover Letter Generator",
+      "introTitle": "Write your cover letter",
+      "introDesc": "Answer 6 questions and get a personalized, human-sounding cover letter tailored to this specific job description.",
+      "startButton": "Write my cover letter",
+      "loading": "Writing your cover letter…"
+    }
   }
 }
