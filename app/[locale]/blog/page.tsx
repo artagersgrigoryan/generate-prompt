@@ -40,7 +40,7 @@ export default async function BlogIndexPage({
 
   return (
     <main className="min-h-screen bg-white px-6 py-16 dark:bg-neutral-950">
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
           Blog
         </h1>
@@ -64,7 +64,7 @@ export default async function BlogIndexPage({
             No posts yet — check back soon.
           </p>
         ) : (
-          <ul className="mt-2 divide-y divide-neutral-100 dark:divide-neutral-800">
+          <ul className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {posts.map((post) => (
               <PostCard
                 key={post.slug}

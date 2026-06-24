@@ -194,7 +194,7 @@ export function QuestionStep({
           />
         )}
         <Textarea
-          rows={3}
+          rows={question.rows ?? 3}
           placeholder={displayPlaceholder()}
           value={value}
           onChange={(e) => onChange(e.target.value)}

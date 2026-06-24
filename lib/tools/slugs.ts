@@ -6,4 +6,6 @@
 
 export const WEBSITE_PROMPT_GENERATOR_SLUG = "website-prompt-generator";
 
+export const COVER_LETTER_GENERATOR_SLUG = "cover-letter-generator";
+
 export const DEFAULT_TOOL_SLUG = WEBSITE_PROMPT_GENERATOR_SLUG;

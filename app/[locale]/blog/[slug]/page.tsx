@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import { Link } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
 import { getAllPosts, getPostBySlug, getCategoryLabel, getReadingTime } from "@/lib/blog";
+import { BlogCover } from "@/components/blog/BlogCover";
 import { buildAlternates } from "@/app/[locale]/layout";
 
 export function generateStaticParams() {
@@ -75,6 +76,19 @@ const mdxComponents = {
   ),
   td: (props: ComponentPropsWithoutRef<"td">) => (
     <td className="px-4 py-2.5 align-top" {...props} />
+  ),
+  img: (props: ComponentPropsWithoutRef<"img">) => (
+    <img
+      className="mt-8 w-full rounded-xl border border-neutral-200 dark:border-neutral-800"
+      loading="lazy"
+      {...props}
+    />
+  ),
+  figure: (props: ComponentPropsWithoutRef<"figure">) => (
+    <figure className="mt-8 space-y-2" {...props} />
+  ),
+  figcaption: (props: ComponentPropsWithoutRef<"figcaption">) => (
+    <figcaption className="text-center text-xs text-neutral-400 dark:text-neutral-500" {...props} />
   ),
 };
 
@@ -152,9 +166,16 @@ export default async function BlogPostPage({
         {/* Author + category */}
         <div className="mt-4 flex flex-wrap items-center gap-3">
           {post.author && (
-            <span className="text-sm text-neutral-500 dark:text-neutral-400">
-              {post.author}
-            </span>
+            <div className="flex items-center gap-2">
+              <img
+                src="/authors/artagers.jpg"
+                alt={post.author}
+                className="h-7 w-7 rounded-full object-cover"
+              />
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                {post.author}
+              </span>
+            </div>
           )}
           <Link
             href={`/blog/category/${category}`}
@@ -163,6 +184,8 @@ export default async function BlogPostPage({
             {categoryLabel}
           </Link>
         </div>
+
+        <BlogCover slug={slug} className="mt-8 aspect-[2/1] w-full rounded-2xl" />
 
         <div className="mt-10">
           <MDXRemote

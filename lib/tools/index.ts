@@ -9,13 +9,14 @@
 
 import type { ToolConfig } from "./types";
 import { websitePromptGenerator } from "./website-prompt-generator";
+import { coverLetterGenerator } from "./cover-letter-generator";
 import { DEFAULT_TOOL_SLUG } from "./slugs";
 
 export type { ToolConfig, ToolPublicConfig, ToolSection } from "./types";
 export { toPublicTool } from "./types";
-export { DEFAULT_TOOL_SLUG, WEBSITE_PROMPT_GENERATOR_SLUG } from "./slugs";
+export { DEFAULT_TOOL_SLUG, WEBSITE_PROMPT_GENERATOR_SLUG, COVER_LETTER_GENERATOR_SLUG } from "./slugs";
 
-const ALL_TOOLS: ToolConfig[] = [websitePromptGenerator];
+const ALL_TOOLS: ToolConfig[] = [websitePromptGenerator, coverLetterGenerator];
 
 export const TOOLS: Record<string, ToolConfig> = Object.fromEntries(
   ALL_TOOLS.map((t) => [t.slug, t])

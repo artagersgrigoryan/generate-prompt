@@ -49,13 +49,14 @@ const Checkmark = () => (
 
 interface CircleProps {
   id: number;
+  position: number;
   state: StepState;
   label: string;
   onNavigate: (id: number) => void;
   size?: "sm" | "md";
 }
 
-function Circle({ id, state, label, onNavigate, size = "sm" }: CircleProps) {
+function Circle({ id, position, state, label, onNavigate, size = "sm" }: CircleProps) {
   const dim = size === "md" ? "h-8 w-8 text-sm" : "h-7 w-7 text-xs";
   return (
     <button
@@ -74,7 +75,7 @@ function Circle({ id, state, label, onNavigate, size = "sm" }: CircleProps) {
           : "border border-neutral-300 bg-white text-neutral-400 hover:border-neutral-500 hover:text-neutral-600 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-500 dark:hover:border-neutral-400 dark:hover:text-neutral-300",
       ].join(" ")}
     >
-      {state === "done" ? <Checkmark /> : id}
+      {state === "done" ? <Checkmark /> : position}
     </button>
   );
 }
@@ -98,6 +99,14 @@ export function StepNavigator({
       defs[defs.length - 1].ids.push(q.id);
     }
     return defs;
+  }, [questions]);
+
+  // 1-based display position for each question ID (independent of the ID value).
+  const positionOf = useMemo(() => {
+    const map = new Map<number, number>();
+    let pos = 1;
+    for (const q of questions) map.set(q.id, pos++);
+    return map;
   }, [questions]);
 
   const mobileRef = useRef<HTMLDivElement>(null);
@@ -149,6 +158,7 @@ export function StepNavigator({
                     <Circle
                       key={id}
                       id={id}
+                      position={positionOf.get(id) ?? id}
                       state={getState(id)}
                       label={getQuestionLabel(id)}
                       onNavigate={onNavigate}
@@ -179,6 +189,7 @@ export function StepNavigator({
                     <Circle
                       key={id}
                       id={id}
+                      position={positionOf.get(id) ?? id}
                       state={getState(id)}
                       label={getQuestionLabel(id)}
                       onNavigate={onNavigate}

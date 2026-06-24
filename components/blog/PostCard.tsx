@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing";
 import { getCategoryLabel } from "@/lib/blog";
 import type { PostMeta } from "@/lib/blog";
+import { BlogCover } from "./BlogCover";
 
 interface PostCardProps {
   post: PostMeta;
@@ -14,9 +15,14 @@ export function PostCard({ post, locale, showCategory = true }: PostCardProps) {
   const categoryLabel = getCategoryLabel(category);
 
   return (
-    <li className="group py-8">
+    <li className="group flex flex-col">
+      {/* Cover */}
+      <Link href={`/blog/${post.slug}`} className="block" tabIndex={-1} aria-hidden="true">
+        <BlogCover slug={post.slug} className="aspect-[3/2] w-full rounded-xl" />
+      </Link>
+
       {/* Meta row: category · date · reading time */}
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
         {showCategory && (
           <Link
             href={`/blog/category/${category}`}
@@ -46,14 +52,14 @@ export function PostCard({ post, locale, showCategory = true }: PostCardProps) {
 
       {/* Title */}
       <Link href={`/blog/${post.slug}`} className="block">
-        <h2 className="mt-2 text-xl font-semibold text-neutral-900 transition-colors group-hover:text-neutral-600 dark:text-neutral-100 dark:group-hover:text-neutral-300">
+        <h2 className="mt-1.5 text-base font-semibold leading-snug text-neutral-900 transition-colors group-hover:text-neutral-600 dark:text-neutral-100 dark:group-hover:text-neutral-300">
           {post.title}
         </h2>
       </Link>
 
       {/* Description — truncated to 2 lines */}
       {post.description && (
-        <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
+        <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
           {post.description}
         </p>
       )}

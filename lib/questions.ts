@@ -24,6 +24,7 @@ export interface Question {
   maxSelections?: number;
   fields?: FieldDef[];
   hint?: string;
+  rows?: number;
   showColorPalettes?: boolean;
   showStylePreviews?: boolean;
   contentAlertOptions?: string[];

@@ -26,6 +26,10 @@ export interface ToolPublicConfig {
   existingContentOptions?: string[];
   /** Optional dev-only sample result shown behind the preview button. */
   devPreviewResult?: string;
+  /** Question IDs whose answers are saved/loaded from the user's profile. */
+  profileQuestionIds?: number[];
+  /** Controls which result screen to render. "prompt" shows platform tabs; "letter" shows a plain letter view. */
+  resultMode?: "prompt" | "letter";
 }
 
 /**
@@ -44,6 +48,6 @@ export interface ToolConfig extends ToolPublicConfig {
 
 /** Strips server-only fields so a tool can be sent to the client safely. */
 export function toPublicTool(tool: ToolConfig): ToolPublicConfig {
-  const { slug, name, description, sections, questions, existingContentOptions, devPreviewResult } = tool;
-  return { slug, name, description, sections, questions, existingContentOptions, devPreviewResult };
+  const { slug, name, description, sections, questions, existingContentOptions, devPreviewResult, profileQuestionIds, resultMode } = tool;
+  return { slug, name, description, sections, questions, existingContentOptions, devPreviewResult, profileQuestionIds, resultMode };
 }
