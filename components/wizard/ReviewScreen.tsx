@@ -14,6 +14,8 @@ interface ReviewScreenProps {
   apiError: string;
   getQuestionLabel: (id: number) => string;
   getSectionLabel: (section: string) => string;
+  isGated?: boolean;
+  signInHref?: string;
 }
 
 function formatAnswer(q: Question, raw: string): string | null {
@@ -55,6 +57,8 @@ export function ReviewScreen({
   apiError,
   getQuestionLabel,
   getSectionLabel,
+  isGated,
+  signInHref,
 }: ReviewScreenProps) {
   const t = useTranslations("review");
 
@@ -146,9 +150,15 @@ export function ReviewScreen({
           <Button variant="secondary" onClick={onBack}>
             {t("backBtn")}
           </Button>
-          <Button onClick={onGenerate}>
-            {t("generateBtn")}
-          </Button>
+          {isGated && signInHref ? (
+            <a href={signInHref}>
+              <Button>{t("signInToGenerate")}</Button>
+            </a>
+          ) : (
+            <Button onClick={onGenerate}>
+              {t("generateBtn")}
+            </Button>
+          )}
         </div>
       </div>
     </main>
