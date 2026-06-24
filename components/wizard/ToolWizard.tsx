@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useMemo } from "react";
-import { useTranslations, useMessages } from "next-intl";
+import { useTranslations, useMessages, useLocale } from "next-intl";
 import type { Question } from "@/lib/questions";
 import type { ToolSection } from "@/lib/tools/types";
 import { wizardKey } from "@/lib/draft";
@@ -9,6 +9,7 @@ import { ProgressBar } from "@/components/wizard/ProgressBar";
 import { StepNavigator } from "@/components/wizard/StepNavigator";
 import { QuestionStep } from "@/components/wizard/QuestionStep";
 import { ResultScreen } from "@/components/wizard/ResultScreen";
+import { LetterResultScreen } from "@/components/wizard/LetterResultScreen";
 import { ReviewScreen } from "@/components/wizard/ReviewScreen";
 import { Button } from "@/components/ui/Button";
 
@@ -22,6 +23,12 @@ interface ToolWizardProps {
   existingContentOptions?: string[];
   /** Optional dev-only sample result for the preview button. */
   devPreviewResult?: string;
+  /** Question IDs whose answers are saved/loaded from the user's profile. */
+  profileQuestionIds?: number[];
+  /** Controls result screen rendering. "letter" shows a plain letter view without platform tabs. */
+  resultMode?: "prompt" | "letter";
+  /** Signed-in user's ID, passed from the server component to enable profile features. */
+  userId?: string;
 }
 
 function LoadingDots({ text }: { text: string }) {
@@ -53,6 +60,9 @@ export function ToolWizard({
   sections,
   existingContentOptions,
   devPreviewResult,
+  profileQuestionIds,
+  resultMode,
+  userId,
 }: ToolWizardProps) {
   const t = useTranslations("generator");
   const messages = useMessages();
@@ -61,6 +71,9 @@ export function ToolWizard({
     string,
     { label: string; short: string }
   >;
+  const toolIntroMsgs = (messages.toolIntros ?? {}) as Record<string, Record<string, string>>;
+  const ti = toolIntroMsgs[toolSlug] ?? {};
+  const tb = (key: string) => ti[key] || t(key as Parameters<typeof t>[0]);
 
   const TOTAL = questions.length;
   const SESSION_KEY = wizardKey(toolSlug);
@@ -86,6 +99,11 @@ export function ToolWizard({
   const [result, setResult] = useState("");
   const [resultModel, setResultModel] = useState("");
   const [apiError, setApiError] = useState("");
+  const [profileSaving, setProfileSaving] = useState(false);
+  const [profileSaved, setProfileSaved] = useState(false);
+
+  const locale = useLocale();
+  const [freeGenCount, setFreeGenCount] = useState<number>(0);
 
   const restoredRef = useRef(false);
 
@@ -94,29 +112,64 @@ export function ToolWizard({
       restoredRef.current = true;
       try {
         const raw = sessionStorage.getItem(SESSION_KEY);
-        if (!raw) return;
-        const s = JSON.parse(raw) as Partial<{
-          step: number;
-          answers: Record<number, string>;
-          phase: Phase;
-          result: string;
-          resultModel: string;
-        }>;
-        if (s.step !== undefined) setStep(s.step);
-        if (s.answers) setAnswers(s.answers);
-        if (s.phase && s.phase !== "loading") setPhase(s.phase);
-        if (s.result) setResult(s.result);
-        if (s.resultModel) setResultModel(s.resultModel);
+        if (raw) {
+          const s = JSON.parse(raw) as Partial<{
+            step: number;
+            answers: Record<number, string>;
+            phase: Phase;
+            result: string;
+            resultModel: string;
+          }>;
+          if (s.step !== undefined) setStep(s.step);
+          if (s.answers) setAnswers(s.answers);
+          if (s.phase && s.phase !== "loading") setPhase(s.phase);
+          if (s.result) setResult(s.result);
+          if (s.resultModel) setResultModel(s.resultModel);
+        }
       } catch {}
+
+      // Load saved profile answers — session answers (restored above) take priority.
+      if (userId && profileQuestionIds?.length) {
+        fetch(`/api/profile?toolSlug=${toolSlug}`)
+          .then((r) => (r.ok ? r.json() : null))
+          .then((data) => {
+            if (data?.answers) {
+              setAnswers((prev) => {
+                const merged = { ...prev };
+                for (const id of profileQuestionIds) {
+                  if (!merged[id] && (data.answers as Record<number, string>)[id]) {
+                    merged[id] = (data.answers as Record<number, string>)[id];
+                  }
+                }
+                return merged;
+              });
+            }
+          })
+          .catch(() => {});
+      }
       return;
     }
     if (phase === "loading") return;
     try {
       sessionStorage.setItem(SESSION_KEY, JSON.stringify({ step, answers, phase, result, resultModel }));
     } catch {}
-  }, [SESSION_KEY, step, answers, phase, result, resultModel]);
+  }, [SESSION_KEY, step, answers, phase, result, resultModel]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const currentQ = step >= 1 && step <= TOTAL ? byId.get(step) ?? null : null;
+  useEffect(() => {
+    if (userId) {
+      // Signed-in user: reset client counter so it stays clean if they sign out later.
+      localStorage.setItem("free_gen_count", "0");
+      setFreeGenCount(0);
+    } else {
+      const stored = localStorage.getItem("free_gen_count");
+      setFreeGenCount(stored ? parseInt(stored, 10) : 0);
+    }
+  }, [userId]);
+
+  const isGated = !userId && freeGenCount >= 3;
+  const signInHref = `/${locale}/auth/signin`;
+
+  const currentQ = step !== 0 ? byId.get(step) ?? null : null;
 
   function getQuestionLabel(id: number): string {
     return qmsgs[`q${id}label`] || byId.get(id)?.label || "";
@@ -230,8 +283,9 @@ export function ToolWizard({
       setPhase("review");
       return;
     }
-    if (step < TOTAL) {
-      setStep((s) => s + 1);
+    const currentIdx = questions.findIndex((q) => q.id === step);
+    if (currentIdx < TOTAL - 1) {
+      setStep(questions[currentIdx + 1].id);
     } else {
       setPhase("review");
     }
@@ -258,7 +312,9 @@ export function ToolWizard({
       setPhase("review");
       return;
     }
-    if (step > 0) setStep((s) => s - 1);
+    const currentIdx = questions.findIndex((q) => q.id === step);
+    if (currentIdx > 0) setStep(questions[currentIdx - 1].id);
+    else setStep(0);
   }
 
   function handleEditFromReview(stepId: number) {
@@ -311,7 +367,21 @@ export function ToolWizard({
         body: JSON.stringify({ toolSlug, answers: buildPayload() }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Generation failed");
+      if (!res.ok) {
+        // Server-side backstop: update client counter so gate activates.
+        if (data.requiresAuth) {
+          const next = Math.max(freeGenCount, 3);
+          setFreeGenCount(next);
+          localStorage.setItem("free_gen_count", String(next));
+        }
+        throw new Error(data.error ?? "Generation failed");
+      }
+      // Increment client-side counter for anonymous users.
+      if (!userId) {
+        const next = freeGenCount + 1;
+        setFreeGenCount(next);
+        localStorage.setItem("free_gen_count", String(next));
+      }
       setResult(data.result);
       setResultModel(data.model);
       setPhase("result");
@@ -326,6 +396,25 @@ export function ToolWizard({
     setResult(devPreviewResult);
     setResultModel("Claude Haiku");
     setPhase("result");
+  }
+
+  async function saveProfile() {
+    if (!userId || !profileQuestionIds?.length) return;
+    setProfileSaving(true);
+    const profileAnswers: Record<number, string> = {};
+    for (const id of profileQuestionIds) {
+      if (answers[id]) profileAnswers[id] = answers[id];
+    }
+    try {
+      await fetch("/api/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ toolSlug, answers: profileAnswers }),
+      });
+      setProfileSaved(true);
+      setTimeout(() => setProfileSaved(false), 2500);
+    } catch {}
+    setProfileSaving(false);
   }
 
   function startOver() {
@@ -349,14 +438,23 @@ export function ToolWizard({
     return (
       <main className="min-h-screen bg-white px-4 py-16 dark:bg-neutral-950">
         <div className="mx-auto max-w-2xl">
-          <ResultScreen
-            result={result}
-            modelName={resultModel}
-            hasExistingContent={hasExistingContent}
-            onRegenerate={generate}
-            onStartOver={startOver}
-            loading={false}
-          />
+          {resultMode === "letter" ? (
+            <LetterResultScreen
+              result={result}
+              modelName={resultModel}
+              onRegenerate={generate}
+              onStartOver={startOver}
+            />
+          ) : (
+            <ResultScreen
+              result={result}
+              modelName={resultModel}
+              hasExistingContent={hasExistingContent}
+              onRegenerate={generate}
+              onStartOver={startOver}
+              loading={false}
+            />
+          )}
         </div>
       </main>
     );
@@ -366,7 +464,7 @@ export function ToolWizard({
   if (phase === "loading") {
     return (
       <main className="min-h-screen bg-white px-4 py-16 flex items-center justify-center dark:bg-neutral-950">
-        <LoadingDots text={t("loading")} />
+        <LoadingDots text={tb("loading")} />
       </main>
     );
   }
@@ -380,12 +478,14 @@ export function ToolWizard({
         onEdit={handleEditFromReview}
         onGenerate={generate}
         onBack={() => {
-          setStep(TOTAL);
+          setStep(questions[TOTAL - 1].id);
           setPhase("wizard");
         }}
         apiError={apiError}
         getQuestionLabel={getQuestionLabel}
         getSectionLabel={getSectionLabel}
+        isGated={isGated}
+        signInHref={signInHref}
       />
     );
   }
@@ -396,13 +496,13 @@ export function ToolWizard({
       <main className="min-h-screen bg-white px-4 py-16 dark:bg-neutral-950">
         <div className="mx-auto max-w-2xl space-y-10">
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400">
-            {t("brand")}
+            {tb("brand")}
           </p>
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-              {t("introTitle")}
+              {tb("introTitle")}
             </h1>
-            <p className="text-neutral-500 dark:text-neutral-400">{t("introDesc")}</p>
+            <p className="text-neutral-500 dark:text-neutral-400">{tb("introDesc")}</p>
           </div>
 
           {apiError && (
@@ -412,8 +512,8 @@ export function ToolWizard({
           )}
 
           <div className="flex flex-wrap items-center gap-3">
-            <Button onClick={() => setStep(1)} className="w-full sm:w-auto">
-              {t("startButton")}
+            <Button onClick={() => setStep(questions[0].id)} className="w-full sm:w-auto">
+              {tb("startButton")}
             </Button>
             {process.env.NODE_ENV === "development" && devPreviewResult && (
               <button
@@ -432,13 +532,14 @@ export function ToolWizard({
 
   // ── Wizard steps 1–N ────────────────────────────────────────────────────────
   const q = currentQ!;
-  const isLast = step === TOTAL;
+  const stepIndex = questions.findIndex((q) => q.id === step) + 1;
+  const isLast = stepIndex === TOTAL;
   const translatedSection = getSectionLabel(q.section);
 
   return (
     <main className="min-h-screen bg-white px-4 py-10 dark:bg-neutral-950">
       <div className="mx-auto max-w-2xl space-y-6">
-        <ProgressBar current={step} total={TOTAL} section={translatedSection} />
+        <ProgressBar current={stepIndex} total={TOTAL} section={translatedSection} />
         <StepNavigator
           currentStep={step}
           answers={answers}
@@ -524,6 +625,28 @@ export function ToolWizard({
               : t("btnNext")}
           </Button>
         </div>
+
+        {profileQuestionIds?.includes(q.id) && (
+          <div className="flex items-center gap-2 pt-1">
+            {userId ? (
+              <button
+                type="button"
+                onClick={saveProfile}
+                disabled={profileSaving}
+                className="text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors underline underline-offset-2 disabled:opacity-50"
+              >
+                {profileSaved ? "Saved to profile ✓" : profileSaving ? "Saving…" : "Save to profile"}
+              </button>
+            ) : (
+              <a
+                href="/en/auth/signin"
+                className="text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors underline underline-offset-2"
+              >
+                Sign in to save your details for next time
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </main>
   );
