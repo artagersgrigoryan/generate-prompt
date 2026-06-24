@@ -30,3 +30,17 @@ export const authLimit: Limiter = redis
   : inMemoryLimiter(20, 60 * 60 * 1000);
 
 export { inMemoryLimiter };
+
+const FREE_LIMIT_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days
+
+export async function getAnonFreeCount(ip: string): Promise<number> {
+  if (!redis) return 0;
+  const val = await redis.get<number>(`free:anon:${ip}`);
+  return val ?? 0;
+}
+
+export async function incrAnonFreeCount(ip: string): Promise<void> {
+  if (!redis) return;
+  await redis.incr(`free:anon:${ip}`);
+  await redis.expire(`free:anon:${ip}`, FREE_LIMIT_TTL_SECONDS);
+}
