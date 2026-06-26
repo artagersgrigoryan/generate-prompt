@@ -101,37 +101,18 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
   return (
     <div className="group rounded-xl border border-neutral-100 bg-white transition-colors hover:border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
       <div className="px-5 py-4">
-        <div className="flex items-start justify-between gap-4">
-          <div
-            className="min-w-0 flex-1 cursor-pointer"
-            onClick={() => !editing && setExpanded(!expanded)}
-          >
-            <div className="flex items-center gap-2">
-              <p className="text-xs text-neutral-400 dark:text-neutral-500">{date}</p>
-              <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
-                {toolLabel(prompt.toolSlug)}
-              </span>
-            </div>
-            {editing ? (
-              <textarea
-                className="mt-2 w-full resize-none rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm text-neutral-800 focus:border-blue-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:focus:border-blue-500"
-                rows={10}
-                value={editValue}
-                onChange={(e) => setEditValue(e.target.value)}
-                autoFocus
-                onClick={(e) => e.stopPropagation()}
-              />
-            ) : (
-              <p className={`mt-1 break-words text-sm text-neutral-700 dark:text-neutral-300${expanded ? " whitespace-pre-wrap" : ""}`}>
-                {expanded ? savedResult : `${preview}${savedResult.length > 160 ? "…" : ""}`}
-              </p>
-            )}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-2">
+            <p className="shrink-0 text-xs text-neutral-400 dark:text-neutral-500">{date}</p>
+            <span className="truncate rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+              {toolLabel(prompt.toolSlug)}
+            </span>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
+          <div className="flex shrink-0 items-center gap-0.5">
             <button
               onClick={toggleFavorite}
               disabled={favLoading}
-              className={`rounded-lg p-1.5 transition-colors ${
+              className={`rounded p-1 transition-colors ${
                 favorite
                   ? "text-amber-500"
                   : "text-neutral-300 hover:text-amber-400 dark:text-neutral-600 dark:hover:text-amber-400"
@@ -144,7 +125,7 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
             </button>
             <button
               onClick={copyResult}
-              className={`rounded-lg p-1.5 transition-colors ${copied ? "text-green-500" : "text-neutral-300 hover:text-neutral-500 dark:text-neutral-600 dark:hover:text-neutral-400"}`}
+              className={`rounded p-1 transition-colors ${copied ? "text-green-500" : "text-neutral-300 hover:text-neutral-500 dark:text-neutral-600 dark:hover:text-neutral-400"}`}
               aria-label="Copy to clipboard"
             >
               {copied ? (
@@ -160,7 +141,7 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
             <button
               onClick={startEditing}
               disabled={editing}
-              className="rounded-lg p-1.5 text-neutral-300 transition-colors hover:text-blue-400 dark:text-neutral-600 dark:hover:text-blue-400"
+              className="rounded p-1 text-neutral-300 transition-colors hover:text-blue-400 dark:text-neutral-600 dark:hover:text-blue-400"
               aria-label="Edit prompt"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -169,7 +150,7 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
             </button>
             <button
               onClick={deletePrompt}
-              className="rounded-lg p-1.5 text-neutral-300 transition-colors hover:text-red-400 dark:text-neutral-600 dark:hover:text-red-400"
+              className="rounded p-1 text-neutral-300 transition-colors hover:text-red-400 dark:text-neutral-600 dark:hover:text-red-400"
               aria-label="Delete prompt"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -177,6 +158,25 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
               </svg>
             </button>
           </div>
+        </div>
+        <div
+          className={`mt-2 min-w-0 ${!editing ? "cursor-pointer" : ""}`}
+          onClick={() => !editing && setExpanded(!expanded)}
+        >
+          {editing ? (
+            <textarea
+              className="w-full resize-none rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm text-neutral-800 focus:border-blue-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:focus:border-blue-500"
+              rows={10}
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              autoFocus
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <p className={`break-words text-sm text-neutral-700 dark:text-neutral-300${expanded ? " whitespace-pre-wrap" : ""}`}>
+              {expanded ? savedResult : `${preview}${savedResult.length > 160 ? "…" : ""}`}
+            </p>
+          )}
         </div>
         {editing && (
           <div className="mt-3 flex gap-2">

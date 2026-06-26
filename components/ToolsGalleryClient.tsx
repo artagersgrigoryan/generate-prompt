@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getToolIcon } from "@/lib/toolIcons";
@@ -70,6 +70,155 @@ function ToolCard({ tool, openLabel }: { tool: ToolPublicConfig; openLabel: stri
   );
 }
 
+function MobileCarousel({ tools, openLabel }: { tools: ToolPublicConfig[]; openLabel: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const inViewRef = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const isDragging = useRef(false);
+
+  // Clone first card at end — scroll to it looks seamless, then reset to real first card instantly
+  const carouselItems = [...tools, tools[0]];
+
+  const scrollTo = (i: number, instant = false) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const child = el.children[i] as HTMLElement;
+    if (child) el.scrollTo({ left: child.offsetLeft, behavior: instant ? "instant" : "smooth" });
+  };
+
+  const pauseAutoScroll = () => {
+    if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+  };
+
+  const startAutoScroll = () => {
+    pauseAutoScroll();
+    if (!inViewRef.current) return;
+    timerRef.current = setInterval(() => {
+      if (activeRef.current === tools.length - 1) {
+        // Smooth scroll to clone of first card, then instantly reset to real position 0
+        scrollTo(tools.length);
+        setTimeout(() => { scrollTo(0, true); activeRef.current = 0; setActive(0); }, 380);
+      } else {
+        scrollTo(activeRef.current + 1);
+      }
+    }, 3000);
+  };
+
+  // Track which card is visible; normalize clone index → 0
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const i = Array.from(el.children).indexOf(e.target as HTMLElement);
+          if (i < 0) return;
+          const normalized = i % tools.length;
+          setActive(normalized);
+          activeRef.current = normalized;
+        });
+      },
+      { root: el, threshold: 0.6 }
+    );
+    Array.from(el.children).forEach((child) => observer.observe(child));
+    return () => observer.disconnect();
+  }, [tools.length]);
+
+  // When user manually swipes to the clone, reset to real first card
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScrollEnd = () => {
+      const clone = el.children[tools.length] as HTMLElement;
+      if (clone && Math.abs(el.scrollLeft - clone.offsetLeft) < 5) {
+        el.scrollTo({ left: 0, behavior: "instant" });
+        activeRef.current = 0;
+        setActive(0);
+      }
+    };
+    el.addEventListener("scrollend", onScrollEnd);
+    return () => el.removeEventListener("scrollend", onScrollEnd);
+  }, [tools.length]);
+
+  // Pause/resume based on section visibility in the viewport
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) startAutoScroll();
+        else pauseAutoScroll();
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => { observer.disconnect(); pauseAutoScroll(); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Mouse drag
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    isDragging.current = true;
+    dragStartX.current = e.clientX;
+    dragScrollLeft.current = scrollRef.current?.scrollLeft ?? 0;
+    scrollRef.current?.setPointerCapture(e.pointerId);
+    pauseAutoScroll();
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    scrollRef.current.scrollLeft = dragScrollLeft.current + (dragStartX.current - e.clientX);
+  };
+  const onPointerUp = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    startAutoScroll();
+  };
+
+  return (
+    <div>
+      <div
+        ref={scrollRef}
+        className="flex snap-x snap-mandatory overflow-x-auto gap-3 cursor-grab active:cursor-grabbing"
+        style={{ scrollbarWidth: "none" }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onTouchStart={pauseAutoScroll}
+        onTouchEnd={startAutoScroll}
+      >
+        {carouselItems.map((tool, i) => (
+          <div key={`${tool.slug}-${i}`} className="w-full shrink-0 snap-start">
+            <ToolCard tool={tool} openLabel={openLabel} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 flex items-center justify-center gap-1.5">
+        {tools.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { scrollTo(i); startAutoScroll(); }}
+            aria-label={`Go to tool ${i + 1}`}
+            className={cn(
+              "h-1.5 rounded-full transition-all duration-200",
+              i === active
+                ? "w-5 bg-neutral-900 dark:bg-neutral-100"
+                : "w-1.5 bg-neutral-300 hover:bg-neutral-500 dark:bg-neutral-600 dark:hover:bg-neutral-400"
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ToolsGalleryClient({ tools, openLabel }: { tools: ToolPublicConfig[]; openLabel: string }) {
   const totalPages = Math.ceil(tools.length / TOOLS_PER_PAGE);
   const [page, setPage] = React.useState(0);
@@ -90,6 +239,13 @@ export function ToolsGalleryClient({ tools, openLabel }: { tools: ToolPublicConf
 
   return (
     <div>
+      {/* Mobile: swipe carousel */}
+      <div className="sm:hidden">
+        <MobileCarousel tools={tools} openLabel={openLabel} />
+      </div>
+
+      {/* Desktop: paginated grid */}
+      <div className="hidden sm:block">
       <div className="relative overflow-hidden">
         <AnimatePresence custom={direction} mode="wait">
           <motion.div
@@ -156,6 +312,7 @@ export function ToolsGalleryClient({ tools, openLabel }: { tools: ToolPublicConf
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }
