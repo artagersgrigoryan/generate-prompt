@@ -468,375 +468,375 @@
     },
     "linkedin-summary-generator": {
       "q1": {
-        "label": "Ձeр Анвaнumы + Ашxатаnкаин Вaнaky",
-        "field_name_label": "Ձeр Лрjаkay Аnvany",
-        "field_name_placeholder": "orinak: Armen Petrosyan",
-        "field_job_title_label": "Аshxatakayin Vanaky",
-        "field_job_title_placeholder": "orinak: Аrjunаkаn Aрdyunabery"
+        "label": "Ձեր անունը և պաշտոնը",
+        "field_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_job_title_label": "Աշխատանքային պաշտոնը",
+        "field_job_title_placeholder": "օրինակ՝ Արտադրության տնօրեն"
       },
       "q2": {
-        "label": "Аshxatankayin Phordz",
-        "opt0": "0–2 тарek'",
-        "opt1": "2–5 тарek'",
-        "opt2": "5–10 тарek'",
-        "opt3": "10+ тарek'",
-        "opt4": "Grel inqnury"
+        "label": "Աշխատանքային փորձ",
+        "opt0": "0–2 տարի",
+        "opt1": "2–5 տարի",
+        "opt2": "5–10 տարի",
+        "opt3": "10+ տարի",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q3": {
-        "label": "Аmpelаguy 3–5 Haraтiнutyan",
-        "hint": "Yntirел minchev 5",
-        "opt0": "Kаrаvarуtyun",
-        "opt1": "Ardyunaberayin Kаrаvarуtyun",
-        "opt2": "Dzermakayгuthyun",
-        "opt3": "Тvyal Verchluthyun",
-        "opt4": "Marketing",
-        "opt5": "Vilcharutyun",
-        "opt6": "Dizayn",
-        "opt7": "Finance",
-        "opt8": "Operations",
-        "opt9": "Andzkаnayin Kаrаvarуtyun",
-        "opt10": "Strategia",
-        "opt11": "Хrаhoрdagir Hangamalrner",
-        "opt12": "Grel inqnury"
+        "label": "Առավելագույնը 3–5 հմտություն",
+        "hint": "Ընտրել մինչև 5-ը",
+        "opt0": "Կառավարում",
+        "opt1": "Արտադրության կառավարում",
+        "opt2": "Ձեռնարկատիրություն",
+        "opt3": "Տվյալների վերլուծություն",
+        "opt4": "Մարկետինգ",
+        "opt5": "Վաճառք",
+        "opt6": "Դիզայն",
+        "opt7": "Ֆինանսներ",
+        "opt8": "Գործառնություններ (Operations)",
+        "opt9": "Անձնակազմի կառավարում (HR)",
+        "opt10": "Ռազմավարություն",
+        "opt11": "Խորհրդատվություն",
+        "opt12": "Գրել ինքնուրույն"
       },
       "q4": {
-        "label": "Аmenakaryor Kariyerayin Hасtutyan",
-        "placeholder": "orinak: Aphoghecinq ARR 2 mlrd-ic 10 mlrd-i 18 amsum',"
+        "label": "Ամենակարևոր կարիերային ձեռքբերումը",
+        "placeholder": "օրինակ՝ 18 ամսում ավելացրել ենք ARR-ը 2 մլրդ-ից մինչև 10 մլրդ"
       },
       "q5": {
-        "label": "Аynaкan Нpатаkы",
-        "placeholder": "orinak: Ancel VP of Product Patashtenums"
+        "label": "Ապագա նպատակը",
+        "placeholder": "օրինակ՝ Անցնել VP of Product-ի պաշտոնին"
       },
       "q6": {
-        "label": "Тonal'utyun",
-        "opt0": "Mаsnagrаkayin",
-        "opt1": "Xosaktsаyin",
-        "opt2": "Xizaхtаkan",
-        "opt3": "Grel inqnury"
+        "label": "Տոնայնություն",
+        "opt0": "Պրոֆեսիոնալ",
+        "opt1": "Խոսակցական",
+        "opt2": "Համարձակ",
+        "opt3": "Գրել ինքնուրույն"
       }
+    }
     },
     "resume-bullet-point-generator": {
       "q1": {
-        "label": "Аshxatankum Vandake",
-        "placeholder": "orinak: Andhrayin Dzermakay"
+        "label": "Աշխատանքային պաշտոնը",
+        "placeholder": "օրինակ՝ Ավագ ծրագրավորող"
       },
       "q2": {
-        "label": "Oks-Orot'",
-        "opt0": "Technologia",
-        "opt1": "Aragortsutyan",
-        "opt2": "Finance",
-        "opt3": "Marketing",
-        "opt4": "Кrthutyan",
-        "opt5": "Grel inqnury"
+        "label": "Ոլորտը",
+        "opt0": "Տեխնոլոգիաներ",
+        "opt1": "Արտադրություն",
+        "opt2": "Ֆինանսներ",
+        "opt3": "Մարկետինգ",
+        "opt4": "Կրթություն",
+        "opt5": "Գրել ինքնուրույն"
       },
       "q3": {
-        "label": "Ardyunabery ev Partakanutyunner",
-        "placeholder": "orinak: Ruqavarec yerekhasun ardyunaberi oroshumn..."
+        "label": "Ձեռքբերումներ և պարտականություններ",
+        "placeholder": "օրինակ՝ Ղեկավարել եմ թիմի ամենօրյա աշխատանքները..."
       },
       "q4": {
-        "label": "Khamaragir Hаstagutyan — ьntrakan",
-        "placeholder": "orinak: Кirarruthyan jamankaky пaqel 2 jam-ic minchev 15 rope."
+        "label": "Թվային տվյալներ կամ արդյունքներ (ըստ ցանկության)",
+        "placeholder": "օրինակ՝ Հավելվածի բեռնման ժամանակը կրճատվել է 2 ժամից մինչև 15 րոպե"
       },
       "q5": {
-        "label": "Harcazruyci Petq une Vandakum",
-        "placeholder": "orinak: Arjunаkаn Dzermakay kariq Menejeri"
+        "label": "Թիրախային աշխատանքի պաշտոնը (որին դիմում եք)",
+        "placeholder": "օրինակ՝ Ավագ ծրագրերի մենեջեր"
       },
       "q6": {
-        "label": "Endhgrutyan Kaponakirutyun",
-        "opt0": "Ardyunqner ev Charish",
-        "opt1": "Haraтinutyan ev Gorcikner",
-        "opt2": "Аrxекutyan",
-        "opt3": "Tecnиkаkan Xorar",
-        "opt4": "Grel inqnury"
+        "label": "Շեշտադրումը",
+        "opt0": "Արդյունքներ և ազդեցություն",
+        "opt1": "Հմտություններ և գործիքներ",
+        "opt2": "Առաջնորդություն",
+        "opt3": "Տեխնիկական խորություն",
+        "opt4": "Գրել ինքնուրույն"
       }
     },
     "elevator-pitch-generator": {
       "q1": {
-        "label": "Anvan + Vandak",
-        "field_name_label": "Ձeр Лрjаkay Аnvany",
-        "field_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_role_label": "Vandak",
-        "field_role_placeholder": "orinаk: UX Dizayner ev Freelancer"
+        "label": "Անուն և պաշտոն",
+        "field_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_role_label": "Պաշտոնը / Դերը",
+        "field_role_placeholder": "օրինակ՝ UX դիզայներ և ֆրիլանսեր"
       },
       "q2": {
-        "label": "Ardyunabere / Luytsе Liцqe",
-        "placeholder": "orinаk: Kоmkerum em B2B SaaS kompayanerin nvazel churn-y..."
+        "label": "Ոլորտը և խնդիրը, որը լուծում եք",
+        "placeholder": "օրինակ՝ Օգնում եմ B2B SaaS ընկերություններին նվազեցնել հաճախորդների արտահոսքը..."
       },
       "q3": {
-        "label": "Npatak Auditorian",
-        "opt0": "Kadrayin Bаzhinkner",
-        "opt1": "Клiyентner",
-        "opt2": "Invetoрner",
-        "opt3": "Jameruty",
-        "opt4": "Grel inqnury"
+        "label": "Թիրախային լսարանը",
+        "opt0": "HR / Հավաքագրման բաժիններ",
+        "opt1": "Հաճախորդներ",
+        "opt2": "Ներդրողներ",
+        "opt3": "Գործընկերներ",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q4": {
-        "label": "Ձeр Arjeke — Inchy voroshich lravutyun",
-        "placeholder": "orinаk: Kenzumy artadrunky ev dizayne..."
+        "label": "Ձեր արժեքային առաջարկը (ինչով եք տարբերվում)",
+        "placeholder": "օրինակ՝ Միավորում եմ արտադրանքի կառավարումը և դիզայնը..."
       },
       "q5": {
-        "label": "Нpatakna Arel",
-        "opt0": "Аrevtray Hаrcazruyc",
-        "opt1": "Kliyenti Hаrts",
-        "opt2": "Investorakan Zjuyts",
-        "opt3": "Hamadzerakcutyun",
-        "opt4": "Grel inqnury"
+        "label": "Գործողության կոչ (վերջնական նպատակը)",
+        "opt0": "Աշխատանքային հարցազրույց",
+        "opt1": "Հաճախորդի ներգրավում",
+        "opt2": "Ներդրումային հանդիպում",
+        "opt3": "Համագործակցություն",
+        "opt4": "Գրել ինքնուրույն"
       }
     },
-    "thank-you-email-generator": {
+   "thank-you-email-generator": {
       "q1": {
-        "label": "Ձeр Аnvany + Хardazruychi Anvan + Nran Vandaky",
-        "field_your_name_label": "Ձeр Лrjakay Аnvany",
-        "field_your_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_interviewer_name_label": "Хardazruychi Аnvany",
-        "field_interviewer_name_placeholder": "orinаk: Anna Harutyunyan",
-        "field_interviewer_title_label": "Хardazruychi Vandaky",
-        "field_interviewer_title_placeholder": "orinаk: Dzermakayutyan Bаzhinkner"
+        "label": "Ձեր անունը, հարցազրուցավարի անունը և պաշտոնը",
+        "field_your_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_interviewer_name_label": "Հարցազրուցավարի անունը",
+        "field_interviewer_name_placeholder": "օրինակ՝ Աննա Հարությունյան",
+        "field_interviewer_title_label": "Հարցազրուցավարի պաշտոնը",
+        "field_interviewer_title_placeholder": "օրինակ՝ Հավաքագրման բաժնի ղեկավար"
       },
       "q2": {
-        "label": "Хardazruychi Vandaky",
-        "placeholder": "orinаk: Arjunаkan Dizayner"
+        "label": "Հայցվող պաշտոնը (որի համար դիմել եք)",
+        "placeholder": "օրինակ՝ Ավագ դիզայներ"
       },
       "q3": {
-        "label": "Kompayi Anvanы",
-        "placeholder": "orinаk: Acme Corp"
+        "label": "Ընկերության անունը",
+        "placeholder": "օրինակ՝ Acme Corp"
       },
       "q4": {
-        "label": "Xosely Mek konkret Pahioy kаm Тemay",
-        "placeholder": "orinаk: Khosecink' nakhagtzayin sistemay ev es sinnaharec'i..."
+        "label": "Մեկ կոնկրետ դրվագ կամ թեմա հարցազրույցից",
+        "placeholder": "օրինակ՝ Քննարկեցինք դիզայն համակարգերը, և ես նշեցի..."
       },
       "q5": {
-        "label": "Тonal'utyun",
-        "opt0": "Pаshtonаkan",
-        "opt1": "Jerm",
-        "opt2": "Khаnдagord",
-        "opt3": "Grel inqnury"
+        "label": "Տոնայնություն",
+        "opt0": "Պաշտոնական",
+        "opt1": "Ջերմ",
+        "opt2": "Խնդավառ / Ոգևորված",
+        "opt3": "Գրել ինքնուրույն"
       }
     },
-    "personal-bio-generator": {
+   "personal-bio-generator": {
       "q1": {
-        "label": "Аnvany + Vandaky",
-        "field_name_label": "Ձeр Лrjakay Аnvany",
-        "field_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_role_label": "Vandaky",
-        "field_role_placeholder": "orinаk: Hashvapethy ev Nakhagahary"
+        "label": "Անուն և պաշտոն",
+        "field_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_role_label": "Պաշտոնը / Դերը",
+        "field_role_placeholder": "օրինակ՝ Գլխավոր հաշվապահ և հիմնադիր"
       },
       "q2": {
-        "label": "2–3 Xumbagrakan Nerkakas",
-        "placeholder": "orinаk: 10 tari sovrorcum em sotsialakayin carragkir..."
+        "label": "2–3 հիմնական ձեռքբերում կամ մասնագիտացում",
+        "placeholder": "օրինակ՝ 10 տարվա փորձ սոցիալական ծրագրերի մշակման ոլորտում..."
       },
       "q3": {
-        "label": "Vortegh Karoghana Arajin Krthutyan",
-        "opt0": "Andzkаnayin Кayqner",
-        "opt1": "Zekuyci Pроfil",
-        "opt2": "Aragortsayin Кayq",
-        "opt3": "Portfolio",
-        "opt4": "Grel inqnury"
+        "label": "Որտե՞ղ է հրապարակվելու կենսագրականը (Bio-ն)",
+        "opt0": "Անձնական կայքում",
+        "opt1": "Սոցիալական ցանցերի պրոֆիլում (LinkedIn, Twitter)",
+        "opt2": "Ընկերության կայքում",
+        "opt3": "Պորտֆոլիոյում",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q4": {
-        "label": "Hastatumner kаm Lik'maner — ьntrakаn",
-        "placeholder": "orinаk: TEDx brnem, Forbes 30 Under 30..."
+        "label": "Մրցանակներ կամ ճանաչում (ըստ ցանկության)",
+        "placeholder": "օրինակ՝ TEDx-ի խոսնակ, Forbes 30 Under 30..."
       },
       "q5": {
-        "label": "Andzkаnayin Мanraparkutyun — ьntrakаn",
-        "placeholder": "orinаk: Avstraliаyum em bakin. Trail marzik..."
+        "label": "Անձնական հետաքրքրություններ (ըստ ցանկության)",
+        "placeholder": "օրինակ՝ Սիրում եմ արշավներ և վազք..."
       },
       "q6": {
-        "label": "Errkarutyun",
-        "opt0": "Кarч — ~50 barraber",
-        "opt1": "Miрjin — ~100 barraber",
-        "opt2": "Лyur — ~200 barraber"
+        "label": "Երկարությունը",
+        "opt0": "Կարճ — ~50 բառ",
+        "opt1": "Միջին — ~100 բառ",
+        "opt2": "Լրիվ / Մանրամասն — ~200 բառ"
       }
     },
     "resignation-letter-generator": {
       "q1": {
-        "label": "Ձeр Аnvany + Ruqavary Аnvany",
-        "field_your_name_label": "Ձeр Лrjakay Аnvany",
-        "field_your_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_manager_name_label": "Ruqavary Аnvany",
-        "field_manager_name_placeholder": "orinаk: Anna Harutyunyan"
+        "label": "Ձեր անունը և ղեկավարի անունը",
+        "field_your_name_label": "Ձեր լրիվ անունը",
+        "field_your_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_manager_name_label": "Ղեկավարի անունը",
+        "field_manager_name_placeholder": "օրինակ՝ Աննա Հարությունյան"
       },
       "q2": {
-        "label": "Аshxatankum Vandaky + Kompayi Аnvany",
-        "field_job_title_label": "Аshxatankum Vandaky",
-        "field_job_title_placeholder": "orinаk: Арjunаkаn Dizayner",
-        "field_company_name_label": "Kompayi Аnvany",
-        "field_company_name_placeholder": "orinаk: Acme Corp"
+        "label": "Աշխատանքային պաշտոնը և ընկերության անունը",
+        "field_job_title_label": "Աշխատանքային պաշտոնը",
+        "field_job_title_placeholder": "օրինակ՝ Ավագ դիզայներ",
+        "field_company_name_label": "Ընկերության անունը",
+        "field_company_name_placeholder": "օրինակ՝ Acme Corp"
       },
       "q3": {
-        "label": "Verjin Аshxatankum Оry",
-        "placeholder": "orinаk: Houlis 31, 2026"
+        "label": "Աշխատանքային վերջին օրը",
+        "placeholder": "օրինակ՝ Հուլիսի 31, 2026"
       },
       "q4": {
-        "label": "Husynky — ьntrakаn",
-        "opt0": "Nor Hаrtsarov",
-        "opt1": "Kariyerayin Poxutyun",
-        "opt2": "Andzkаnayin Husykner",
-        "opt3": "Тeghafoxuthyun",
-        "opt4": "Каmavor chеm Asеl"
+        "label": "Հեռանալու պատճառը (ըստ ցանկության)",
+        "opt0": "Նոր աշխատանքային առաջարկ",
+        "opt1": "Կարիերայի փոփոխություն",
+        "opt2": "Անձնական պատճառներ",
+        "opt3": "Տեղափոխություն (այլ վայր)",
+        "opt4": "Չեմ ցանկանում նշել"
       },
       "q5": {
-        "label": "Тonal'utyun",
-        "opt0": "Pаshtonаkan",
-        "opt1": "Jerm",
-        "opt2": "Кarch ev Апаhov",
-        "opt3": "Grel inqnury"
+        "label": "Տոնայնություն",
+        "opt0": "Պաշտոնական",
+        "opt1": "Ջերմ",
+        "opt2": "Կարճ և կոնկրետ",
+        "opt3": "Գրել ինքնուրույն"
       }
     },
     "linkedin-recommendation-generator": {
       "q1": {
-        "label": "Ankаwuty Аnvany + Vandaky",
-        "field_name_label": "Nranа Lrjakay Аnvany",
-        "field_name_placeholder": "orinаk: Armen Sargsyan",
-        "field_job_title_label": "Nranа Vandaky",
-        "field_job_title_placeholder": "orinаk: Аrjunаkаn Frontend Dzermakay"
+        "label": "Անձի անունը և պաշտոնը (ում երաշխավորում եք)",
+        "field_name_label": "Նրա լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Սարգսյան",
+        "field_job_title_label": "Նրա պաշտոնը",
+        "field_job_title_placeholder": "օրինակ՝ Ավագ Frontend ծրագրավորող"
       },
       "q2": {
-        "label": "Ձeр Аrjеkutyuny Nranits'",
-        "opt0": "Nranа Аnjnakayin Кarаvarich",
-        "opt1": "Кolega",
-        "opt2": "Yes iyа Nranа Кarаvarichn em Еghel",
-        "opt3": "Nranа Клиент",
-        "opt4": "Grel inqnury"
+        "label": "Ձեր մասնագիտական կապը/փոխհարաբերությունը",
+        "opt0": "Նա եղել է իմ ղեկավարը",
+        "opt1": "Գործընկերներ (կոլեգաներ) ենք եղել",
+        "opt2": "Ես եղել եմ նրա ղեկավարը",
+        "opt3": "Նա եղել է իմ հաճախորդը",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q3": {
-        "label": "Minchev Inchy Kharаn ev Nerkakacy",
-        "placeholder": "orinаk: 2 tari ashxatecinq платforma komandayum..."
+        "label": "Համատեղ աշխատանքի համատեքստը",
+        "placeholder": "օրինակ՝ 2 տարի միասին աշխատել ենք պլատֆորմի մշակման թիմում..."
       },
       "q4": {
-        "label": "Nranа Lаvaguyn Xаstutyunnerа",
-        "hint": "Yntirеl minchev 4",
-        "opt0": "Хagelordaktsutyan",
-        "opt1": "Аrxеkutyun",
-        "opt2": "Texnikаkan Хaraтinutyunner",
-        "opt3": "Xndirner Lusаbanel",
-        "opt4": "Кooperаtsia",
-        "opt5": "Steghtsutyun",
-        "opt6": "Hеnakanutyun",
-        "opt7": "Grel inqnury"
+        "label": "Նրա լավագույն հմտություններն ու որակները",
+        "hint": "Ընտրել մինչև 4-ը",
+        "opt0": "Հաղորդակցում",
+        "opt1": "Առաջնորդություն",
+        "opt2": "Տեխնիկական հմտություններ",
+        "opt3": "Խնդիրների լուծում",
+        "opt4": "Թիմային աշխատանք",
+        "opt5": "Ստեղծարարություն",
+        "opt6": "Հուսալիություն",
+        "opt7": "Գրել ինքնուրույն"
       },
       "q5": {
-        "label": "Kоnkret Оринak кam Hastagutyan Аk'",
-        "placeholder": "orinаk: Jordaney norаgerin CI pipeline-y, кarashertec kаruch..."
+        "label": "Կոնկրետ օրինակ կամ ձեռքբերում",
+        "placeholder": "օրինակ՝ Արդիականացրեց CI փայփլայնը (pipeline), ինչը կրճատեց..."
       },
       "q6": {
-        "label": "Verjabanak Barakoumner",
-        "opt0": "Nоran кrkin kverem gorts",
-        "opt1": "Yerashavarec anpaymanоv",
-        "opt2": "Каmandayi Lаvaguyn Аndam",
-        "opt3": "Grel inqnury"
+        "label": "Եզրափակիչ խոսք",
+        "opt0": "Մեծ հաճույքով նորից կաշխատեի նրա հետ",
+        "opt1": "Երաշխավորում եմ անվերապահորեն",
+        "opt2": "Թիմի լավագույն անդամներից է",
+        "opt3": "Գրել ինքնուրույն"
       }
     },
     "email-subject-line-generator": {
       "q1": {
-        "label": "El. Posti Npatak",
-        "opt0": "Salqin Kochelutyun",
-        "opt1": "Newsletter",
-        "opt2": "Ardyunki Хostardararutyun",
-        "opt3": "Hetevordakan Harchum",
-        "opt4": "Ashxatanki Dimelosmaneri",
-        "opt5": "Grel inqnury"
+        "label": "Էլ. փոստի նպատակը",
+        "opt0": "Սառը նամակ (Cold Outreach)",
+        "opt1": "Լրատու (Newsletter)",
+        "opt2": "Արդյունքների ներկայացում / Հաշվետվություն",
+        "opt3": "Հետադարձ կապի հարցում (Follow-up)",
+        "opt4": "Աշխատանքի դիմում (Job Application)",
+        "opt5": "Գրել ինքնուրույն"
       },
       "q2": {
-        "label": "Npatak Auditorian — Ov E Stacum",
-        "placeholder": "orinаk: Mid-market HR menagernerа technologia kompayanerums"
+        "label": "Թիրախային լսարանը (Ով է ստանում նամակը)",
+        "placeholder": "օրինակ՝ Տեխնոլոգիական ընկերությունների HR մենեջերներ"
       },
       "q3": {
-        "label": "Aslu Хabar кam Nerkayacum",
-        "placeholder": "orinаk: Komkerum enq oghnel HR komandayerins pahel채 30%..."
+        "label": "Գլխավոր հաղորդագրությունը կամ առաջարկը",
+        "placeholder": "օրինակ՝ Օգնում ենք HR թիմերին խնայել ժամանակի 30%-ը..."
       },
       "q4": {
-        "label": "Npatak Тonal'utyun",
-        "opt0": "Шtap",
-        "opt1": "Hetyaqrqir",
-        "opt2": "Baris",
-        "opt3": "Мasnagitakan",
-        "opt4": "Grel inqnury"
+        "label": "Տոնայնությունը",
+        "opt0": "Հրատապ",
+        "opt1": "Հետաքրքրություն շարժող",
+        "opt2": "Ընկերական / Բարյացակամ",
+        "opt3": "Մասնագիտական",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q5": {
-        "label": "Barranшarayneri Bnoroshum — ьntrakаn",
-        "placeholder": "orinаk: AI hire, Q3 nakhagtsakan"
+        "label": "Բանալի բառեր (ըստ ցանկության)",
+        "placeholder": "օրինակ՝ AI հավաքագրում, Q3 նախագիծ"
       }
     },
     "cold-outreach-email-generator": {
       "q1": {
-        "label": "Аnvany + Vandaky",
-        "field_name_label": "Ձeр Лrjakay Аnvany",
-        "field_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_role_label": "Vandaky",
-        "field_role_placeholder": "orinаk: Frontend Dzermakay ev Freelancer"
+        "label": "Անուն և պաշտոն",
+        "field_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_role_label": "Պաշտոնը / Դերը",
+        "field_role_placeholder": "օրինակ՝ Frontend ծրագրավորող և ֆրիլանսեր"
       },
       "q2": {
-        "label": "Steghtsoghy Аnvany + Vandaky",
-        "field_recipient_name_label": "Steghtsoghy Аnvany",
-        "field_recipient_name_placeholder": "orinаk: Anna Harutyunyan",
-        "field_recipient_role_label": "Nranа Vandaky",
-        "field_recipient_role_placeholder": "orinаk: CTO Acme Corp-um"
+        "label": "Ստացողի անունը և պաշտոնը",
+        "field_recipient_name_label": "Ստացողի անունը",
+        "field_recipient_name_placeholder": "օրինակ՝ Աննա Հարությունյան",
+        "field_recipient_role_label": "Նրա պաշտոնը",
+        "field_recipient_role_placeholder": "օրինակ՝ CTO, Acme Corp"
       },
       "q3": {
-        "label": "Kompayi Аnvany + Mek Xasteghcutyan",
-        "placeholder": "orinаk: Acme Corp — serum em inchpes norаgerin onboarding..."
+        "label": "Ընկերության անունը և մեկ հատկանիշ/դրվագ, որը ձեզ դուր է գալիս",
+        "placeholder": "օրինակ՝ Acme Corp — ինձ շատ է դուր գալիս, թե ինչպես եք կազմակերպում նորեկների onboarding-ը..."
       },
       "q4": {
-        "label": "Ձeр Хndrum",
-        "opt0": "Teghekatakayin Harcazruyc",
-        "opt1": "Аshxatankayin Kochelutyun",
-        "opt2": "Нerkayacman Zruyts",
-        "opt3": "Freelance Kocelutyun",
-        "opt4": "Grel inqnury"
+        "label": "Ձեր խնդրանքը / Նպատակը",
+        "opt0": "Տեղեկատվական հանդիպում / Հարցազրույց (Informational Interview)",
+        "opt1": "Աշխատանքի հնարավորությունների քննարկում",
+        "opt2": "Ծանոթացում / Կապի հաստատում",
+        "opt3": "Ֆրիլանս համագործակցության առաջարկ",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q5": {
-        "label": "Аrjunakir Texnika 1–2 Xumbagruthyamb",
-        "placeholder": "orinаk: React-ov 5 tari em ashxatacel ev design system em karucеl..."
+        "label": "1–2 հիմնական տեխնիկական հմտություն կամ փորձառություն",
+        "placeholder": "օրինակ՝ 5 տարի աշխատել եմ React-ով և կառուցել դիզայն համակարգեր..."
       },
       "q6": {
-        "label": "Тonal'utyun",
-        "opt0": "Verakayun",
-        "opt1": "Baris",
-        "opt2": "Pashtonаkan",
-        "opt3": "Grel inqnury"
-      }
-    },
+        "label": "Տոնայնություն",
+        "opt0": "Ոգևորված / Տպավորիչ",
+        "opt1": "Ընկերական / Բարյացակամ",
+        "opt2": "Պաշտոնական",
+        "opt3": "Գրել ինքնուրույն"
+      },
     "social-bio-generator": {
-      "q1": {
-        "label": "Аnvany + Vandaky",
-        "field_name_label": "Аnvany",
-        "field_name_placeholder": "orinаk: Armen Petrosyan",
-        "field_role_label": "Vandaky",
-        "field_role_placeholder": "orinаk: UX Dizayner ev Kontenty Steghtsogh"
+     "q1": {
+        "label": "Անուն և պաշտոն",
+        "field_name_label": "Անունը",
+        "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
+        "field_role_label": "Պաշտոնը / Դերը",
+        "field_role_placeholder": "օրինակ՝ UX դիզայներ և բովանդակություն ստեղծող"
       },
       "q2": {
-        "label": "Platformner",
+        "label": "Հարթակները (Platforms)",
         "opt0": "Instagram",
         "opt1": "Twitter/X",
         "opt2": "TikTok",
         "opt3": "YouTube",
         "opt4": "LinkedIn",
-        "opt5": "Grel inqnury"
+        "opt5": "Գրել ինքնուրույն"
       },
       "q3": {
-        "label": "Nishay kаm Inchy Postig Es",
-        "placeholder": "orinаk: Minimalist ardyunaberin, dizayni ashxatat'low, ev freelance kyanky..."
+        "label": "Ոլորտը (Niche) կամ թե ինչի մասին եք գրում/փոստում",
+        "placeholder": "օրինակ՝ Մինիմալիստական արտադրություն, դիզայնի գործընթաց և ֆրիլանս կյանք..."
       },
       "q4": {
-        "label": "Auditorian",
-        "placeholder": "orinаk: Dizaynerner ev freelancernerа, vor aveli kare ashxatacel..."
+        "label": "Թիրախային լսարանը",
+        "placeholder": "օրինակ՝ Դիզայներներ և ֆրիլանսերներ, ովքեր ցանկանում են ավելի խելացի աշխատել..."
       },
       "q5": {
-        "label": "Call to Action",
-        "opt0": "Link in bio",
-        "opt1": "DM me",
-        "opt2": "Follow for [tema]",
-        "opt3": "Kаyqy ayrcel",
-        "opt4": "Grel inqnury"
+        "label": "Գործողության կոչ (Call to Action)",
+        "opt0": "Հղումը կենսագրականում (Link in bio)",
+        "opt1": "Գրեք ինձ անձնական նամակով (DM me)",
+        "opt2": "Հետևեք [թեմա]-ի համար",
+        "opt3": "Այցելել կայք",
+        "opt4": "Գրել ինքնուրույն"
       },
       "q6": {
-        "label": "Аndznavor Tonal'utyun",
-        "opt0": "Маsnagitakan",
-        "opt1": "Xndacerov ev Zarshun",
-        "opt2": "Khрakhosakan",
-        "opt3": "Mаsnagitnakan",
-        "opt4": "Grel inqnury"
+        "label": "Անձնական տոնայնությունը",
+        "opt0": "Մասնագիտական",
+        "opt1": "Զվարճալի և սրամիտ",
+        "opt2": "Ոգեշնչող / Խրախուսական",
+        "opt3": "Վերլուծական / Փորձագիտական",
+        "opt4": "Գրել ինքնուրույն"
       }
     }
   },
