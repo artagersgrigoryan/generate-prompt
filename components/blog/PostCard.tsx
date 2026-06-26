@@ -18,7 +18,7 @@ export function PostCard({ post, locale, showCategory = true }: PostCardProps) {
     <li className="group flex flex-col">
       {/* Cover */}
       <Link href={`/blog/${post.slug}`} className="block" tabIndex={-1} aria-hidden="true">
-        <BlogCover slug={post.slug} className="aspect-[3/2] w-full rounded-xl" />
+        <BlogCover slug={post.slug} title={post.title} className="aspect-[3/2] w-full rounded-xl" />
       </Link>
 
       {/* Meta row: category · date · reading time */}

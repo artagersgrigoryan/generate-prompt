@@ -1,5 +1,5 @@
 import type { Question } from "@/lib/questions";
-import type { ToolConfig, ToolSection } from "./types";
+import type { ToolConfig, ToolSection, SeoContent } from "./types";
 import { WEBSITE_PROMPT_GENERATOR_SLUG } from "./slugs";
 
 // Ordered sections. `name` matches Question.section; `key` is the i18n key
@@ -239,6 +239,35 @@ Make the brief precise, inspiring, and complete. Every decision should feel inte
 
 Always write the brief in English, even if some of the client's answers are in a different language.`;
 
+const seoContent: SeoContent = {
+  tagline: "Generate a complete AI brief for your website — ready to paste into Bolt, Cursor, v0, Lovable, and more.",
+  benefits: [
+    { icon: "clock", title: "Save hours of planning", description: "Turn vague ideas into a structured brief in under 5 minutes, not hours." },
+    { icon: "zap", title: "AI-platform ready", description: "Output is specifically optimised for Bolt, Cursor, v0, Lovable, and other AI coding tools." },
+    { icon: "target", title: "Structured and precise", description: "Covers design, copy, pages, tech stack, and features — nothing left to guessing." },
+    { icon: "copy", title: "One click to copy", description: "Copy your entire brief and paste it directly into any AI coding tool or send it to a developer." },
+  ],
+  howItWorks: [
+    { title: "Answer 13 focused questions", description: "Tell us about your project, audience, visual style, pages, and tech stack. Takes under 5 minutes." },
+    { title: "Claude structures your answers", description: "Our AI turns your answers into a complete, professional website brief with precise design and technical direction." },
+    { title: "Paste into your AI builder", description: "Copy the result and paste it straight into Bolt, Cursor, v0, Lovable, or hand it to a developer." },
+  ],
+  useCases: [
+    { title: "SaaS founders", description: "Generate a complete brief for your landing page or product site without needing a designer or product manager." },
+    { title: "Freelance designers", description: "Use the brief as a client intake replacement — get all the information you need in one structured document." },
+    { title: "Non-technical builders", description: "Describe your vision in plain English and get a brief a developer or AI tool can act on immediately." },
+    { title: "Agencies", description: "Speed up the discovery phase and onboard clients faster with a standardised briefing process." },
+  ],
+  faqs: [
+    { question: "What is a website prompt?", answer: "A website prompt is a detailed written brief that describes your website's purpose, design direction, content structure, and technical requirements. When fed into an AI coding tool like Bolt or Cursor, it guides the AI to generate a website that matches your vision — instead of producing something generic." },
+    { question: "Which AI tools does this work with?", answer: "The output is optimised for Bolt.new, Cursor, v0.dev, Lovable, and Framer AI. It also works well as a brief for human developers or freelancers." },
+    { question: "How long does it take?", answer: "Most users complete all 13 questions in under 5 minutes. The AI generates your brief in seconds." },
+    { question: "Can I customise the output?", answer: "Yes. Copy the result and edit it directly before pasting into your AI tool. The generated text is plain English — easy to modify." },
+    { question: "Is it free?", answer: "You can generate up to 3 briefs without signing in. After that, creating a free account gives you 20 generations per hour." },
+    { question: "Can I save my answers for next time?", answer: "Yes. Sign in and your answers are saved to your profile so you don't need to re-enter your business details on your next visit." },
+  ],
+};
+
 export const websitePromptGenerator: ToolConfig = {
   slug: WEBSITE_PROMPT_GENERATOR_SLUG,
   name: "Website Prompt Generator",
@@ -252,4 +281,5 @@ export const websitePromptGenerator: ToolConfig = {
     "I have all text and images ready",
     "I have text but need image guidance",
   ],
+  seoContent,
 };

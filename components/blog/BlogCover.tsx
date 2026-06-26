@@ -69,13 +69,30 @@ function slugToIndex(slug: string, count: number): number {
   return h % count;
 }
 
+// Strip filler openers so the punchy part leads
+const STRIP_PREFIXES = [
+  "How to ", "Why ", "What ", "The ", "A ", "An ",
+  "Why Your ", "What Makes ", "What to ",
+];
+
+function shortenTitle(title: string): string {
+  for (const prefix of STRIP_PREFIXES) {
+    if (title.startsWith(prefix)) {
+      return title.slice(prefix.length);
+    }
+  }
+  return title;
+}
+
 interface BlogCoverProps {
   slug: string;
+  title?: string;
   className?: string;
 }
 
-export function BlogCover({ slug, className = "" }: BlogCoverProps) {
+export function BlogCover({ slug, title, className = "" }: BlogCoverProps) {
   const palette = PALETTES[slugToIndex(slug, PALETTES.length)];
+  const displayTitle = title ? shortenTitle(title) : undefined;
 
   return (
     <div
@@ -99,6 +116,17 @@ export function BlogCover({ slug, className = "" }: BlogCoverProps) {
           }}
         />
       ))}
+
+      {displayTitle && (
+        <div className="absolute inset-0 flex items-end p-5">
+          <p
+            className="line-clamp-3 text-left font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-wide text-white"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
+          >
+            {displayTitle}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

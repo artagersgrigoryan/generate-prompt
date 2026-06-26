@@ -6,26 +6,26 @@
     "howItWorks": "How it works",
     "examples": "Examples",
     "faq": "FAQ",
-    "blog": "Blog"
+    "blog": "Blog",
+    "tools": "Tools",
+    "megamenuTools": "All tools"
   },
   "home": {
-    "badge": "Beta · Free · No sign-up · Powered by Claude",
-    "heroH1Lead": "Your AI builder is only as good as",
-    "heroH1Emphasis": "the brief you give it.",
-    "heroSubtitle": "Answer 13 focused questions. Get a complete, professional website brief — paste it into any AI builder or coding tool. Verified for Bolt, Cursor, v0, Lovable, and Arena.ai.",
-    "heroCta": "Build my prompt — free",
+    "badge": "12 AI generators · Free",
+    "heroH1Lead": "Professional writing,",
+    "heroH1Emphasis": "done in minutes.",
+    "heroSubtitle": "From cover letters to LinkedIn profiles, website briefs to cold emails. Answer focused questions, get expert results.",
+    "heroCta": "Explore tools",
     "heroCtaContinue": "Continue my prompt",
-    "heroMicrocopy": "No sign-up · Nothing stored · About 2 minutes",
+    "heroMicrocopy": "No sign-up · Nothing stored · 2 minutes per tool",
     "resumeBadge": "Saved draft",
     "resumePosition": "Question {current} of {total}",
     "resumeReadyReview": "Ready to review",
     "resumeBriefReady": "Your brief is ready",
     "resumeContinue": "Continue →",
     "resumeStartFresh": "Start fresh",
-
     "platformsLabel": "Verified to work with",
     "platformsCaption": "Plain text — works in any AI builder or coding tool you prefer.",
-
     "compareTitle": "Why a brief beats a one-line prompt",
     "compareSubtitle": "Same AI builder. Two very different starting points.",
     "withoutHeading": "Typing it into ChatGPT",
@@ -38,15 +38,13 @@
     "withItem1": "Exact pages, sections, and features specified",
     "withItem2": "Tech stack and code standards locked in",
     "withFooter": "One paste. AI builds it right the first time.",
-
-    "howItWorksTitle": "Three steps to a builder-ready brief",
-    "step0title": "Answer 13 focused questions",
-    "step0desc": "Four sections — Basics, Audience, Content, Tech. Every question is purposeful. Skip the optional ones freely.",
-    "step1title": "Claude writes your complete brief",
-    "step1desc": "Claude synthesizes your answers into one flowing brief — design, pages, features, code standards, tech stack.",
-    "step2title": "Paste and start building",
-    "step2desc": "Open your AI builder. Paste. Build. No follow-up questions.",
-
+    "howItWorksTitle": "Three steps, any tool",
+    "step0title": "Pick your tool",
+    "step0desc": "Choose from 12 focused generators — career, LinkedIn, email, and web development. Each asks exactly the right questions.",
+    "step1title": "Answer the questions",
+    "step1desc": "Short, focused questions — no more than 6 per tool. Claude synthesizes your answers into expert-quality writing.",
+    "step2title": "Copy and use it",
+    "step2desc": "Plain text, ready to paste. Into an email, a job application, LinkedIn, or your AI builder.",
     "ioTitle": "13 questions in. A complete brief out.",
     "ioSubtitle": "Everything an AI builder needs — nothing it doesn't.",
     "ioInputHeading": "13 questions across 4 sections",
@@ -67,27 +65,23 @@
     "output5": "Code quality & accessibility standards",
     "output6": "Tech stack recommendation",
     "output7": "Content handling instructions",
-
     "examplesTitle": "Built with one prompt",
     "examplesSubtitle": "Real sites built by pasting one generated brief into an AI builder. No edits. No follow-ups.",
     "examplesMins": "min",
-
     "faqTitle": "Common questions",
-    "faq0q": "Why not just use ChatGPT?",
-    "faq0a": "ChatGPT will write you a website prompt — but it won't prompt you for what to include. The 13 questions catch what people forget: brand tone, page hierarchy, code standards, tech stack constraints. The brief comes out the same, but with nothing missing.",
-    "faq1q": "Is my data saved?",
-    "faq1a": "No. Answers are sent to Claude to generate your brief, then discarded. No accounts, no analytics on what you wrote, nothing stored on our side.",
-    "faq2q": "I'm a developer. Do I need this?",
-    "faq2a": "If you write your own prompts well, no. If you've ever pasted a half-thought brief into Cursor and watched it guess at the rest, this saves the back-and-forth. The output is plain text — edit it however you want before pasting.",
-    "faq3q": "Can I edit the brief after?",
-    "faq3a": "Yes. The result is plain text. Tweak any line, add your own constraints, or strip parts you don't need before pasting into your AI builder.",
-    "faq4q": "Does it only work with the platforms listed?",
-    "faq4a": "No. The brief is plain text — paste it into any AI builder, coding assistant, or chat tool. Bolt, Cursor, v0, Lovable, and Arena.ai are the methods we actively verify and keep step-by-step instructions for. It works just as well in Replit Agent, Windsurf, ChatGPT, Claude, GitHub Copilot, Gemini, and others.",
-
-    "ctaTitle": "Stop briefing your AI builder in fragments.",
-    "ctaDesc": "Two minutes. Free. Nothing stored. No sign-up.",
-    "ctaButton": "Build my prompt — free",
-
+    "faq0q": "What kinds of tools are available?",
+    "faq0a": "12 generators for career and code: cover letters, LinkedIn summaries, resume bullets, cold emails, personal bios, elevator pitches, resignation letters, and more. Plus the original Website Prompt Generator.",
+    "faq1q": "How does it know what to ask?",
+    "faq1a": "Every tool was designed with a specific output in mind. The questions were chosen to surface exactly what Claude needs to write something expert-quality — nothing more, nothing less.",
+    "faq2q": "Is it free?",
+    "faq2a": "Yes. Every tool is free to use, up to 3 generations without an account. Sign in to unlock more. No credit card needed.",
+    "faq3q": "Do I need an account?",
+    "faq3a": "No. Use any tool without signing in. Creating a free account unlocks more generations and saves your profile so you don't re-enter the same details twice.",
+    "faq4q": "Which AI model powers it?",
+    "faq4a": "Claude by Anthropic. Every generation goes through Claude, which produces remarkably natural, high-quality writing for professional communication.",
+    "ctaTitle": "Ready to write better?",
+    "ctaDesc": "12 tools, 3 languages, no signup required.",
+    "ctaButton": "Explore all tools",
     "footerTagline": "Website Prompt Generator — generate AI briefs for your next web project",
     "footerProductTitle": "Product",
     "footerHowLink": "How it works",
@@ -97,7 +91,21 @@
     "footerResourcesTitle": "Resources",
     "footerComingSoon": "Coming soon: Prompt library",
     "footerMadeByTitle": "Made by",
-    "footerMadeByLine": "Built by Artagers Grigoryan"
+    "footerMadeByLine": "Built by Artagers Grigoryan",
+    "categoriesTitle": "A tool for every moment",
+    "categoriesSubtitle": "12 generators across four areas of professional life.",
+    "cat0name": "Job Search",
+    "cat0desc": "Land interviews with standout applications.",
+    "cat0tools": "4 tools",
+    "cat1name": "Presence & Branding",
+    "cat1desc": "Build a consistent, compelling professional identity.",
+    "cat1tools": "4 tools",
+    "cat2name": "Email & Outreach",
+    "cat2desc": "Write emails that get opened and responded to.",
+    "cat2tools": "2 tools",
+    "cat3name": "Build & Transition",
+    "cat3desc": "Website briefs and clean exits.",
+    "cat3tools": "2 tools"
   },
   "generator": {
     "brand": "Website Prompt Generator",
@@ -189,166 +197,648 @@
     "customAnswerPlaceholder": "Type your custom answer..."
   },
   "sections": {
-    "basics": { "label": "Basics", "short": "Basics" },
-    "audience": { "label": "Audience & Brand", "short": "Brand" },
-    "content": { "label": "Content & Pages", "short": "Content" },
-    "tech": { "label": "Features & Tech", "short": "Tech" },
-    "theJob": { "label": "The Job", "short": "Job" },
-    "yourBackground": { "label": "Your Background", "short": "You" },
-    "style": { "label": "Style", "short": "Style" }
+    "basics": {
+      "label": "Basics",
+      "short": "Basics"
+    },
+    "audience": {
+      "label": "Audience & Brand",
+      "short": "Brand"
+    },
+    "content": {
+      "label": "Content & Pages",
+      "short": "Content"
+    },
+    "tech": {
+      "label": "Features & Tech",
+      "short": "Tech"
+    },
+    "theJob": {
+      "label": "The Job",
+      "short": "Job"
+    },
+    "yourBackground": {
+      "label": "Your Background",
+      "short": "You"
+    },
+    "style": {
+      "label": "Style",
+      "short": "Style"
+    },
+    "yourRole": {
+      "label": "Your Role",
+      "short": "Role"
+    },
+    "targetRole": {
+      "label": "Target Role",
+      "short": "Target"
+    },
+    "aboutYou": {
+      "label": "About You",
+      "short": "You"
+    },
+    "thePitch": {
+      "label": "The Pitch",
+      "short": "Pitch"
+    },
+    "theInterview": {
+      "label": "The Interview",
+      "short": "Interview"
+    },
+    "yourMessage": {
+      "label": "Your Message",
+      "short": "Message"
+    },
+    "theBio": {
+      "label": "The Bio",
+      "short": "Bio"
+    },
+    "theSituation": {
+      "label": "The Situation",
+      "short": "Situation"
+    },
+    "yourLetter": {
+      "label": "Your Letter",
+      "short": "Letter"
+    },
+    "aboutThem": {
+      "label": "About Them",
+      "short": "Them"
+    },
+    "yourRecommendation": {
+      "label": "Your Recommendation",
+      "short": "Rec"
+    },
+    "yourEmail": {
+      "label": "Your Email",
+      "short": "Email"
+    },
+    "toneAndStyle": {
+      "label": "Tone & Style",
+      "short": "Tone"
+    },
+    "theContext": {
+      "label": "The Context",
+      "short": "Context"
+    },
+    "theAsk": {
+      "label": "The Ask",
+      "short": "Ask"
+    },
+    "yourPlatforms": {
+      "label": "Your Platforms",
+      "short": "Platforms"
+    }
   },
   "questions": {
-    "q1label": "Tell us about your business",
-    "q1hint": "Your contact details will appear directly in your website — the AI uses them to populate the contact section with real information instead of placeholders.",
-    "q1field_name_label": "Business / project name",
-    "q1field_name_placeholder": "e.g. Acme Studio",
-    "q1field_tagline_label": "Tagline or slogan",
-    "q1field_tagline_placeholder": "e.g. Design that works harder",
-    "q1field_email_label": "Contact email",
-    "q1field_email_placeholder": "e.g. hello@acme.com",
-    "q1field_phone_label": "Phone number",
-    "q1field_phone_placeholder": "e.g. +1 555 010 0101",
-    "q1field_location_label": "City / location",
-    "q1field_location_placeholder": "e.g. San Francisco, CA",
-
-    "q2label": "What type of website do you need?",
-    "q2opt0": "Business/Company",
-    "q2opt1": "Portfolio/Personal",
-    "q2opt2": "E-commerce shop",
-    "q2opt3": "Blog/Magazine",
-    "q2opt4": "SaaS/Product landing",
-    "q2opt5": "Booking/Appointments",
-    "q2opt6": "Restaurant/Food",
-    "q2opt7": "Nonprofit/Community",
-    "q2opt8": "Event/Conference",
-    "q2opt9": "Other",
-    "q2opt10": "Write it myself",
-
-    "q3label": "What is your industry and niche?",
-    "q3placeholder": "e.g. sustainable fashion brand, B2B SaaS for accountants, local Italian restaurant...",
-
-    "q4label": "What is the primary goal of your website?",
-    "q4opt0": "Generate leads/inquiries",
-    "q4opt1": "Sell products online",
-    "q4opt2": "Showcase work/portfolio",
-    "q4opt3": "Build brand awareness",
-    "q4opt4": "Get bookings/appointments",
-    "q4opt5": "Drive newsletter signups",
-    "q4opt6": "Provide information",
-    "q4opt7": "Build a community",
-    "q4opt8": "Write it myself",
-
-    "q5label": "Who is your target audience?",
-    "q5placeholder": "e.g. female entrepreneurs aged 28–45, small business owners who are not tech-savvy, Gen Z gamers...",
-
-    "q6label": "What visual style fits your brand?",
-    "q6opt0": "Minimal & clean",
-    "q6opt1": "Bold & modern",
-    "q6opt2": "Warm & friendly",
-    "q6opt3": "Elegant & luxury",
-    "q6opt4": "Playful & colorful",
-    "q6opt5": "Dark & dramatic",
-    "q6opt6": "Corporate & trustworthy",
-    "q6opt7": "Retro/Vintage",
-    "q6opt8": "Editorial/Magazine",
-    "q6opt9": "Futuristic/Tech",
-    "q6opt10": "Write it myself",
-
-    "q7label": "What tone of voice should the website use?",
-    "q7opt0": "Professional & formal",
-    "q7opt1": "Friendly & conversational",
-    "q7opt2": "Inspiring & motivational",
-    "q7opt3": "Witty & playful",
-    "q7opt4": "Calm & reassuring",
-    "q7opt5": "Direct & confident",
-    "q7opt6": "Empathetic & caring",
-    "q7opt7": "Educational & informative",
-    "q7opt8": "Write it myself",
-
-    "q8label": "Do you have brand colors?",
-    "q8placeholder": "e.g. #1A1A2E and warm gold — or 'deep navy, cream, and terracotta'",
-
-    "q9label": "Which pages do you need?",
-    "q9opt0": "Home/Hero",
-    "q9opt1": "About us",
-    "q9opt2": "Services/Features",
-    "q9opt3": "Portfolio/Work",
-    "q9opt4": "Pricing",
-    "q9opt5": "Blog/News",
-    "q9opt6": "Contact form",
-    "q9opt7": "Testimonials/Reviews",
-    "q9opt8": "FAQ",
-    "q9opt9": "Team",
-    "q9opt10": "Case studies",
-    "q9opt11": "Map/Location",
-    "q9opt12": "Newsletter signup",
-    "q9opt13": "Partners/Clients",
-    "q9opt14": "Write it myself",
-
-    "q10label": "What is the status of your content?",
-    "q10opt0": "I have all text and images ready",
-    "q10opt1": "I have text but need image guidance",
-    "q10opt2": "I need placeholder text and image suggestions",
-    "q10opt3": "I need the AI to write all copy too",
-    "q10opt4": "Write it myself",
-
-    "q11label": "Any special features or functionality?",
-    "q11placeholder": "e.g. booking calendar, user login, live chat, product filters, payment checkout, map, multi-language...",
-
-    "q12label": "Where will you build or host your website?",
-    "q12hint": "Not sure? Pick the first option — the AI will choose the best fit. If you're using an AI coding tool (Bolt, v0, Lovable, Cursor), choose React/Next.js or Plain HTML.",
-    "q12opt0": "Not sure — AI picks the best fit",
-    "q12opt1": "React / Next.js — for Bolt, v0, Lovable, Cursor",
-    "q12opt2": "Plain HTML + CSS — simple, works everywhere",
-    "q12opt3": "Framer — has built-in AI generation",
-    "q12opt4": "Vue.js — JavaScript framework",
-    "q12opt5": "Other",
-    "q12opt6": "Write it myself",
-
-    "q13label": "Any references, inspiration, or extra context?",
-    "q13placeholder": "e.g. I love stripe.com for its clarity. Budget ~$3k, need it live in 6 weeks.",
-
-    "q20label": "Paste the job description",
-    "q20hint": "Copy the full posting from LinkedIn, Indeed, or the company's site",
-    "q20placeholder": "Copy the full posting from LinkedIn, Indeed, or the company's site",
-
-    "q21label": "Company & role (optional)",
-    "q21hint": "Leave blank — Claude will extract these from the job description",
-    "q21field_company_name_label": "Company name",
-    "q21field_company_name_placeholder": "e.g. Acme Corp",
-    "q21field_job_title_label": "Job title",
-    "q21field_job_title_placeholder": "e.g. Senior Product Manager",
-
-    "q22label": "Your details",
-    "q22field_name_label": "Your full name",
-    "q22field_name_placeholder": "e.g. Alex Johnson",
-    "q22field_current_role_label": "Current role or most recent title",
-    "q22field_current_role_placeholder": "e.g. Product Manager at Startup Co",
-
-    "q23label": "Your key skills",
-    "q23hint": "Pick the skills most relevant to this role",
-    "q23opt0": "Communication",
-    "q23opt1": "Project Management",
-    "q23opt2": "Leadership",
-    "q23opt3": "Data Analysis",
-    "q23opt4": "Problem Solving",
-    "q23opt5": "Customer Success",
-    "q23opt6": "Sales",
-    "q23opt7": "Marketing",
-    "q23opt8": "Software Development",
-    "q23opt9": "Design",
-    "q23opt10": "Research",
-    "q23opt11": "Team Collaboration",
-    "q23opt12": "Write it myself",
-
-    "q24label": "Your top achievement",
-    "q24hint": "One or two sentences — a specific result you're proud of",
-    "q24placeholder": "e.g. Grew customer retention by 40% by redesigning onboarding. Led a team of 8 to launch a product used by 50k users.",
-
-    "q25label": "Tone",
-    "q25opt0": "Professional",
-    "q25opt1": "Conversational",
-    "q25opt2": "Enthusiastic"
+    "website-prompt-generator": {
+      "q1": {
+        "label": "Tell us about your business",
+        "hint": "Your contact details will appear directly in your website — the AI uses them to populate the contact section with real information instead of placeholders.",
+        "field_name_label": "Business / project name",
+        "field_name_placeholder": "e.g. Acme Studio",
+        "field_tagline_label": "Tagline or slogan",
+        "field_tagline_placeholder": "e.g. Design that works harder",
+        "field_email_label": "Contact email",
+        "field_email_placeholder": "e.g. hello@acme.com",
+        "field_phone_label": "Phone number",
+        "field_phone_placeholder": "e.g. +1 555 010 0101",
+        "field_location_label": "City / location",
+        "field_location_placeholder": "e.g. San Francisco, CA"
+      },
+      "q2": {
+        "label": "What type of website do you need?",
+        "opt0": "Business/Company",
+        "opt1": "Portfolio/Personal",
+        "opt2": "E-commerce shop",
+        "opt3": "Blog/Magazine",
+        "opt4": "SaaS/Product landing",
+        "opt5": "Booking/Appointments",
+        "opt6": "Restaurant/Food",
+        "opt7": "Nonprofit/Community",
+        "opt8": "Event/Conference",
+        "opt9": "Other",
+        "opt10": "Write it myself"
+      },
+      "q3": {
+        "label": "What is your industry and niche?",
+        "placeholder": "e.g. sustainable fashion brand, B2B SaaS for accountants, local Italian restaurant..."
+      },
+      "q4": {
+        "label": "What is the primary goal of your website?",
+        "opt0": "Generate leads/inquiries",
+        "opt1": "Sell products online",
+        "opt2": "Showcase work/portfolio",
+        "opt3": "Build brand awareness",
+        "opt4": "Get bookings/appointments",
+        "opt5": "Drive newsletter signups",
+        "opt6": "Provide information",
+        "opt7": "Build a community",
+        "opt8": "Write it myself"
+      },
+      "q5": {
+        "label": "Who is your target audience?",
+        "placeholder": "e.g. female entrepreneurs aged 28–45, small business owners who are not tech-savvy, Gen Z gamers..."
+      },
+      "q6": {
+        "label": "What visual style fits your brand?",
+        "opt0": "Minimal & clean",
+        "opt1": "Bold & modern",
+        "opt2": "Warm & friendly",
+        "opt3": "Elegant & luxury",
+        "opt4": "Playful & colorful",
+        "opt5": "Dark & dramatic",
+        "opt6": "Corporate & trustworthy",
+        "opt7": "Retro/Vintage",
+        "opt8": "Editorial/Magazine",
+        "opt9": "Futuristic/Tech",
+        "opt10": "Write it myself"
+      },
+      "q7": {
+        "label": "What tone of voice should the website use?",
+        "opt0": "Professional & formal",
+        "opt1": "Friendly & conversational",
+        "opt2": "Inspiring & motivational",
+        "opt3": "Witty & playful",
+        "opt4": "Calm & reassuring",
+        "opt5": "Direct & confident",
+        "opt6": "Empathetic & caring",
+        "opt7": "Educational & informative",
+        "opt8": "Write it myself"
+      },
+      "q8": {
+        "label": "Do you have brand colors?",
+        "placeholder": "e.g. #1A1A2E and warm gold — or 'deep navy, cream, and terracotta'"
+      },
+      "q9": {
+        "label": "Which pages do you need?",
+        "opt0": "Home/Hero",
+        "opt1": "About us",
+        "opt2": "Services/Features",
+        "opt3": "Portfolio/Work",
+        "opt4": "Pricing",
+        "opt5": "Blog/News",
+        "opt6": "Contact form",
+        "opt7": "Testimonials/Reviews",
+        "opt8": "FAQ",
+        "opt9": "Team",
+        "opt10": "Case studies",
+        "opt11": "Map/Location",
+        "opt12": "Newsletter signup",
+        "opt13": "Partners/Clients",
+        "opt14": "Write it myself"
+      },
+      "q10": {
+        "label": "What is the status of your content?",
+        "opt0": "I have all text and images ready",
+        "opt1": "I have text but need image guidance",
+        "opt2": "I need placeholder text and image suggestions",
+        "opt3": "I need the AI to write all copy too",
+        "opt4": "Write it myself"
+      },
+      "q11": {
+        "label": "Any special features or functionality?",
+        "placeholder": "e.g. booking calendar, user login, live chat, product filters, payment checkout, map, multi-language..."
+      },
+      "q12": {
+        "label": "Where will you build or host your website?",
+        "hint": "Not sure? Pick the first option — the AI will choose the best fit. If you're using an AI coding tool (Bolt, v0, Lovable, Cursor), choose React/Next.js or Plain HTML.",
+        "opt0": "Not sure — AI picks the best fit",
+        "opt1": "React / Next.js — for Bolt, v0, Lovable, Cursor",
+        "opt2": "Plain HTML + CSS — simple, works everywhere",
+        "opt3": "Framer — has built-in AI generation",
+        "opt4": "Vue.js — JavaScript framework",
+        "opt5": "Other",
+        "opt6": "Write it myself"
+      },
+      "q13": {
+        "label": "Any references, inspiration, or extra context?",
+        "placeholder": "e.g. I love stripe.com for its clarity. Budget ~$3k, need it live in 6 weeks."
+      }
+    },
+    "cover-letter-generator": {
+      "q1": {
+        "label": "Paste the job description",
+        "hint": "Copy the full posting from LinkedIn, Indeed, or the company's site",
+        "placeholder": "Copy the full posting from LinkedIn, Indeed, or the company's site"
+      },
+      "q2": {
+        "label": "Company & role (optional)",
+        "hint": "Leave blank — Claude will extract these from the job description",
+        "field_company_name_label": "Company name",
+        "field_company_name_placeholder": "e.g. Acme Corp",
+        "field_job_title_label": "Job title",
+        "field_job_title_placeholder": "e.g. Senior Product Manager"
+      },
+      "q3": {
+        "label": "Your details",
+        "field_name_label": "Your full name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_current_role_label": "Current role or most recent title",
+        "field_current_role_placeholder": "e.g. Product Manager at Startup Co"
+      },
+      "q4": {
+        "label": "Your key skills",
+        "hint": "Pick the skills most relevant to this role",
+        "opt0": "Communication",
+        "opt1": "Project Management",
+        "opt2": "Leadership",
+        "opt3": "Data Analysis",
+        "opt4": "Problem Solving",
+        "opt5": "Customer Success",
+        "opt6": "Sales",
+        "opt7": "Marketing",
+        "opt8": "Software Development",
+        "opt9": "Design",
+        "opt10": "Research",
+        "opt11": "Team Collaboration",
+        "opt12": "Write it myself"
+      },
+      "q5": {
+        "label": "Your top achievement",
+        "hint": "One or two sentences — a specific result you're proud of",
+        "placeholder": "e.g. Grew customer retention by 40% by redesigning onboarding. Led a team of 8 to launch a product used by 50k users."
+      },
+      "q6": {
+        "label": "Tone",
+        "opt0": "Professional",
+        "opt1": "Conversational",
+        "opt2": "Enthusiastic"
+      }
+    },
+    "linkedin-summary-generator": {
+      "q1": {
+        "label": "Your name + current job title",
+        "field_name_label": "Your full name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_job_title_label": "Current job title",
+        "field_job_title_placeholder": "e.g. Senior Product Manager"
+      },
+      "q2": {
+        "label": "Years of experience",
+        "opt0": "0–2 years",
+        "opt1": "2–5 years",
+        "opt2": "5–10 years",
+        "opt3": "10+ years",
+        "opt4": "Write it myself"
+      },
+      "q3": {
+        "label": "Top 3–5 skills or areas of expertise",
+        "hint": "Select up to 5",
+        "opt0": "Leadership",
+        "opt1": "Product Management",
+        "opt2": "Software Engineering",
+        "opt3": "Data Analysis",
+        "opt4": "Marketing",
+        "opt5": "Sales",
+        "opt6": "Design",
+        "opt7": "Finance",
+        "opt8": "Operations",
+        "opt9": "People Management",
+        "opt10": "Strategy",
+        "opt11": "Customer Success",
+        "opt12": "Write it myself"
+      },
+      "q4": {
+        "label": "Most impressive career achievement",
+        "placeholder": "e.g. Grew ARR from $2M to $10M in 18 months by launching a new enterprise tier."
+      },
+      "q5": {
+        "label": "What you're looking to do next / career goal",
+        "placeholder": "e.g. Transition into a VP of Product role at a growth-stage startup."
+      },
+      "q6": {
+        "label": "Tone",
+        "opt0": "Professional",
+        "opt1": "Conversational",
+        "opt2": "Bold",
+        "opt3": "Write it myself"
+      }
+    },
+    "resume-bullet-point-generator": {
+      "q1": {
+        "label": "Your current / most recent job title",
+        "placeholder": "e.g. Senior Software Engineer"
+      },
+      "q2": {
+        "label": "Industry / field",
+        "opt0": "Technology",
+        "opt1": "Healthcare",
+        "opt2": "Finance",
+        "opt3": "Marketing",
+        "opt4": "Education",
+        "opt5": "Write it myself"
+      },
+      "q3": {
+        "label": "Key responsibilities in this role",
+        "placeholder": "e.g. Led backend architecture decisions, mentored 3 junior engineers, reduced API latency by 40%..."
+      },
+      "q4": {
+        "label": "Quantifiable achievements — optional",
+        "placeholder": "e.g. Reduced deployment time from 2h to 15min. Increased test coverage from 40% to 85%."
+      },
+      "q5": {
+        "label": "Job title you're applying for",
+        "placeholder": "e.g. Staff Software Engineer or Engineering Manager"
+      },
+      "q6": {
+        "label": "Emphasis",
+        "opt0": "Results & metrics",
+        "opt1": "Skills & tools",
+        "opt2": "Leadership",
+        "opt3": "Technical depth",
+        "opt4": "Write it myself"
+      }
+    },
+    "elevator-pitch-generator": {
+      "q1": {
+        "label": "Your name + job title / role",
+        "field_name_label": "Your full name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_role_label": "Job title / role",
+        "field_role_placeholder": "e.g. UX Designer & Freelancer"
+      },
+      "q2": {
+        "label": "What you do / what problem you solve",
+        "placeholder": "e.g. I help B2B SaaS companies reduce churn by redesigning their onboarding experience."
+      },
+      "q3": {
+        "label": "Primary audience",
+        "opt0": "Recruiters",
+        "opt1": "Clients",
+        "opt2": "Investors",
+        "opt3": "Networking contacts",
+        "opt4": "Write it myself"
+      },
+      "q4": {
+        "label": "Your unique value — what sets you apart",
+        "placeholder": "e.g. I combine engineering depth with design thinking — I've shipped products end-to-end solo."
+      },
+      "q5": {
+        "label": "Desired outcome",
+        "opt0": "Job interview",
+        "opt1": "Client meeting",
+        "opt2": "Investment conversation",
+        "opt3": "Collaboration",
+        "opt4": "Write it myself"
+      }
+    },
+    "thank-you-email-generator": {
+      "q1": {
+        "label": "Your name + interviewer's name + their title",
+        "field_your_name_label": "Your full name",
+        "field_your_name_placeholder": "e.g. Alex Johnson",
+        "field_interviewer_name_label": "Interviewer's name",
+        "field_interviewer_name_placeholder": "e.g. Sarah Chen",
+        "field_interviewer_title_label": "Interviewer's title",
+        "field_interviewer_title_placeholder": "e.g. Head of Engineering"
+      },
+      "q2": {
+        "label": "Role / position you interviewed for",
+        "placeholder": "e.g. Senior Product Designer"
+      },
+      "q3": {
+        "label": "Company name",
+        "placeholder": "e.g. Acme Corp"
+      },
+      "q4": {
+        "label": "One specific moment or topic from the interview to reference",
+        "placeholder": "e.g. We talked about rebuilding the design system and I loved hearing about the component audit you did last year."
+      },
+      "q5": {
+        "label": "Tone",
+        "opt0": "Formal",
+        "opt1": "Warm",
+        "opt2": "Enthusiastic",
+        "opt3": "Write it myself"
+      }
+    },
+    "personal-bio-generator": {
+      "q1": {
+        "label": "Your name + current role / title",
+        "field_name_label": "Your full name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_role_label": "Current role / title",
+        "field_role_placeholder": "e.g. Founder & CEO, Acme Studio"
+      },
+      "q2": {
+        "label": "Professional background in 2–3 sentences",
+        "placeholder": "e.g. 10 years building consumer apps. Previously led product at two YC startups. Now running an independent design studio."
+      },
+      "q3": {
+        "label": "Where this bio will appear",
+        "opt0": "Personal website",
+        "opt1": "Speaker profile",
+        "opt2": "Author page",
+        "opt3": "Portfolio",
+        "opt4": "Write it myself"
+      },
+      "q4": {
+        "label": "Key achievements or credentials",
+        "placeholder": "e.g. TEDx speaker, Forbes 30 Under 30, shipped apps with 1M+ downloads."
+      },
+      "q5": {
+        "label": "Personal detail to include — optional",
+        "placeholder": "e.g. Based in Amsterdam. Obsessive trail runner and amateur ceramicist."
+      },
+      "q6": {
+        "label": "Length",
+        "opt0": "Short — ~50 words",
+        "opt1": "Medium — ~100 words",
+        "opt2": "Full — ~200 words"
+      }
+    },
+    "resignation-letter-generator": {
+      "q1": {
+        "label": "Your name + manager's name",
+        "field_your_name_label": "Your full name",
+        "field_your_name_placeholder": "e.g. Alex Johnson",
+        "field_manager_name_label": "Manager's name",
+        "field_manager_name_placeholder": "e.g. Sarah Chen"
+      },
+      "q2": {
+        "label": "Your job title + company name",
+        "field_job_title_label": "Your job title",
+        "field_job_title_placeholder": "e.g. Senior Designer",
+        "field_company_name_label": "Company name",
+        "field_company_name_placeholder": "e.g. Acme Corp"
+      },
+      "q3": {
+        "label": "Last working day",
+        "placeholder": "e.g. July 31, 2026"
+      },
+      "q4": {
+        "label": "Reason for leaving — optional",
+        "opt0": "New opportunity",
+        "opt1": "Career change",
+        "opt2": "Personal reasons",
+        "opt3": "Relocation",
+        "opt4": "Prefer not to say"
+      },
+      "q5": {
+        "label": "Tone",
+        "opt0": "Formal",
+        "opt1": "Warm",
+        "opt2": "Brief & simple",
+        "opt3": "Write it myself"
+      }
+    },
+    "linkedin-recommendation-generator": {
+      "q1": {
+        "label": "Person you're recommending: name + job title",
+        "field_name_label": "Their full name",
+        "field_name_placeholder": "e.g. Jordan Lee",
+        "field_job_title_label": "Their job title",
+        "field_job_title_placeholder": "e.g. Lead Frontend Engineer"
+      },
+      "q2": {
+        "label": "Your relationship",
+        "opt0": "Their direct manager",
+        "opt1": "Colleague",
+        "opt2": "I was their manager",
+        "opt3": "Their client",
+        "opt4": "Write it myself"
+      },
+      "q3": {
+        "label": "How long you worked together + context",
+        "placeholder": "e.g. Worked together for 2 years on the platform team at Acme Corp."
+      },
+      "q4": {
+        "label": "Their top strengths",
+        "hint": "Select up to 4",
+        "opt0": "Communication",
+        "opt1": "Leadership",
+        "opt2": "Technical skills",
+        "opt3": "Problem solving",
+        "opt4": "Collaboration",
+        "opt5": "Creativity",
+        "opt6": "Reliability",
+        "opt7": "Write it myself"
+      },
+      "q5": {
+        "label": "A specific example or achievement you witnessed",
+        "placeholder": "e.g. Jordan single-handedly rebuilt our CI pipeline, cutting build times from 22 minutes to under 4."
+      },
+      "q6": {
+        "label": "Closing sentiment",
+        "opt0": "Would hire them again",
+        "opt1": "Recommend without reservation",
+        "opt2": "Best team member I've had",
+        "opt3": "Write it myself"
+      }
+    },
+    "email-subject-line-generator": {
+      "q1": {
+        "label": "Email purpose",
+        "opt0": "Cold outreach",
+        "opt1": "Newsletter",
+        "opt2": "Product announcement",
+        "opt3": "Follow-up",
+        "opt4": "Job application",
+        "opt5": "Write it myself"
+      },
+      "q2": {
+        "label": "Target audience — who is receiving this?",
+        "placeholder": "e.g. Mid-market HR directors at tech companies"
+      },
+      "q3": {
+        "label": "Main message or key offer in one sentence",
+        "placeholder": "e.g. We help HR teams cut time-to-hire by 30% with AI screening."
+      },
+      "q4": {
+        "label": "Desired tone",
+        "opt0": "Urgent",
+        "opt1": "Curious",
+        "opt2": "Friendly",
+        "opt3": "Professional",
+        "opt4": "Write it myself"
+      },
+      "q5": {
+        "label": "Any keyword or phrase to include — optional",
+        "placeholder": "e.g. AI hiring, Q3 planning"
+      }
+    },
+    "cold-outreach-email-generator": {
+      "q1": {
+        "label": "Your name + your role / what you do",
+        "field_name_label": "Your full name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_role_label": "Your role / what you do",
+        "field_role_placeholder": "e.g. Frontend Developer & Freelancer"
+      },
+      "q2": {
+        "label": "Recipient's name + their role",
+        "field_recipient_name_label": "Recipient's name",
+        "field_recipient_name_placeholder": "e.g. Sarah Chen",
+        "field_recipient_role_label": "Their role",
+        "field_recipient_role_placeholder": "e.g. CTO at Acme Corp"
+      },
+      "q3": {
+        "label": "Company name + one thing you know/admire about them",
+        "placeholder": "e.g. Acme Corp — love how they rebuilt their onboarding to cut day-7 churn."
+      },
+      "q4": {
+        "label": "Your ask",
+        "opt0": "Informational interview",
+        "opt1": "Job referral",
+        "opt2": "Introductory call",
+        "opt3": "Freelance opportunity",
+        "opt4": "Write it myself"
+      },
+      "q5": {
+        "label": "Your relevant experience in 1–2 sentences",
+        "placeholder": "e.g. I've built React apps for 5 years and recently shipped a design system used by 200+ engineers."
+      },
+      "q6": {
+        "label": "Tone",
+        "opt0": "Confident",
+        "opt1": "Friendly",
+        "opt2": "Formal",
+        "opt3": "Write it myself"
+      }
+    },
+    "social-bio-generator": {
+      "q1": {
+        "label": "Your name + role / what you do",
+        "field_name_label": "Your name",
+        "field_name_placeholder": "e.g. Alex Johnson",
+        "field_role_label": "Role / what you do",
+        "field_role_placeholder": "e.g. UX Designer & Content Creator"
+      },
+      "q2": {
+        "label": "Platforms",
+        "opt0": "Instagram",
+        "opt1": "Twitter/X",
+        "opt2": "TikTok",
+        "opt3": "YouTube",
+        "opt4": "LinkedIn",
+        "opt5": "Write it myself"
+      },
+      "q3": {
+        "label": "Your niche or what you post about",
+        "placeholder": "e.g. Minimalist productivity, design workflows, and behind-the-scenes of freelance life."
+      },
+      "q4": {
+        "label": "Who your audience is",
+        "placeholder": "e.g. Designers and freelancers who want to work smarter, not harder."
+      },
+      "q5": {
+        "label": "Call to action",
+        "opt0": "Link in bio",
+        "opt1": "DM me",
+        "opt2": "Follow for [topic]",
+        "opt3": "Visit my website",
+        "opt4": "Write it myself"
+      },
+      "q6": {
+        "label": "Personality / tone",
+        "opt0": "Professional",
+        "opt1": "Fun & witty",
+        "opt2": "Inspirational",
+        "opt3": "Expert",
+        "opt4": "Write it myself"
+      }
+    }
   },
   "settings": {
     "title": "Settings",
@@ -404,8 +894,34 @@
   "tools": {
     "galleryTitle": "Your toolkit",
     "galleryDesc": "Small, focused AI tools that turn a few answers into something you can use right away.",
+    "openTool": "Open tool",
     "cover-letter-generator-name": "Cover Letter Generator",
-    "cover-letter-generator-desc": "Paste a job description and get a tailored cover letter in seconds."
+    "cover-letter-generator-desc": "Paste a job description and get a tailored cover letter in seconds.",
+    "linkedin-summary-generator-name": "LinkedIn Summary Generator",
+    "linkedin-summary-generator-desc": "Answer 6 questions and get a compelling LinkedIn About section with headline variations.",
+    "resume-bullet-point-generator-name": "Resume Bullet Point Generator",
+    "resume-bullet-point-generator-desc": "Turn your job responsibilities into ATS-optimized resume bullets with strong action verbs.",
+    "elevator-pitch-generator-name": "Elevator Pitch Generator",
+    "elevator-pitch-generator-desc": "Craft a compelling 30- and 60-second elevator pitch that gets you remembered.",
+    "thank-you-email-generator-name": "Thank You Email Generator",
+    "thank-you-email-generator-desc": "Write a genuine post-interview thank you email that keeps you top of mind.",
+    "personal-bio-generator-name": "Personal Bio Generator",
+    "personal-bio-generator-desc": "Generate a polished third-person bio for speaker profiles, about pages, and portfolios.",
+    "resignation-letter-generator-name": "Resignation Letter Generator",
+    "resignation-letter-generator-desc": "Leave on the best possible terms with a graceful, professional resignation letter.",
+    "linkedin-recommendation-generator-name": "LinkedIn Recommendation Generator",
+    "linkedin-recommendation-generator-desc": "Write a warm, specific LinkedIn recommendation for a colleague in under 2 minutes.",
+    "email-subject-line-generator-name": "Email Subject Line Generator",
+    "email-subject-line-generator-desc": "Generate 7 subject line variations with psychological hooks to maximize open rates.",
+    "cold-outreach-email-generator-name": "Cold Outreach Email Generator",
+    "cold-outreach-email-generator-desc": "Write a cold email that gets replies — plus a ready-to-send follow-up.",
+    "social-bio-generator-name": "Social Bio Generator",
+    "social-bio-generator-desc": "Get platform-specific bios for Instagram, Twitter/X, TikTok, LinkedIn, and more."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
   },
   "toolIntros": {
     "cover-letter-generator": {
@@ -414,6 +930,76 @@
       "introDesc": "Answer 6 questions and get a personalized, human-sounding cover letter tailored to this specific job description.",
       "startButton": "Write my cover letter",
       "loading": "Writing your cover letter…"
+    },
+    "linkedin-summary-generator": {
+      "brand": "LinkedIn Summary Generator",
+      "introTitle": "Build your LinkedIn presence",
+      "introDesc": "Answer 6 questions and get a compelling About section plus 3 headline variations ready to paste into LinkedIn.",
+      "startButton": "Write my LinkedIn summary",
+      "loading": "Writing your LinkedIn summary…"
+    },
+    "resume-bullet-point-generator": {
+      "brand": "Resume Bullet Point Generator",
+      "introTitle": "Upgrade your resume bullets",
+      "introDesc": "Answer 6 questions and get 8–10 ATS-optimized bullet points with strong action verbs and measurable impact.",
+      "startButton": "Generate my bullet points",
+      "loading": "Generating your bullet points…"
+    },
+    "elevator-pitch-generator": {
+      "brand": "Elevator Pitch Generator",
+      "introTitle": "Perfect your elevator pitch",
+      "introDesc": "Answer 5 questions and get a 30-second and 60-second version of your pitch — ready for any room.",
+      "startButton": "Write my elevator pitch",
+      "loading": "Crafting your elevator pitch…"
+    },
+    "thank-you-email-generator": {
+      "brand": "Thank You Email Generator",
+      "introTitle": "Send a thank you that lands",
+      "introDesc": "Answer 5 questions and get a genuine post-interview email with a subject line — sent the same day.",
+      "startButton": "Write my thank you email",
+      "loading": "Writing your thank you email…"
+    },
+    "personal-bio-generator": {
+      "brand": "Personal Bio Generator",
+      "introTitle": "Write your professional bio",
+      "introDesc": "Answer 6 questions and get a third-person bio at your chosen length — plus a first-person variant.",
+      "startButton": "Write my bio",
+      "loading": "Writing your bio…"
+    },
+    "resignation-letter-generator": {
+      "brand": "Resignation Letter Generator",
+      "introTitle": "Leave on the best possible terms",
+      "introDesc": "Answer 5 questions and get a graceful resignation letter that keeps the relationship intact.",
+      "startButton": "Write my resignation letter",
+      "loading": "Writing your resignation letter…"
+    },
+    "linkedin-recommendation-generator": {
+      "brand": "LinkedIn Recommendation Generator",
+      "introTitle": "Write a recommendation they'll love",
+      "introDesc": "Answer 6 questions and get a warm, specific LinkedIn recommendation — done in under 2 minutes.",
+      "startButton": "Write my recommendation",
+      "loading": "Writing your recommendation…"
+    },
+    "email-subject-line-generator": {
+      "brand": "Email Subject Line Generator",
+      "introTitle": "Write subject lines that get opened",
+      "introDesc": "Answer 5 questions and get 7 subject line variations, each with the psychological hook explained.",
+      "startButton": "Generate my subject lines",
+      "loading": "Generating your subject lines…"
+    },
+    "cold-outreach-email-generator": {
+      "brand": "Cold Outreach Email Generator",
+      "introTitle": "Write a cold email that gets replies",
+      "introDesc": "Answer 6 questions and get a cold email plus a follow-up — both ready to send.",
+      "startButton": "Write my outreach email",
+      "loading": "Writing your outreach email…"
+    },
+    "social-bio-generator": {
+      "brand": "Social Bio Generator",
+      "introTitle": "Nail your social media bio",
+      "introDesc": "Answer 6 questions and get bios tailored to each platform you selected, respecting character limits.",
+      "startButton": "Write my social bios",
+      "loading": "Writing your social bios…"
     }
   }
 }

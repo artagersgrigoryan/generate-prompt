@@ -27,7 +27,7 @@ export default async function HistoryPage({
       orderBy: { createdAt: "desc" },
       skip: (page - 1) * limit,
       take: limit,
-      select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
+      select: { id: true, result: true, model: true, isFavorite: true, createdAt: true, toolSlug: true },
     }),
     prisma.prompt.count({ where: { userId } }),
   ]);

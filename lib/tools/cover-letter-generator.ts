@@ -1,4 +1,4 @@
-import type { ToolConfig } from "./types";
+import type { ToolConfig, SeoContent } from "./types";
 import { COVER_LETTER_GENERATOR_SLUG } from "./slugs";
 
 const systemPrompt = `You are an expert career coach and professional writer. Your task is to write a highly personalized, memorable cover letter based on the job description and candidate information provided.
@@ -52,12 +52,40 @@ Instructions:
 
 9. Do not invent qualifications, companies, or achievements not present in the provided information.`;
 
+const seoContent: SeoContent = {
+  tagline: "Write a tailored cover letter in under 2 minutes — specific, human, and impossible to ignore.",
+  benefits: [
+    { icon: "zap", title: "Under 2 minutes", description: "Paste a job description and answer 5 quick questions. Claude does the rest." },
+    { icon: "target", title: "Tailored to the role", description: "Pulls specific keywords and requirements from the job posting and reflects them back in your letter." },
+    { icon: "pencil", title: "Sounds like a human", description: "Trained to avoid AI clichés — no 'I am passionate about' or 'leverage my skills'." },
+    { icon: "briefcase", title: "Saves to your profile", description: "Your name, skills, and top achievement are remembered so future letters take even less time." },
+  ],
+  howItWorks: [
+    { title: "Paste the job description", description: "Copy the full posting from LinkedIn, Indeed, or the company's careers page." },
+    { title: "Tell us about yourself", description: "Add your name, current role, key skills, and one achievement you're proud of." },
+    { title: "Get your cover letter", description: "Claude reads the JD, extracts what matters, and writes a specific, compelling letter in your chosen tone." },
+  ],
+  useCases: [
+    { title: "Job seekers", description: "Stand out from generic applications with a letter that references the company's actual priorities." },
+    { title: "Career changers", description: "Bridge your experience to a new field by emphasising transferable skills and relevant achievements." },
+    { title: "Frequent applicants", description: "Apply to multiple roles without rewriting from scratch each time — just paste a new job description." },
+    { title: "Non-native English speakers", description: "Write with confidence and professionalism in English, regardless of your native language." },
+  ],
+  faqs: [
+    { question: "Is an AI-generated cover letter detectable?", answer: "This tool is specifically trained to avoid AI writing patterns — no filler phrases, varied sentence lengths, and a natural tone that reads like a person wrote it." },
+    { question: "How is this different from ChatGPT?", answer: "This tool is purpose-built for cover letters with specific instructions for opening hooks, achievement framing, and keyword mirroring from the job description. ChatGPT is general-purpose." },
+    { question: "Can I edit the output?", answer: "Yes. The result is editable plain text — copy it, open your word processor, and adjust as needed." },
+    { question: "What if I don't have a strong achievement to share?", answer: "Enter whatever result you're most proud of, even if modest. The AI will frame it appropriately for the role." },
+    { question: "Does it work for any industry?", answer: "Yes. The tool has been used for roles in tech, design, finance, healthcare, marketing, and more." },
+  ],
+};
+
 export const coverLetterGenerator: ToolConfig = {
   slug: COVER_LETTER_GENERATOR_SLUG,
   name: "Cover Letter Generator",
   description: "Paste a job description and get a tailored cover letter in seconds.",
   resultMode: "letter",
-  profileQuestionIds: [22, 23, 24],
+  profileQuestionIds: [3, 4, 5],
   maxOutputTokens: 2048,
 
   sections: [
@@ -68,7 +96,7 @@ export const coverLetterGenerator: ToolConfig = {
 
   questions: [
     {
-      id: 20,
+      id: 1,
       section: "The Job",
       label: "Paste the job description",
       type: "text",
@@ -78,7 +106,7 @@ export const coverLetterGenerator: ToolConfig = {
       rows: 14,
     },
     {
-      id: 21,
+      id: 2,
       section: "The Job",
       label: "Company & role (optional)",
       type: "fields",
@@ -98,7 +126,7 @@ export const coverLetterGenerator: ToolConfig = {
       ],
     },
     {
-      id: 22,
+      id: 3,
       section: "Your Background",
       label: "Your details",
       type: "fields",
@@ -119,7 +147,7 @@ export const coverLetterGenerator: ToolConfig = {
       ],
     },
     {
-      id: 23,
+      id: 4,
       section: "Your Background",
       label: "Your key skills",
       type: "multi",
@@ -142,7 +170,7 @@ export const coverLetterGenerator: ToolConfig = {
       ],
     },
     {
-      id: 24,
+      id: 5,
       section: "Your Background",
       label: "Your top achievement",
       type: "text",
@@ -152,7 +180,7 @@ export const coverLetterGenerator: ToolConfig = {
         "e.g. Grew customer retention by 40% by redesigning onboarding. Led a team of 8 to launch a product used by 50k users.",
     },
     {
-      id: 25,
+      id: 6,
       section: "Style",
       label: "Tone",
       type: "single",
@@ -162,4 +190,5 @@ export const coverLetterGenerator: ToolConfig = {
   ],
 
   systemPrompt,
+  seoContent,
 };

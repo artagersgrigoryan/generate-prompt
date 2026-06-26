@@ -15,6 +15,12 @@ function isProtected(pathname: string): boolean {
 }
 
 export default auth((req) => {
+  if (req.nextUrl.pathname === "/") {
+    const url = req.nextUrl.clone();
+    url.pathname = "/en";
+    return NextResponse.redirect(url, 301);
+  }
+
   if (isProtected(req.nextUrl.pathname) && !req.auth) {
     const locale = req.nextUrl.pathname.match(/^\/(en|hy|ru)/)?.[1] ?? "en";
     const signInUrl = new URL(`/${locale}/auth/signin`, req.nextUrl);

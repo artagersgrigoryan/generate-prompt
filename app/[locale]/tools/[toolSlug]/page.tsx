@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { getTool, listTools } from "@/lib/tools";
-import { ToolWizard } from "@/components/wizard/ToolWizard";
-import { auth } from "@/lib/auth";
+import { ToolIntro } from "@/components/tool/ToolIntro";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -11,7 +10,7 @@ export function generateStaticParams() {
   );
 }
 
-export default async function ToolPage({
+export default async function ToolIntroPage({
   params,
 }: {
   params: Promise<{ locale: string; toolSlug: string }>;
@@ -22,19 +21,11 @@ export default async function ToolPage({
   const tool = getTool(toolSlug);
   if (!tool) notFound();
 
-  const session = await auth();
+  if (!tool.seoContent) notFound();
 
-  // Pass only client-safe fields — never the server-only systemPrompt.
   return (
-    <ToolWizard
-      toolSlug={tool.slug}
-      questions={tool.questions}
-      sections={tool.sections}
-      existingContentOptions={tool.existingContentOptions}
-      devPreviewResult={tool.devPreviewResult}
-      profileQuestionIds={tool.profileQuestionIds}
-      resultMode={tool.resultMode}
-      userId={session?.user?.id}
-    />
+    <div className="-mt-16 min-h-screen bg-white pt-16 dark:bg-neutral-950">
+      <ToolIntro seoContent={tool.seoContent} toolName={tool.name} toolSlug={tool.slug} />
+    </div>
   );
 }

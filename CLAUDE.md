@@ -1,5 +1,6 @@
 # CLAUDE.md
 
+Start every meassage with "Hey Artagers"
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Commands
@@ -17,7 +18,7 @@ No test suite is configured.
 
 ### Platform overview
 
-This is a **multi-tool AI prompt platform**. Each tool is a short wizard that asks focused questions and produces a structured AI prompt. The first (and currently only) tool is the Website Prompt Generator. Tools are registered in `lib/tools/` and new ones can be added there without touching routing or the API.
+This is a **multi-tool AI prompt platform**. Each tool is a short wizard that asks focused questions and produces a structured AI prompt. Current tools: Website Prompt Generator and Cover Letter Generator. Tools are registered in `lib/tools/` and new ones can be added there without touching routing or the API.
 
 ### Routing
 
@@ -44,9 +45,10 @@ The `<Header>` is `position: fixed` and out of document flow. `app/[locale]/layo
 ```
 Browser → /[locale]/tools/[toolSlug]   (client-side ToolWizard)
   → POST /api/generate                  ({ toolSlug, answers } → Anthropic SDK → { result, model })
+  → GET/PUT /api/profile                (load/save per-user per-tool profile answers)
 ```
 
-The API resolves `toolSlug` to a `ToolConfig` from the registry and uses its `systemPrompt`. After the Anthropic call it saves the prompt to the database and fires the Telegram analytics side-effect.
+`/api/generate` resolves `toolSlug` to a `ToolConfig`, validates answers, enforces rate limits and the anonymous free-tier gate, calls the Anthropic API, then saves the prompt to the DB and fires the Telegram analytics side-effect.
 
 ### Tool registry
 
@@ -54,20 +56,51 @@ Tool config lives in `lib/tools/`:
 
 | File | Purpose |
 |---|---|
-| `lib/tools/slugs.ts` | Client-safe slug constants (`WEBSITE_PROMPT_GENERATOR_SLUG`, `DEFAULT_TOOL_SLUG`) |
+| `lib/tools/slugs.ts` | Client-safe slug constants (`WEBSITE_PROMPT_GENERATOR_SLUG`, `COVER_LETTER_GENERATOR_SLUG`, `DEFAULT_TOOL_SLUG`) |
 | `lib/tools/types.ts` | `ToolConfig` (server-only, includes `systemPrompt`), `ToolPublicConfig` (client-safe), `toPublicTool()` |
 | `lib/tools/website-prompt-generator.ts` | All 13 questions, sections, and system prompt for the WPG tool |
-| `lib/tools/index.ts` | `TOOLS` array, `getTool(slug)`, `listTools()`, `getToolName(slug)` |
+| `lib/tools/cover-letter-generator.ts` | 6 questions (IDs 20–25), 3 sections, system prompt for the CLG tool |
+| `lib/tools/index.ts` | `ALL_TOOLS` array, `getTool(slug)`, `listTools()` (returns `ToolPublicConfig[]`), `getToolName(slug)` |
 
-`ToolConfig` must never reach the client bundle (it contains the full system prompt). `toPublicTool()` strips it; the tool page passes only the public config to `<ToolWizard>`.
+`ToolConfig` must never reach the client bundle (it contains the full system prompt). `toPublicTool()` strips it; `listTools()` already calls it. The tool page passes only the public config to `<ToolWizard>`.
+
+#### ToolConfig fields (server-only)
+
+```ts
+interface ToolConfig extends ToolPublicConfig {
+  systemPrompt: string;
+  maxOutputTokens?: number;   // default 4096 if omitted
+}
+```
+
+#### ToolPublicConfig fields (client-safe)
+
+```ts
+interface ToolPublicConfig {
+  slug: string;
+  name: string;
+  description: string;
+  sections: ToolSection[];
+  questions: Question[];
+  existingContentOptions?: string[];
+  devPreviewResult?: string;
+  profileQuestionIds?: number[];   // IDs saved/loaded from UserToolProfile
+  resultMode?: "prompt" | "letter"; // "prompt" = platform tabs; "letter" = plain text view
+}
+```
+
+`resultMode` controls which result screen renders: `"prompt"` (default) shows the platform-tab `<ResultScreen>`; `"letter"` shows `<LetterResultScreen>` with copy/regenerate only.
+
+`profileQuestionIds` lists question IDs whose answers are persisted to `UserToolProfile` so returning signed-in users don't re-type them (e.g. name, skills, top achievement for the CLG).
 
 ### Adding a new tool
 
 1. Create `lib/tools/<slug>.ts` exporting a `ToolConfig` object.
-2. Import and add it to the `TOOLS` array in `lib/tools/index.ts`.
-3. Add its slug to `lib/tools/slugs.ts` if you need a typed constant.
-4. Add questions translation keys to `messages/en.json`; add only those new keys (with placeholder values) to `messages/hy.json` and `messages/ru.json`.
-5. Run `npx prisma db push` if you need schema changes.
+2. Import and add it to `ALL_TOOLS` in `lib/tools/index.ts`.
+3. Add its slug to `lib/tools/slugs.ts` and use that constant as the `TOOL_VISUALS` key in `components/ToolsGallery.tsx` (plain string literals silently fall through to FALLBACK_VISUALS).
+4. Add visual config to `TOOL_VISUALS` in `components/ToolsGallery.tsx`.
+5. Add questions translation keys to `messages/en.json`; add only those new keys with **proper translations** (not placeholders) to `messages/hy.json` and `messages/ru.json`.
+6. Run `npx prisma db push` if you need schema changes.
 
 No routing changes needed — `app/[locale]/tools/[toolSlug]/page.tsx` uses `generateStaticParams` driven by `listTools()`.
 
@@ -82,6 +115,9 @@ interface ToolWizardProps {
   sections: ToolSection[];
   existingContentOptions?: string[];
   devPreviewResult?: string;
+  profileQuestionIds?: number[];
+  resultMode?: "prompt" | "letter";
+  userId?: string;              // from server-side auth(); enables profile load/save
 }
 ```
 
@@ -102,9 +138,9 @@ It uses `wizardKey(toolSlug)` (from `lib/draft.ts`) for per-tool sessionStorage 
 |---|---|---|
 | `nav` | `blog`, `signIn`, `dashboard`, etc. | Header navigation |
 | `questions` | `q{id}label`, `q{id}hint`, `q{id}opt{i}`, `q{id}field_{key}_label` | Question UI |
-| `sections` | `basics`, `audience`, `content`, `tech` — each `{ label, short }` | Section names |
-| `result` | `boltStep1`…`boltStep4`, `lovableStep1`…, `arenaStep1`…`arenaStep5`, `cursorStep1`…, `v0Step1`… | Platform tab steps |
-| `tools` | `galleryTitle`, `galleryDesc` | Tools gallery on homepage |
+| `sections` | camelCase key — each `{ label, short }` | Section names (e.g. `basics`, `theJob`) |
+| `result` | `boltStep1`…`boltStep4`, `lovableStep1`…, etc. | Platform tab steps |
+| `tools` | `galleryTitle`, `galleryDesc`, `openTool` | Tools gallery on homepage |
 
 ### Answer encoding
 
@@ -118,9 +154,11 @@ Option labels are translated for display only — the stored value always stays 
 
 ### Adding or changing questions
 
-All question config for a tool lives in its `lib/tools/<slug>.ts` file. `lib/questions.ts` now only exports the shared types (`QuestionType`, `FieldDef`, `Question`). The wizard iterates the tool's `questions[]` directly — no routing changes needed.
+All question config for a tool lives in its `lib/tools/<slug>.ts` file. `lib/questions.ts` only exports the shared types (`QuestionType`, `FieldDef`, `Question`). The wizard iterates the tool's `questions[]` directly — no routing changes needed.
 
 Every select question should include `"Write it myself"` as its last option; `QuestionStep` handles the inline-input expansion automatically for that exact string.
+
+`Question` supports a `rows?: number` field for `type: "text"` questions to control textarea height (default 3).
 
 ### Blog
 
@@ -149,6 +187,26 @@ Auth is handled by Auth.js v5 (next-auth). Providers: Google OAuth, GitHub OAuth
 - `app/[locale]/auth/signin/page.tsx` — sign-in page (OAuth buttons + magic-link form)
 - `app/[locale]/auth/verify-email/page.tsx` — "check your email" page shown after magic-link send
 
+All protected API routes must use `requireAuth()` from `lib/api-auth.ts` — it returns the `userId` string on success or a `NextResponse` 401 that the caller returns immediately. Do not inline the auth check.
+
+### Rate limiting and free tier
+
+`lib/ratelimit.ts` provides rate limiters backed by Upstash Redis (falls back to in-memory when `UPSTASH_REDIS_REST_URL` is absent):
+
+- `anonLimit` — 5 generations/hour per IP
+- `authLimit` — 20 generations/hour per user ID
+- `getAnonFreeCount(ip)` / `incrAnonFreeCount(ip)` — track total lifetime generations for anonymous users (capped at 3; 30-day TTL in Redis)
+
+The free-tier gate is enforced **server-side** in `/api/generate` (authoritative) and **client-side** in `ToolWizard` via `localStorage("free_gen_count")` (UI optimisation only). When the server returns `{ requiresAuth: true }`, the client clamps its counter to 3.
+
+### User profile
+
+`UserToolProfile` (Prisma model) stores per-user, per-tool answers for questions marked with `profileQuestionIds` in the tool config. This lets returning signed-in users skip re-entering stable data (e.g. their name and top achievement for cover letters).
+
+- `app/api/profile/route.ts` — GET loads a profile; PUT merges new answers into the existing blob (never replaces outright, to prevent partial saves from losing data)
+- Profile answers are loaded on wizard mount and merged with session answers (session takes priority)
+- The "Save to profile" button is disabled while the profile fetch is in-flight (`profileLoading` state) to prevent race conditions
+
 ### Telegram analytics side-effect
 
 `POST /api/generate` sends every user prompt + generated result to a Telegram bot after the Anthropic call succeeds. The feature is silently skipped when the env vars are absent — it must not block or affect the response.
@@ -169,7 +227,7 @@ clearWizardDraft(slug: string)         // removes from sessionStorage
 
 ### Model identifier
 
-The Anthropic model ID and display name are centralised in `lib/models.ts` (`CLAUDE_MODEL_ID`, `CLAUDE_MODEL_NAME`). Update there to switch models.
+The Anthropic model ID and display name are centralised in `lib/models.ts` (`CLAUDE_MODEL_ID`, `CLAUDE_MODEL_NAME`). Update there to switch models. Per-tool `maxOutputTokens` can override the default 4096 via `ToolConfig`.
 
 ### Color palettes
 
@@ -181,9 +239,10 @@ Dynamic OG images use `next/og` (`ImageResponse`). `app/[locale]/layout.tsx` set
 
 ### Database
 
-Prisma with the `Prompt` model. Schema additions:
-- `toolSlug String @default("website-prompt-generator")` — tracks which tool generated each prompt
-- `@@index([toolSlug, createdAt])` — for per-tool analytics queries
+Prisma with two user-scoped models:
+
+- **`Prompt`** — every generated result; `toolSlug` field + `@@index([toolSlug, createdAt])` for per-tool analytics
+- **`UserToolProfile`** — per-user, per-tool saved answers; `@@unique([userId, toolSlug])`; cascades on user delete
 
 Run `npx prisma db push` after schema changes (no migrations directory; push directly).
 
@@ -203,6 +262,8 @@ AUTH_GOOGLE_SECRET        # Google OAuth app client secret
 RESEND_API_KEY            # Resend API key for magic-link email sign-in
 DATABASE_URL              # Prisma database connection string
 NEXT_PUBLIC_SITE_URL      # e.g. https://artagers.design — required for absolute OG/RSS URLs
+UPSTASH_REDIS_REST_URL    # optional — Upstash Redis for persistent rate limiting and free-tier gate
+UPSTASH_REDIS_REST_TOKEN  # optional — paired with UPSTASH_REDIS_REST_URL
 TELEGRAM_BOT_TOKEN        # optional — analytics side-effect in /api/generate
 TELEGRAM_CHAT_ID          # optional — paired with TELEGRAM_BOT_TOKEN
 ```

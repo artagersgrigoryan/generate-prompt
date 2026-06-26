@@ -8,6 +8,14 @@ interface Prompt {
   model: string;
   isFavorite: boolean;
   createdAt: string;
+  toolSlug: string;
+}
+
+function toolLabel(slug: string) {
+  return slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
 export function PromptCard({ prompt }: { prompt: Prompt }) {
@@ -15,6 +23,11 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
   const [favorite, setFavorite] = useState(prompt.isFavorite);
   const [deleted, setDeleted] = useState(false);
   const [favLoading, setFavLoading] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editValue, setEditValue] = useState(prompt.result);
+  const [editLoading, setEditLoading] = useState(false);
+  const [savedResult, setSavedResult] = useState(prompt.result);
+  const [copied, setCopied] = useState(false);
 
   async function toggleFavorite(e: React.MouseEvent) {
     e.stopPropagation();
@@ -39,6 +52,42 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
     if (res.ok) setDeleted(true);
   }
 
+  async function copyResult(e: React.MouseEvent) {
+    e.stopPropagation();
+    await navigator.clipboard.writeText(savedResult);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  function startEditing(e: React.MouseEvent) {
+    e.stopPropagation();
+    setEditValue(savedResult);
+    setEditing(true);
+    setExpanded(true);
+  }
+
+  async function saveEdit() {
+    setEditLoading(true);
+    try {
+      const res = await fetch(`/api/prompts/${prompt.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ result: editValue }),
+      });
+      if (res.ok) {
+        setSavedResult(editValue);
+        setEditing(false);
+      }
+    } finally {
+      setEditLoading(false);
+    }
+  }
+
+  function cancelEdit() {
+    setEditing(false);
+    setEditValue(savedResult);
+  }
+
   if (deleted) return null;
 
   const date = new Date(prompt.createdAt).toLocaleDateString(undefined, {
@@ -47,22 +96,36 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
     year: "numeric",
   });
 
-  const preview = prompt.result.slice(0, 160).trim();
+  const preview = savedResult.slice(0, 160).trim();
 
   return (
     <div className="group rounded-xl border border-neutral-100 bg-white transition-colors hover:border-neutral-200 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full px-5 py-4 text-left"
-      >
+      <div className="px-5 py-4">
         <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-neutral-400 dark:text-neutral-500">
-              {date}
-            </p>
-            <p className="mt-1 break-words text-sm text-neutral-700 dark:text-neutral-300">
-              {expanded ? prompt.result : `${preview}${prompt.result.length > 160 ? "…" : ""}`}
-            </p>
+          <div
+            className="min-w-0 flex-1 cursor-pointer"
+            onClick={() => !editing && setExpanded(!expanded)}
+          >
+            <div className="flex items-center gap-2">
+              <p className="text-xs text-neutral-400 dark:text-neutral-500">{date}</p>
+              <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400">
+                {toolLabel(prompt.toolSlug)}
+              </span>
+            </div>
+            {editing ? (
+              <textarea
+                className="mt-2 w-full resize-none rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm text-neutral-800 focus:border-blue-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:focus:border-blue-500"
+                rows={10}
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                autoFocus
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <p className={`mt-1 break-words text-sm text-neutral-700 dark:text-neutral-300${expanded ? " whitespace-pre-wrap" : ""}`}>
+                {expanded ? savedResult : `${preview}${savedResult.length > 160 ? "…" : ""}`}
+              </p>
+            )}
           </div>
           <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
             <button
@@ -80,6 +143,31 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
               </svg>
             </button>
             <button
+              onClick={copyResult}
+              className={`rounded-lg p-1.5 transition-colors ${copied ? "text-green-500" : "text-neutral-300 hover:text-neutral-500 dark:text-neutral-600 dark:hover:text-neutral-400"}`}
+              aria-label="Copy to clipboard"
+            >
+              {copied ? (
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              )}
+            </button>
+            <button
+              onClick={startEditing}
+              disabled={editing}
+              className="rounded-lg p-1.5 text-neutral-300 transition-colors hover:text-blue-400 dark:text-neutral-600 dark:hover:text-blue-400"
+              aria-label="Edit prompt"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </button>
+            <button
               onClick={deletePrompt}
               className="rounded-lg p-1.5 text-neutral-300 transition-colors hover:text-red-400 dark:text-neutral-600 dark:hover:text-red-400"
               aria-label="Delete prompt"
@@ -90,7 +178,25 @@ export function PromptCard({ prompt }: { prompt: Prompt }) {
             </button>
           </div>
         </div>
-      </button>
+        {editing && (
+          <div className="mt-3 flex gap-2">
+            <button
+              onClick={saveEdit}
+              disabled={editLoading || !editValue.trim()}
+              className="rounded-lg bg-black px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-neutral-800 active:bg-neutral-900 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-100"
+            >
+              {editLoading ? "Saving…" : "Save"}
+            </button>
+            <button
+              onClick={cancelEdit}
+              disabled={editLoading}
+              className="rounded-lg border border-neutral-200 px-3 py-1.5 text-xs font-medium text-neutral-700 transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

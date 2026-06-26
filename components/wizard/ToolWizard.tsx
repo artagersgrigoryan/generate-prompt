@@ -66,7 +66,7 @@ export function ToolWizard({
 }: ToolWizardProps) {
   const t = useTranslations("generator");
   const messages = useMessages();
-  const qmsgs = (messages.questions ?? {}) as Record<string, string>;
+  const qmsgs = (messages.questions ?? {}) as Record<string, Record<string, Record<string, string>>>;
   const secMsgs = (messages.sections ?? {}) as Record<
     string,
     { label: string; short: string }
@@ -101,6 +101,7 @@ export function ToolWizard({
   const [apiError, setApiError] = useState("");
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileSaved, setProfileSaved] = useState(false);
+  const [profileLoading, setProfileLoading] = useState(false);
 
   const locale = useLocale();
   const [freeGenCount, setFreeGenCount] = useState<number>(() => {
@@ -123,7 +124,10 @@ export function ToolWizard({
             result: string;
             resultModel: string;
           }>;
-          if (s.step !== undefined) setStep(s.step);
+          if (s.step !== undefined) {
+            const isValid = s.step === 0 || questions.some((q) => q.id === s.step);
+            if (isValid) setStep(s.step);
+          }
           if (s.answers) setAnswers(s.answers);
           if (s.phase && s.phase !== "loading") setPhase(s.phase);
           if (s.result) setResult(s.result);
@@ -133,6 +137,7 @@ export function ToolWizard({
 
       // Load saved profile answers — session answers (restored above) take priority.
       if (userId && profileQuestionIds?.length) {
+        setProfileLoading(true);
         fetch(`/api/profile?toolSlug=${toolSlug}`)
           .then((r) => (r.ok ? r.json() : null))
           .then((data) => {
@@ -148,7 +153,8 @@ export function ToolWizard({
               });
             }
           })
-          .catch(() => {});
+          .catch(() => {})
+          .finally(() => setProfileLoading(false));
       }
       return;
     }
@@ -175,7 +181,7 @@ export function ToolWizard({
   const currentQ = step !== 0 ? byId.get(step) ?? null : null;
 
   function getQuestionLabel(id: number): string {
-    return qmsgs[`q${id}label`] || byId.get(id)?.label || "";
+    return qmsgs[toolSlug]?.[`q${id}`]?.["label"] || byId.get(id)?.label || "";
   }
 
   function getSectionLabel(section: string): string {
@@ -534,7 +540,8 @@ export function ToolWizard({
   }
 
   // ── Wizard steps 1–N ────────────────────────────────────────────────────────
-  const q = currentQ!;
+  if (!currentQ) return null; // stale session step — effect already reset to 0
+  const q = currentQ;
   const stepIndex = questions.findIndex((q) => q.id === step) + 1;
   const isLast = stepIndex === TOTAL;
   const translatedSection = getSectionLabel(q.section);
@@ -570,6 +577,7 @@ export function ToolWizard({
 
           <QuestionStep
             key={q.id}
+            toolSlug={toolSlug}
             question={q}
             value={answers[q.id] ?? ""}
             onChange={(val) => {
@@ -635,10 +643,10 @@ export function ToolWizard({
               <button
                 type="button"
                 onClick={saveProfile}
-                disabled={profileSaving}
+                disabled={profileSaving || profileLoading}
                 className="text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors underline underline-offset-2 disabled:opacity-50"
               >
-                {profileSaved ? "Saved to profile ✓" : profileSaving ? "Saving…" : "Save to profile"}
+                {profileSaved ? "Saved to profile ✓" : profileSaving ? "Saving…" : profileLoading ? "Loading…" : "Save to profile"}
               </button>
             ) : (
               <a

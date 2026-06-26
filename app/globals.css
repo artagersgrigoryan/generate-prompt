@@ -3,6 +3,12 @@
 /* Class-based dark mode — toggled by adding .dark to <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+  scroll-behavior: smooth;
+  /* offset anchor targets below the fixed 64 px header */
+  scroll-padding-top: 80px;
+}
+
 @keyframes hero-in {
   from { opacity: 0; filter: blur(12px); transform: translateY(16px); }
   to   { opacity: 1; filter: blur(0px);  transform: translateY(0);    }

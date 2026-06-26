@@ -1,5 +1,22 @@
 import type { Question } from "@/lib/questions";
 
+export type SeoIconName =
+  | "clock" | "zap" | "copy" | "check" | "target" | "users"
+  | "sparkles" | "pencil" | "mail" | "globe" | "briefcase" | "star";
+
+export interface SeoFaq { question: string; answer: string }
+export interface SeoStep { title: string; description: string }
+export interface SeoBenefit { icon: SeoIconName; title: string; description: string }
+export interface SeoUseCase { title: string; description: string }
+
+export interface SeoContent {
+  tagline: string;
+  benefits: SeoBenefit[];
+  howItWorks: SeoStep[];
+  useCases: SeoUseCase[];
+  faqs: SeoFaq[];
+}
+
 export interface ToolSection {
   /** English section name exactly as used in `Question.section`. */
   name: string;
@@ -44,6 +61,8 @@ export interface ToolConfig extends ToolPublicConfig {
   systemPrompt: string;
   /** Anthropic `max_tokens` (default 4096). */
   maxOutputTokens?: number;
+  /** SERVER ONLY — SEO intro content rendered above the wizard. */
+  seoContent?: SeoContent;
 }
 
 /** Strips server-only fields so a tool can be sent to the client safely. */

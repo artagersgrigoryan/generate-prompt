@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 
 interface QuestionStepProps {
+  toolSlug: string;
   question: Question;
   value: string;
   onChange: (value: string) => void;
@@ -20,6 +21,7 @@ interface QuestionStepProps {
 const WRITE_IT = "Write it myself";
 
 export function QuestionStep({
+  toolSlug,
   question,
   value,
   onChange,
@@ -27,33 +29,34 @@ export function QuestionStep({
 }: QuestionStepProps) {
   const t = useTranslations("step");
   const messages = useMessages();
-  const qmsgs = (messages.questions ?? {}) as Record<string, string>;
+  const qmsgs = (messages.questions ?? {}) as Record<string, Record<string, Record<string, string>>>;
+  const qm = qmsgs[toolSlug]?.[`q${question.id}`] ?? {};
 
   // Returns the translated display label for a question option by its index.
   // The option's English value (used for storage/comparison) is always passed
   // through unchanged — only the visible label is translated.
   function displayOpt(opt: string, index: number): string {
     if (opt === WRITE_IT) return t("writeItMyself");
-    return qmsgs[`q${question.id}opt${index}`] || opt;
+    return qm[`opt${index}`] || opt;
   }
 
   function displayHint(): string | undefined {
     if (!question.hint) return undefined;
-    return qmsgs[`q${question.id}hint`] || question.hint;
+    return qm["hint"] || question.hint;
   }
 
   function displayPlaceholder(): string | undefined {
     if (!question.placeholder) return undefined;
-    return qmsgs[`q${question.id}placeholder`] || question.placeholder;
+    return qm["placeholder"] || question.placeholder;
   }
 
   function displayFieldLabel(key: string, fallback: string): string {
-    return qmsgs[`q${question.id}field_${key}_label`] || fallback;
+    return qm[`field_${key}_label`] || fallback;
   }
 
   function displayFieldPlaceholder(key: string, fallback?: string): string | undefined {
     if (!fallback) return undefined;
-    return qmsgs[`q${question.id}field_${key}_placeholder`] || fallback;
+    return qm[`field_${key}_placeholder`] || fallback;
   }
 
   const [customText, setCustomText] = useState("");

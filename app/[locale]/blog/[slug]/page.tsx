@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ComponentPropsWithoutRef } from "react";
+import React, { isValidElement, type ComponentPropsWithoutRef } from "react";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -27,7 +27,10 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    alternates: buildAlternates(locale, `/blog/${slug}`),
+    alternates: {
+      ...buildAlternates(locale, `/blog/${slug}`),
+      types: { "application/rss+xml": "/rss.xml" },
+    },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -45,9 +48,28 @@ const mdxComponents = {
   h3: (props: ComponentPropsWithoutRef<"h3">) => (
     <h3 className="mt-8 text-xl font-semibold text-neutral-900 dark:text-neutral-100" {...props} />
   ),
-  p: (props: ComponentPropsWithoutRef<"p">) => (
-    <p className="mt-4 leading-relaxed text-neutral-700 dark:text-neutral-300" {...props} />
-  ),
+  p: ({ children }: ComponentPropsWithoutRef<"p">) => {
+    // Detect standalone CTA links (sole child is a link to a tool page)
+    const childEl = isValidElement<{ href?: string; children?: React.ReactNode }>(children)
+      ? children
+      : null;
+    const isCta = childEl !== null && typeof childEl.props.href === "string" && childEl.props.href.includes("/tools/");
+
+    if (isCta) {
+      return (
+        <div className="mt-8">
+          <a
+            href={childEl!.props.href}
+            className="group inline-flex items-center gap-2 rounded-xl bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-all hover:gap-3 hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
+          >
+            {childEl!.props.children}
+          </a>
+        </div>
+      );
+    }
+
+    return <p className="mt-4 leading-relaxed text-neutral-700 dark:text-neutral-300">{children}</p>;
+  },
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
     <ul className="mt-4 list-disc space-y-1.5 pl-6 text-neutral-700 dark:text-neutral-300" {...props} />
   ),
@@ -114,8 +136,20 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    author: post.author ? { "@type": "Person", name: post.author } : undefined,
-    ...(siteUrl ? { url: `${siteUrl}/${locale}/blog/${slug}` } : {}),
+    dateModified: post.date,
+    author: post.author
+      ? {
+          "@type": "Person",
+          name: post.author,
+          ...(siteUrl ? { url: `${siteUrl}/en/blog/author/artagers-grigoryan` } : {}),
+        }
+      : undefined,
+    ...(siteUrl
+      ? {
+          url: `${siteUrl}/${locale}/blog/${slug}`,
+          image: `${siteUrl}/${locale}/blog/${slug}/opengraph-image`,
+        }
+      : {}),
   };
 
   return (
@@ -185,7 +219,7 @@ export default async function BlogPostPage({
           </Link>
         </div>
 
-        <BlogCover slug={slug} className="mt-8 aspect-[2/1] w-full rounded-2xl" />
+        <BlogCover slug={slug} title={post.title} className="mt-8 aspect-[2/1] w-full rounded-2xl" />
 
         <div className="mt-10">
           <MDXRemote

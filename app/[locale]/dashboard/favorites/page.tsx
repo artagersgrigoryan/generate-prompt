@@ -17,7 +17,7 @@ export default async function FavoritesPage({
   const prompts = await prisma.prompt.findMany({
     where: { userId: session!.user.id, isFavorite: true },
     orderBy: { createdAt: "desc" },
-    select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
+    select: { id: true, result: true, model: true, isFavorite: true, createdAt: true, toolSlug: true },
   });
 
   return (

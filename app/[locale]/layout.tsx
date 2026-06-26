@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Bebas_Neue } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -9,10 +9,17 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { auth } from "@/lib/auth";
+import { listTools, toPublicTool } from "@/lib/tools";
 import "../globals.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-display",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -46,9 +53,12 @@ export async function generateMetadata({
     // Absolute base for resolving OG/Twitter image URLs (incl. opengraph-image
     // routes). Without this, Next falls back to localhost.
     ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
-    title: "Website Prompt Generator",
+    title: {
+      template: "%s | artagers.design",
+      default: "AI Writing Tools for Career & Code — artagers.design",
+    },
     description:
-      "Answer 12 quick questions and generate a detailed AI brief for your website.",
+      "12 AI generators for cover letters, LinkedIn profiles, resume bullets, cold emails, personal bios, website briefs, and more. Free, 2 minutes each.",
     alternates: buildAlternates(locale),
   };
 }
@@ -71,9 +81,10 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
   const session = await auth();
+  const tools = listTools().map(toPublicTool);
 
   return (
-    <html lang={locale} className={`${geist.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang={locale} className={`${geist.variable} ${bebasNeue.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
@@ -102,11 +113,24 @@ export default async function LocaleLayout({
         />
       </head>
 
-      <body className="min-h-full bg-white font-[family-name:var(--font-geist-sans)] dark:bg-neutral-950">
+      <body className="min-h-full bg-white font-[family-name:var(--font-geist-sans)] dark:bg-neutral-950" suppressHydrationWarning>
+        {process.env.NEXT_PUBLIC_SITE_URL && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "artagers.design",
+                url: process.env.NEXT_PUBLIC_SITE_URL,
+              }).replace(/</g, "\\u003c"),
+            }}
+          />
+        )}
 
         <Providers session={session}>
           <NextIntlClientProvider messages={messages}>
-            <Header />
+            <Header tools={tools} />
             {/*
               The <Header> is `position: fixed`, so it's out of the document
               flow and does NOT push content down. This wrapper reserves the

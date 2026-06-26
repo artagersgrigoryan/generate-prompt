@@ -89,11 +89,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <span className="text-sm italic text-neutral-400 dark:text-neutral-600">
-                  More coming soon
-                </span>
-              </li>
             </ul>
           </div>
 

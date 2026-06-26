@@ -6,16 +6,18 @@
     "howItWorks": "Ինչպես է աշխատում",
     "examples": "Օրինակներ",
     "faq": "ՀՏՀ",
-    "blog": "Բլոգ"
+    "blog": "Բլոգ",
+    "tools": "Գործիքներ",
+    "megamenuTools": "Բոլոր գործիքները"
   },
   "home": {
-    "badge": "Beta · Անվճար · Առանց գրանցման · Աշխատում է Claude-ի վրա",
-    "heroH1Lead": "Ձեր AI կառուցողն այնքան լավն է, որքան",
-    "heroH1Emphasis": "ձեր տված բրիֆը։",
-    "heroSubtitle": "Պատասխանեք 13 նպատակային հարցի։ Ստացեք ամբողջական, պրոֆեսիոնալ կայքի բրիֆ՝ տեղադրեք այն ցանկացած AI կառուցողի կամ կոդավորման գործիքի մեջ։ Փորձարկված է Bolt, Cursor, v0, Lovable և Arena.ai-ում։",
-    "heroCta": "Ստեղծել իմ պրոմպտը — անվճար",
+    "badge": "12 AI գործիք · Անվճար",
+    "heroH1Lead": "Պրոֆեսիոնալ գրավոր,",
+    "heroH1Emphasis": "րոպեների մեջ։",
+    "heroSubtitle": "Ուղղիչ նամակներից մինչև LinkedIn պրոֆիլ, կայքի բրիֆ կամ սառը նամակ։ Պատասխանիր հարցերին, ստացիր փորձագիտական արդյունք։",
+    "heroCta": "Դիտել գործիքները",
     "heroCtaContinue": "Continue my prompt",
-    "heroMicrocopy": "Առանց գրանցման · Ոչինչ չի պահպանվում · Մոտ 2 րոպե",
+    "heroMicrocopy": "Առանց գրանցման · Ոչինչ չի պահվում · 2 րոպե մեկ գործիքի համար",
     "resumeBadge": "Saved draft",
     "resumePosition": "Question {current} of {total}",
     "resumeReadyReview": "Ready to review",
@@ -36,13 +38,13 @@
     "withItem1": "Կոնկրետ էջեր, բաժիններ և ֆունկցիաներ նշված են",
     "withItem2": "Տեխնոլոգիական փաթեթը և կոդի ստանդարտները ֆիքսված են",
     "withFooter": "Մեկ տեղադրում։ AI-ն ամեն ինչ ճիշտ է անում առաջին անգամից։",
-    "howItWorksTitle": "Երեք քայլ դեպի կառուցողին պատրաստ բրիֆ",
-    "step0title": "Պատասխանեք 13 նպատակային հարցի",
-    "step0desc": "Չորս բաժին՝ Հիմունքներ, Աուդիտորիա, Բովանդակություն, Տեխնոլոգիաներ։ Յուրաքանչյուր հարց իր նպատակն ունի։ Ոչ պարտադիրները կարող եք հանգիստ բաց թողնել։",
-    "step1title": "Claude-ը կգրի ձեր ամբողջական բրիֆը",
-    "step1desc": "Claude-ը կհամադրի ձեր պատասխանները մեկ հոսուն բրիֆի մեջ՝ դիզայն, էջեր, ֆունկցիաներ, կոդի ստանդարտներ, տեխնոլոգիական փաթեթ։",
-    "step2title": "Տեղադրեք և սկսեք կառուցել",
-    "step2desc": "Բացեք ձեր AI կառուցողը։ Տեղադրեք։ Կառուցեք։ Ոչ մի լրացուցիչ հարց։",
+    "howItWorksTitle": "Երեք քայլ, ցանկացած գործիք",
+    "step0title": "Ընտրիր գործիքը",
+    "step0desc": "Ընտրիր 12 կենտրոնացված գեներատորներից՝ կարիերա, LinkedIn, էլ. փոստ և վեբ մշակում։ Յուրաքանչյուրը հարցնում է ճիշտ հարցերը։",
+    "step1title": "Պատասխանիր հարցերին",
+    "step1desc": "Կարճ, կենտրոնացված հարցեր՝ ոչ ավելի, քան 6 մեկ գործիքի համար։ Claude-ը ձեր պատասխանները վերածում է բարձրակարգ գրվածքի։",
+    "step2title": "Պատճենիր և օգտագործիր",
+    "step2desc": "Պարզ տեքստ, պատրաստ տեղադրման համար։ Էլ. փոստ, աշխատանքի դիմում, LinkedIn կամ AI կառուցող։",
     "ioTitle": "13 հարց ներս։ Ամբողջական բրիֆ դուրս։",
     "ioSubtitle": "Այն ամենը, ինչ պետք է AI կառուցողին — ոչ ավել, ոչ պակաս։",
     "ioInputHeading": "13 հարց 4 բաժիններում",
@@ -67,19 +69,19 @@
     "examplesSubtitle": "Իրական կայքեր, որոնք ստեղծվել են մեկ գեներացված բրիֆը AI կառուցողում տեղադրելով։ Առանց խմբագրումների։ Առանց հետագա հարցերի։",
     "examplesMins": "րոպե",
     "faqTitle": "Հաճախ տրվող հարցեր",
-    "faq0q": "Ինչու՞ ուղղակի չօգտվել ChatGPT-ից։",
-    "faq0a": "ChatGPT-ն կգրի ձեզ կայքի պրոմպտ, բայց չի հուշի, թե ինչ ներառել։ 13 հարցերը բռնում են այն, ինչ մարդիկ մոռանում են՝ բրենդի տոնը, էջերի հիերարխիան, կոդի ստանդարտները, տեխնոլոգիական սահմանափակումները։ Բրիֆը ստացվում է նույնը, պարզապես ոչ մի բան բաց չի թողնված։",
-    "faq1q": "Արդյո՞ք իմ տվյալները պահվում են։",
-    "faq1a": "Ոչ։ Պատասխանները ուղարկվում են Claude-ին՝ ձեր բրիֆը գեներացնելու համար, ապա ջնջվում։ Ոչ հաշիվներ, ոչ վերլուծություն ձեր գրածի վրա, ոչինչ չի պահպանվում մեր կողմից։",
-    "faq2q": "Ես ծրագրավորող եմ։ Սա պե՞տք է ինձ։",
-    "faq2a": "Եթե դուք ինքներդ լավ պրոմպտներ եք գրում, ապա ոչ։ Բայց եթե երբևէ կիսատ բրիֆ եք տեղադրել Cursor-ում և տեսել, թե ինչպես է այն գուշակում մնացածը, սա խնայում է հետընթաց հաղորդակցումը։ Արդյունքը պարզ տեքստ է — խմբագրեք այն ինչպես ուզում եք, նախքան տեղադրելը։",
-    "faq3q": "Կարո՞ղ եմ խմբագրել բրիֆը հետո։",
-    "faq3a": "Այո։ Արդյունքը պարզ տեքստ է։ Փոփոխեք ցանկացած տող, ավելացրեք ձեր սեփական սահմանափակումները կամ հանեք այն մասերը, որոնք պետք չեն, նախքան AI կառուցողում տեղադրելը։",
-    "faq4q": "Միայն թվարկված հարթակների՞ հետ է աշխատում։",
-    "faq4a": "Ոչ։ Բրիֆը պարզ տեքստ է — տեղադրեք այն ցանկացած AI կառուցողի, կոդավորման օգնականի կամ չատի մեջ։ Bolt, Cursor, v0, Lovable և Arena.ai-ն այն մեթոդներն են, որոնք մենք ակտիվորեն փորձարկում ենք և որոնց համար պահպանում ենք քայլ-առ-քայլ հրահանգներ։ Բրիֆը նույնքան լավ աշխատում է Replit Agent-ում, Windsurf-ում, ChatGPT-ում, Claude-ում, GitHub Copilot-ում, Gemini-ում և այլ գործիքներում։",
-    "ctaTitle": "Դադարեցրեք ձեր AI կառուցողին պատառիկներով բրիֆ տալը։",
-    "ctaDesc": "Երկու րոպե։ Անվճար։ Ոչինչ չի պահպանվում։ Առանց գրանցման։",
-    "ctaButton": "Ստեղծել իմ պրոմպտը",
+    "faq0q": "Ի՞նչ տեսակի գործիքներ կան։",
+    "faq0a": "12 գեներատոր կարիերայի և ծածկագրի համար՝ ուղղիչ նամակներ, LinkedIn ամփոփագիր, ռեզյումեի կետեր, սառը նամակներ, անձնական կենսագրություն, elevator pitch, հրաժարականի նամակ և ավելին։",
+    "faq1q": "Ինչպե՞ս է այն իմանում, թե ինչ հարցնել։",
+    "faq1a": "Յուրաքանչյուր գործիք ստեղծվել է կոնկրետ արդյունքի հաշվով։ Հարցերն ընտրվել են Claude-ին անհրաժեշտ ամեն ինչ ի հայտ բերելու համար։",
+    "faq2q": "Անվճա՞ր է։",
+    "faq2a": "Այո։ Ամեն գործիք անվճար է՝ մինչև 3 գեներացիա առանց հաշվի։ Մուտք գործիր ավելի շատ ստանալու համար։",
+    "faq3q": "Հաշի՞վ է պետք։",
+    "faq3a": "Ոչ։ Օգտագործիր ցանկացած գործիք առանց մուտք գործելու։ Անվճար հաշիվ ստեղծելը թույլ է տալիս ավելի շատ գեներացիաներ ստանալ և պահպանել պրոֆիլը։",
+    "faq4q": "Ո՞ր AI մոդելն է աշխատեցնում այն։",
+    "faq4a": "Claude-ը Anthropic-ից։ Ամեն գեներացիան անցնում է Claude-ի միջով, որն արտադրում է բնական, բարձրորակ գրվածք։",
+    "ctaTitle": "Պատրա՞ստ ես ավելի լավ գրել։",
+    "ctaDesc": "12 գործիք, 3 լեզու, գրանցում պետք չէ։",
+    "ctaButton": "Դիտել բոլոր գործիքները",
     "footerTagline": "Կայքի պրոմպտի գեներատոր — ստեղծեք AI բրիֆեր ձեր հաջորդ վեբ նախագծի համար",
     "footerProductTitle": "Արտադրանք",
     "footerHowLink": "Ինչպե՞ս է աշխատում",
@@ -89,7 +91,21 @@
     "footerResourcesTitle": "Ռեսուրսներ",
     "footerComingSoon": "Շուտով՝ Պրոմպտերի գրադարան",
     "footerMadeByTitle": "Ստեղծողը",
-    "footerMadeByLine": "Ստեղծվել է Արտագերս Գրիգորյանի կողմից"
+    "footerMadeByLine": "Ստեղծվել է Արտագերս Գրիգորյանի կողմից",
+    "categoriesTitle": "Գործիք ամեն պահի համար",
+    "categoriesSubtitle": "12 գեներատոր մասնագիտական կյանքի չորս ոլորտներում։",
+    "cat0name": "Աշխատանք փնտրելու",
+    "cat0desc": "Հաղթիր հարցազրույցներ կատարյալ դիմումներով։",
+    "cat0tools": "4 գործիք",
+    "cat1name": "Ներկայություն և բրենդ",
+    "cat1desc": "Կառուցիր հետևողական, համոզիչ մասնագիտական ինքնություն։",
+    "cat1tools": "4 գործիք",
+    "cat2name": "Էլ. փոստ և հաղորդակցություն",
+    "cat2desc": "Գրիր նամակներ, որոնք բացվում ու պատասխանվում են։",
+    "cat2tools": "2 գործիք",
+    "cat3name": "Կառուցում և անցում",
+    "cat3desc": "Կայքի բրիֆ և ճիշտ ավարտ։",
+    "cat3tools": "2 գործիք"
   },
   "generator": {
     "brand": "Կայքի պրոմպտի գեներատոր",
@@ -197,150 +213,632 @@
       "label": "Ֆունկցիաներ և Տեխնոլոգիաներ",
       "short": "Տեխնոլոգիաներ"
     },
-    "theJob": { "label": "Աշխատանքը", "short": "Աշխ." },
-    "yourBackground": { "label": "Ձեր Ծնունդը", "short": "Դուք" },
-    "style": { "label": "Ոճ", "short": "Ոճ" }
+    "theJob": {
+      "label": "Աշխատանքը",
+      "short": "Աշխ."
+    },
+    "yourBackground": {
+      "label": "Ձեր Ծնունդը",
+      "short": "Դուք"
+    },
+    "style": {
+      "label": "Ոճ",
+      "short": "Ոճ"
+    },
+    "yourRole": {
+      "label": "Ձեր Դերը",
+      "short": "Դեր"
+    },
+    "targetRole": {
+      "label": "Թիրախային Դեր",
+      "short": "Թիրախ"
+    },
+    "aboutYou": {
+      "label": "Ձեր Մասին",
+      "short": "Դուք"
+    },
+    "thePitch": {
+      "label": "Ներկայացումը",
+      "short": "Ն-ցում"
+    },
+    "theInterview": {
+      "label": "Հարցազրույցը",
+      "short": "Հ-ցազ."
+    },
+    "yourMessage": {
+      "label": "Ձeр Нamax",
+      "short": "Нamax"
+    },
+    "theBio": {
+      "label": "Кenagrutyun",
+      "short": "Кenag."
+    },
+    "theSituation": {
+      "label": "Иravichaк",
+      "short": "Иrav."
+    },
+    "yourLetter": {
+      "label": "Ձeр Namaк",
+      "short": "Namaк"
+    },
+    "aboutThem": {
+      "label": "Naranc Masin",
+      "short": "Naranq"
+    },
+    "yourRecommendation": {
+      "label": "Erashavarutyun",
+      "short": "Erash."
+    },
+    "yourEmail": {
+      "label": "El. Post",
+      "short": "El. Post"
+    },
+    "toneAndStyle": {
+      "label": "Ton ev Och",
+      "short": "Ton"
+    },
+    "theContext": {
+      "label": "Nerkakac.",
+      "short": "Kontext"
+    },
+    "theAsk": {
+      "label": "Xndrum",
+      "short": "Xndr."
+    },
+    "yourPlatforms": {
+      "label": "Ձeр Platforms",
+      "short": "Platforms"
+    }
   },
   "questions": {
-    "q1label": "Պատմեք ձեր բիզնեսի մասին",
-    "q1hint": "Ձեր կոնտակտային տվյալները կհայտնվեն ուղղակիորեն ձեր կայքում — AI-ն դրանք օգտագործում է կոնտակտների բաժինը իրական տեղեկություններով լրացնելու համար, ոչ թե տեղադիր տեքստերով։",
-    "q1field_name_label": "Բիզնեսի / նախագծի անվանումը",
-    "q1field_name_placeholder": "օր.՝ Acme Studio",
-    "q1field_tagline_label": "Կարգախոս կամ սլոգան",
-    "q1field_tagline_placeholder": "օր.՝ Դիզայն, որն աշխատում է ավելի լավ",
-    "q1field_email_label": "Կոնտակտային էլ. փոստ",
-    "q1field_email_placeholder": "օր.՝ hello@acme.com",
-    "q1field_phone_label": "Հեռախոսահամար",
-    "q1field_phone_placeholder": "օր.՝ +1 555 010 0101",
-    "q1field_location_label": "Քաղաք / վայր",
-    "q1field_location_placeholder": "օր.՝ Սան Ֆրանցիսկո, ԿԱ",
-    "q2label": "Ինչպիսի՞ կայք է ձեզ պետք։",
-    "q2opt0": "Բիզնես/Ընկերություն",
-    "q2opt1": "Պորտֆոլիո/Անձնական",
-    "q2opt2": "Առցանց խանութ",
-    "q2opt3": "Բլոգ/Ամսագիր",
-    "q2opt4": "SaaS/Արտադրանքի լենդինգ",
-    "q2opt5": "Ամրագրումներ/Հանդիպումներ",
-    "q2opt6": "Ռեստորան/Սնունդ",
-    "q2opt7": "Ոչ առևտրային/Համայնք",
-    "q2opt8": "Միջոցառում/Համաժողով",
-    "q2opt9": "Այլ",
-    "q2opt10": "Գրել ինքս",
-    "q3label": "Ո՞րն է ձեր ոլորտը և նիշը։",
-    "q3placeholder": "օր.՝ էկոլոգիապես մաքուր նորաձևության բրենդ, B2B SaaS հաշվապահների համար, տեղական իտալական ռեստորան...",
-    "q4label": "Ո՞րն է ձեր կայքի հիմնական նպատակը։",
-    "q4opt0": "Ստանալ դիմումներ/լիդեր",
-    "q4opt1": "Վաճառել ապրանքներ առցանց",
-    "q4opt2": "Ցուցադրել աշխատանքներ/պորտֆոլիո",
-    "q4opt3": "Ստեղծել բրենդի ճանաչելիություն",
-    "q4opt4": "Ստանալ ամրագրումներ/հանդիպումներ",
-    "q4opt5": "Ստանալ բաժանորդագրություններ",
-    "q4opt6": "Տրամադրել տեղեկատվություն",
-    "q4opt7": "Կառուցել համայնք",
-    "q4opt8": "Գրել ինքս",
-    "q5label": "Ո՞վ է ձեր թիրախային աուդիտորիան։",
-    "q5placeholder": "օր.՝ 28–45 տարեկան կին ձեռնարկատերեր, փոքր բիզնեսի սեփականատերեր, որոնք տեխնիկապես տիրապետող չեն, Z սերնդի գեյմերներ...",
-    "q6label": "Ո՞ր տեսողական ոճն է համապատասխանում ձեր բրենդին։",
-    "q6opt0": "Մինիմալիստական և մաքուր",
-    "q6opt1": "Համարձակ և ժամանակակից",
-    "q6opt2": "Ջերմ և բարեկամական",
-    "q6opt3": "Էլեգանտ և շքեղ",
-    "q6opt4": "Խաղային և գունագեղ",
-    "q6opt5": "Մուգ և դրամատիկ",
-    "q6opt6": "Կորպորատիվ և վստահելի",
-    "q6opt7": "Ռետրո/Վինտաժ",
-    "q6opt8": "Խմբագրական/Ամսագրային",
-    "q6opt9": "Ֆուտուրիստական/Տեխնոլոգիական",
-    "q6opt10": "Գրել ինքս",
-    "q7label": "Ի՞նչ տոնով պետք է հաղորդակցվի կայքը։",
-    "q7opt0": "Պրոֆեսիոնալ և պաշտոնական",
-    "q7opt1": "Բարեկամական և զրուցային",
-    "q7opt2": "Ոգեշնչող և մոտիվացնող",
-    "q7opt3": "Սրամիտ և խաղային",
-    "q7opt4": "Հանգիստ և հանգստացնող",
-    "q7opt5": "Ուղիղ և վստահ",
-    "q7opt6": "Կարեկից և հոգատար",
-    "q7opt7": "Կրթական և տեղեկատվական",
-    "q7opt8": "Գրել ինքս",
-    "q8label": "Ունե՞ք բրենդի գույներ։",
-    "q8placeholder": "օր.՝ #1A1A2E և տաք ոսկեգույն — կամ «մուգ կապույտ, կրեմագույն և տերակոտ»",
-    "q9label": "Ո՞ր էջերն են ձեզ պետք։",
-    "q9opt0": "Գլխավոր/Hero",
-    "q9opt1": "Մեր մասին",
-    "q9opt2": "Ծառայություններ/Հնարավորություններ",
-    "q9opt3": "Պորտֆոլիո/Աշխատանքներ",
-    "q9opt4": "Գներ",
-    "q9opt5": "Բլոգ/Նորություններ",
-    "q9opt6": "Կապի ձև",
-    "q9opt7": "Կարծիքներ",
-    "q9opt8": "ՀՏՀ",
-    "q9opt9": "Թիմ",
-    "q9opt10": "Քեյսեր",
-    "q9opt11": "Քարտեզ/Գտնվելու վայր",
-    "q9opt12": "Բաժանորդագրություն",
-    "q9opt13": "Գործընկերներ/Հաճախորդներ",
-    "q9opt14": "Գրել ինքս",
-    "q10label": "Ո՞րն է ձեր բովանդակության կարգավիճակը։",
-    "q10opt0": "Ունեմ բոլոր տեքստերը և պատկերները պատրաստ",
-    "q10opt1": "Ունեմ տեքստեր, բայց պատկերների ուղղորդում է պետք",
-    "q10opt2": "Ինձ պետք են տեղադիր տեքստեր և պատկերների առաջարկներ",
-    "q10opt3": "Ուզում եմ, որ AI-ն գրի նաև բոլոր տեքստերը",
-    "q10opt4": "Գրել ինքս",
-    "q11label": "Ունե՞ք հատուկ ֆունկցիաներ կամ ֆունկցիոնալություն։",
-    "q11placeholder": "օր.՝ ամրագրման օրացույց, օգտատերերի մուտք, օնլայն չատ, ապրանքների զտիչներ, վճարման համակարգ, քարտեզ, բազմալեզվություն...",
-    "q12label": "Որտե՞ղ եք կառուցելու կամ հոսթ անելու ձեր կայքը։",
-    "q12hint": "Վստա՞հ չեք։ Ընտրեք առաջին տարբերակը — AI-ն կընտրի լավագույնը։ Եթե օգտագործում եք AI կոդավորման գործիք (Bolt, v0, Lovable, Cursor), ընտրեք React/Next.js կամ Plain HTML։",
-    "q12opt0": "Վստահ չեմ — AI-ն կընտրի լավագույնը",
-    "q12opt1": "React / Next.js — Bolt, v0, Lovable, Cursor-ի համար",
-    "q12opt2": "Plain HTML + CSS — պարզ, աշխատում է ամենուր",
-    "q12opt3": "Framer — ներկառուցված AI գեներացմամբ",
-    "q12opt4": "Vue.js — JavaScript framework",
-    "q12opt5": "Այլ",
-    "q12opt6": "Գրել ինքս",
-    "q13label": "Կա՞ն օրինակներ, ոգեշնչման աղբյուրներ կամ լրացուցիչ համատեքստ։",
-    "q13placeholder": "օր.՝ սիրում եմ stripe.com-ը իր հստակության համար։ Բյուջեն ~$3k, պետք է գործարկվի 6 շաբաթից։",
-
-    "q20label": "Տեղադրեք աշխատանքի նկարագրությունը",
-    "q20hint": "Պատճենեք ամբողջ հայտարարությունը LinkedIn-ից, Indeed-ից կամ ընկերության կայքից",
-    "q20placeholder": "Պատճենեք ամբողջ հայտարարությունը LinkedIn-ից, Indeed-ից կամ ընկերության կայքից",
-
-    "q21label": "Ընկերություն և պաշտոն (ոչ պարտադիր)",
-    "q21hint": "Թողեք դատարկ — Claude-ը կհանի դրանք աշխատանքի նկարագրությունից",
-    "q21field_company_name_label": "Ընկերության անվանումը",
-    "q21field_company_name_placeholder": "օր.՝ Acme Corp",
-    "q21field_job_title_label": "Պաշտոնի անվանումը",
-    "q21field_job_title_placeholder": "օր.՝ Ավագ արտադրանքի մենեջեր",
-
-    "q22label": "Ձեր տվյալները",
-    "q22field_name_label": "Ձեր լրիվ անունը",
-    "q22field_name_placeholder": "օր.՝ Արամ Պետրոսյան",
-    "q22field_current_role_label": "Ներկայիս կամ վերջին պաշտոնը",
-    "q22field_current_role_placeholder": "օր.՝ Արտադրանքի մենեջեր Startup-ում",
-
-    "q23label": "Ձեր հիմնական հմտությունները",
-    "q23hint": "Ընտրեք այս դերի համար ամենաառնչվող հմտությունները",
-    "q23opt0": "Հաղորդակցություն",
-    "q23opt1": "Ծրագրի կառավարում",
-    "q23opt2": "Ղեկավարություն",
-    "q23opt3": "Տվյալների վերլուծություն",
-    "q23opt4": "Խնդիրների լուծում",
-    "q23opt5": "Հաճախորդների հաջողություն",
-    "q23opt6": "Վաճառք",
-    "q23opt7": "Մարքեթինգ",
-    "q23opt8": "Ծրագրային մշակում",
-    "q23opt9": "Դիզայն",
-    "q23opt10": "Հետազոտություն",
-    "q23opt11": "Թիմային համագործակցություն",
-    "q23opt12": "Ինքս կգրեմ",
-
-    "q24label": "Ձեր գլխավոր նվաճումը",
-    "q24hint": "Մեկ կամ երկու նախադասություն — կոնկրետ արդյունք, որով հպարտանում եք",
-    "q24placeholder": "օր.՝ Հաճախորդների պահպանումը 40%-ով բարձրացրի՝ վերամշակելով onboarding-ը։ Ղեկավարեցի 8-հոգանոց թիմ՝ 50,000 օգտատիրոջ կողմից օգտագործվող արտադրանք թողարկելու համար։",
-
-    "q25label": "Երանգ",
-    "q25opt0": "Պրոֆեսիոնալ",
-    "q25opt1": "Ընկերական",
-    "q25opt2": "Ոգևորված"
+    "website-prompt-generator": {
+      "q1": {
+        "label": "Պատմեք ձեր բիզնեսի մասին",
+        "hint": "Ձեր կոնտակտային տվյալները կհայտնվեն ուղղակիորեն ձեր կայքում — AI-ն դրանք օգտագործում է կոնտակտների բաժինը իրական տեղեկություններով լրացնելու համար, ոչ թե տեղադիր տեքստերով։",
+        "field_name_label": "Բիզնեսի / նախագծի անվանումը",
+        "field_name_placeholder": "օր.՝ Acme Studio",
+        "field_tagline_label": "Կարգախոս կամ սլոգան",
+        "field_tagline_placeholder": "օր.՝ Դիզայն, որն աշխատում է ավելի լավ",
+        "field_email_label": "Կոնտակտային էլ. փոստ",
+        "field_email_placeholder": "օր.՝ hello@acme.com",
+        "field_phone_label": "Հեռախոսահամար",
+        "field_phone_placeholder": "օր.՝ +1 555 010 0101",
+        "field_location_label": "Քաղաք / վայր",
+        "field_location_placeholder": "օր.՝ Սան Ֆրանցիսկո, ԿԱ"
+      },
+      "q2": {
+        "label": "Ինչպիսի՞ կայք է ձեզ պետք։",
+        "opt0": "Բիզնես/Ընկերություն",
+        "opt1": "Պորտֆոլիո/Անձնական",
+        "opt2": "Առցանց խանութ",
+        "opt3": "Բլոգ/Ամսագիր",
+        "opt4": "SaaS/Արտադրանքի լենդինգ",
+        "opt5": "Ամրագրումներ/Հանդիպումներ",
+        "opt6": "Ռեստորան/Սնունդ",
+        "opt7": "Ոչ առևտրային/Համայնք",
+        "opt8": "Միջոցառում/Համաժողով",
+        "opt9": "Այլ",
+        "opt10": "Գրել ինքս"
+      },
+      "q3": {
+        "label": "Ո՞րն է ձեր ոլորտը և նիշը։",
+        "placeholder": "օր.՝ էկոլոգիապես մաքուր նորաձևության բրենդ, B2B SaaS հաշվապահների համար, տեղական իտալական ռեստորան..."
+      },
+      "q4": {
+        "label": "Ո՞րն է ձեր կայքի հիմնական նպատակը։",
+        "opt0": "Ստանալ դիմումներ/լիդեր",
+        "opt1": "Վաճառել ապրանքներ առցանց",
+        "opt2": "Ցուցադրել աշխատանքներ/պորտֆոլիո",
+        "opt3": "Ստեղծել բրենդի ճանաչելիություն",
+        "opt4": "Ստանալ ամրագրումներ/հանդիպումներ",
+        "opt5": "Ստանալ բաժանորդագրություններ",
+        "opt6": "Տրամադրել տեղեկատվություն",
+        "opt7": "Կառուցել համայնք",
+        "opt8": "Գրել ինքս"
+      },
+      "q5": {
+        "label": "Ո՞վ է ձեր թիրախային աուդիտորիան։",
+        "placeholder": "օր.՝ 28–45 տարեկան կին ձեռնարկատերեր, փոքր բիզնեսի սեփականատերեր, որոնք տեխնիկապես տիրապետող չեն, Z սերնդի գեյմերներ..."
+      },
+      "q6": {
+        "label": "Ո՞ր տեսողական ոճն է համապատասխանում ձեր բրենդին։",
+        "opt0": "Մինիմալիստական և մաքուր",
+        "opt1": "Համարձակ և ժամանակակից",
+        "opt2": "Ջերմ և բարեկամական",
+        "opt3": "Էլեգանտ և շքեղ",
+        "opt4": "Խաղային և գունագեղ",
+        "opt5": "Մուգ և դրամատիկ",
+        "opt6": "Կորպորատիվ և վստահելի",
+        "opt7": "Ռետրո/Վինտաժ",
+        "opt8": "Խմբագրական/Ամսագրային",
+        "opt9": "Ֆուտուրիստական/Տեխնոլոգիական",
+        "opt10": "Գրել ինքս"
+      },
+      "q7": {
+        "label": "Ի՞նչ տոնով պետք է հաղորդակցվի կայքը։",
+        "opt0": "Պրոֆեսիոնալ և պաշտոնական",
+        "opt1": "Բարեկամական և զրուցային",
+        "opt2": "Ոգեշնչող և մոտիվացնող",
+        "opt3": "Սրամիտ և խաղային",
+        "opt4": "Հանգիստ և հանգստացնող",
+        "opt5": "Ուղիղ և վստահ",
+        "opt6": "Կարեկից և հոգատար",
+        "opt7": "Կրթական և տեղեկատվական",
+        "opt8": "Գրել ինքս"
+      },
+      "q8": {
+        "label": "Ունե՞ք բրենդի գույներ։",
+        "placeholder": "օր.՝ #1A1A2E և տաք ոսկեգույն — կամ «մուգ կապույտ, կրեմագույն և տերակոտ»"
+      },
+      "q9": {
+        "label": "Ո՞ր էջերն են ձեզ պետք։",
+        "opt0": "Գլխավոր/Hero",
+        "opt1": "Մեր մասին",
+        "opt2": "Ծառայություններ/Հնարավորություններ",
+        "opt3": "Պորտֆոլիո/Աշխատանքներ",
+        "opt4": "Գներ",
+        "opt5": "Բլոգ/Նորություններ",
+        "opt6": "Կապի ձև",
+        "opt7": "Կարծիքներ",
+        "opt8": "ՀՏՀ",
+        "opt9": "Թիմ",
+        "opt10": "Քեյսեր",
+        "opt11": "Քարտեզ/Գտնվելու վայր",
+        "opt12": "Բաժանորդագրություն",
+        "opt13": "Գործընկերներ/Հաճախորդներ",
+        "opt14": "Գրել ինքս"
+      },
+      "q10": {
+        "label": "Ո՞րն է ձեր բովանդակության կարգավիճակը։",
+        "opt0": "Ունեմ բոլոր տեքստերը և պատկերները պատրաստ",
+        "opt1": "Ունեմ տեքստեր, բայց պատկերների ուղղորդում է պետք",
+        "opt2": "Ինձ պետք են տեղադիր տեքստեր և պատկերների առաջարկներ",
+        "opt3": "Ուզում եմ, որ AI-ն գրի նաև բոլոր տեքստերը",
+        "opt4": "Գրել ինքս"
+      },
+      "q11": {
+        "label": "Ունե՞ք հատուկ ֆունկցիաներ կամ ֆունկցիոնալություն։",
+        "placeholder": "օր.՝ ամրագրման օրացույց, օգտատերերի մուտք, օնլայն չատ, ապրանքների զտիչներ, վճարման համակարգ, քարտեզ, բազմալեզվություն..."
+      },
+      "q12": {
+        "label": "Որտե՞ղ եք կառուցելու կամ հոսթ անելու ձեր կայքը։",
+        "hint": "Վստա՞հ չեք։ Ընտրեք առաջին տարբերակը — AI-ն կընտրի լավագույնը։ Եթե օգտագործում եք AI կոդավորման գործիք (Bolt, v0, Lovable, Cursor), ընտրեք React/Next.js կամ Plain HTML։",
+        "opt0": "Վստահ չեմ — AI-ն կընտրի լավագույնը",
+        "opt1": "React / Next.js — Bolt, v0, Lovable, Cursor-ի համար",
+        "opt2": "Plain HTML + CSS — պարզ, աշխատում է ամենուր",
+        "opt3": "Framer — ներկառուցված AI գեներացմամբ",
+        "opt4": "Vue.js — JavaScript framework",
+        "opt5": "Այլ",
+        "opt6": "Գրել ինքս"
+      },
+      "q13": {
+        "label": "Կա՞ն օրինակներ, ոգեշնչման աղբյուրներ կամ լրացուցիչ համատեքստ։",
+        "placeholder": "օր.՝ սիրում եմ stripe.com-ը իր հստակության համար։ Բյուջեն ~$3k, պետք է գործարկվի 6 շաբաթից։"
+      }
+    },
+    "cover-letter-generator": {
+      "q1": {
+        "label": "Տեղադրեք աշխատանքի նկարագրությունը",
+        "hint": "Պատճենեք ամբողջ հայտարարությունը LinkedIn-ից, Indeed-ից կամ ընկերության կայքից",
+        "placeholder": "Պատճենեք ամբողջ հայտարարությունը LinkedIn-ից, Indeed-ից կամ ընկերության կայքից"
+      },
+      "q2": {
+        "label": "Ընկերություն և պաշտոն (ոչ պարտադիր)",
+        "hint": "Թողեք դատարկ — Claude-ը կհանի դրանք աշխատանքի նկարագրությունից",
+        "field_company_name_label": "Ընկերության անվանումը",
+        "field_company_name_placeholder": "օր.՝ Acme Corp",
+        "field_job_title_label": "Պաշտոնի անվանումը",
+        "field_job_title_placeholder": "օր.՝ Ավագ արտադրանքի մենեջեր"
+      },
+      "q3": {
+        "label": "Ձեր տվյալները",
+        "field_name_label": "Ձեր լրիվ անունը",
+        "field_name_placeholder": "օր.՝ Արամ Պետրոսյան",
+        "field_current_role_label": "Ներկայիս կամ վերջին պաշտոնը",
+        "field_current_role_placeholder": "օր.՝ Արտադրանքի մենեջեր Startup-ում"
+      },
+      "q4": {
+        "label": "Ձեր հիմնական հմտությունները",
+        "hint": "Ընտրեք այս դերի համար ամենաառնչվող հմտությունները",
+        "opt0": "Հաղորդակցություն",
+        "opt1": "Ծրագրի կառավարում",
+        "opt2": "Ղեկավարություն",
+        "opt3": "Տվյալների վերլուծություն",
+        "opt4": "Խնդիրների լուծում",
+        "opt5": "Հաճախորդների հաջողություն",
+        "opt6": "Վաճառք",
+        "opt7": "Մարքեթինգ",
+        "opt8": "Ծրագրային մշակում",
+        "opt9": "Դիզայն",
+        "opt10": "Հետազոտություն",
+        "opt11": "Թիմային համագործակցություն",
+        "opt12": "Ինքս կգրեմ"
+      },
+      "q5": {
+        "label": "Ձեր գլխավոր նվաճումը",
+        "hint": "Մեկ կամ երկու նախադասություն — կոնկրետ արդյունք, որով հպարտանում եք",
+        "placeholder": "օր.՝ Հաճախորդների պահպանումը 40%-ով բարձրացրի՝ վերամշակելով onboarding-ը։ Ղեկավարեցի 8-հոգանոց թիմ՝ 50,000 օգտատիրոջ կողմից օգտագործվող արտադրանք թողարկելու համար։"
+      },
+      "q6": {
+        "label": "Երանգ",
+        "opt0": "Պրոֆեսիոնալ",
+        "opt1": "Ընկերական",
+        "opt2": "Ոգևորված"
+      }
+    },
+    "linkedin-summary-generator": {
+      "q1": {
+        "label": "Ձeр Анвaнumы + Ашxатаnкаин Вaнaky",
+        "field_name_label": "Ձeр Лрjаkay Аnvany",
+        "field_name_placeholder": "orinak: Armen Petrosyan",
+        "field_job_title_label": "Аshxatakayin Vanaky",
+        "field_job_title_placeholder": "orinak: Аrjunаkаn Aрdyunabery"
+      },
+      "q2": {
+        "label": "Аshxatankayin Phordz",
+        "opt0": "0–2 тарek'",
+        "opt1": "2–5 тарek'",
+        "opt2": "5–10 тарek'",
+        "opt3": "10+ тарek'",
+        "opt4": "Grel inqnury"
+      },
+      "q3": {
+        "label": "Аmpelаguy 3–5 Haraтiнutyan",
+        "hint": "Yntirел minchev 5",
+        "opt0": "Kаrаvarуtyun",
+        "opt1": "Ardyunaberayin Kаrаvarуtyun",
+        "opt2": "Dzermakayгuthyun",
+        "opt3": "Тvyal Verchluthyun",
+        "opt4": "Marketing",
+        "opt5": "Vilcharutyun",
+        "opt6": "Dizayn",
+        "opt7": "Finance",
+        "opt8": "Operations",
+        "opt9": "Andzkаnayin Kаrаvarуtyun",
+        "opt10": "Strategia",
+        "opt11": "Хrаhoрdagir Hangamalrner",
+        "opt12": "Grel inqnury"
+      },
+      "q4": {
+        "label": "Аmenakaryor Kariyerayin Hасtutyan",
+        "placeholder": "orinak: Aphoghecinq ARR 2 mlrd-ic 10 mlrd-i 18 amsum',"
+      },
+      "q5": {
+        "label": "Аynaкan Нpатаkы",
+        "placeholder": "orinak: Ancel VP of Product Patashtenums"
+      },
+      "q6": {
+        "label": "Тonal'utyun",
+        "opt0": "Mаsnagrаkayin",
+        "opt1": "Xosaktsаyin",
+        "opt2": "Xizaхtаkan",
+        "opt3": "Grel inqnury"
+      }
+    },
+    "resume-bullet-point-generator": {
+      "q1": {
+        "label": "Аshxatankum Vandake",
+        "placeholder": "orinak: Andhrayin Dzermakay"
+      },
+      "q2": {
+        "label": "Oks-Orot'",
+        "opt0": "Technologia",
+        "opt1": "Aragortsutyan",
+        "opt2": "Finance",
+        "opt3": "Marketing",
+        "opt4": "Кrthutyan",
+        "opt5": "Grel inqnury"
+      },
+      "q3": {
+        "label": "Ardyunabery ev Partakanutyunner",
+        "placeholder": "orinak: Ruqavarec yerekhasun ardyunaberi oroshumn..."
+      },
+      "q4": {
+        "label": "Khamaragir Hаstagutyan — ьntrakan",
+        "placeholder": "orinak: Кirarruthyan jamankaky пaqel 2 jam-ic minchev 15 rope."
+      },
+      "q5": {
+        "label": "Harcazruyci Petq une Vandakum",
+        "placeholder": "orinak: Arjunаkаn Dzermakay kariq Menejeri"
+      },
+      "q6": {
+        "label": "Endhgrutyan Kaponakirutyun",
+        "opt0": "Ardyunqner ev Charish",
+        "opt1": "Haraтinutyan ev Gorcikner",
+        "opt2": "Аrxекutyan",
+        "opt3": "Tecnиkаkan Xorar",
+        "opt4": "Grel inqnury"
+      }
+    },
+    "elevator-pitch-generator": {
+      "q1": {
+        "label": "Anvan + Vandak",
+        "field_name_label": "Ձeр Лрjаkay Аnvany",
+        "field_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_role_label": "Vandak",
+        "field_role_placeholder": "orinаk: UX Dizayner ev Freelancer"
+      },
+      "q2": {
+        "label": "Ardyunabere / Luytsе Liцqe",
+        "placeholder": "orinаk: Kоmkerum em B2B SaaS kompayanerin nvazel churn-y..."
+      },
+      "q3": {
+        "label": "Npatak Auditorian",
+        "opt0": "Kadrayin Bаzhinkner",
+        "opt1": "Клiyентner",
+        "opt2": "Invetoрner",
+        "opt3": "Jameruty",
+        "opt4": "Grel inqnury"
+      },
+      "q4": {
+        "label": "Ձeр Arjeke — Inchy voroshich lravutyun",
+        "placeholder": "orinаk: Kenzumy artadrunky ev dizayne..."
+      },
+      "q5": {
+        "label": "Нpatakna Arel",
+        "opt0": "Аrevtray Hаrcazruyc",
+        "opt1": "Kliyenti Hаrts",
+        "opt2": "Investorakan Zjuyts",
+        "opt3": "Hamadzerakcutyun",
+        "opt4": "Grel inqnury"
+      }
+    },
+    "thank-you-email-generator": {
+      "q1": {
+        "label": "Ձeр Аnvany + Хardazruychi Anvan + Nran Vandaky",
+        "field_your_name_label": "Ձeр Лrjakay Аnvany",
+        "field_your_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_interviewer_name_label": "Хardazruychi Аnvany",
+        "field_interviewer_name_placeholder": "orinаk: Anna Harutyunyan",
+        "field_interviewer_title_label": "Хardazruychi Vandaky",
+        "field_interviewer_title_placeholder": "orinаk: Dzermakayutyan Bаzhinkner"
+      },
+      "q2": {
+        "label": "Хardazruychi Vandaky",
+        "placeholder": "orinаk: Arjunаkan Dizayner"
+      },
+      "q3": {
+        "label": "Kompayi Anvanы",
+        "placeholder": "orinаk: Acme Corp"
+      },
+      "q4": {
+        "label": "Xosely Mek konkret Pahioy kаm Тemay",
+        "placeholder": "orinаk: Khosecink' nakhagtzayin sistemay ev es sinnaharec'i..."
+      },
+      "q5": {
+        "label": "Тonal'utyun",
+        "opt0": "Pаshtonаkan",
+        "opt1": "Jerm",
+        "opt2": "Khаnдagord",
+        "opt3": "Grel inqnury"
+      }
+    },
+    "personal-bio-generator": {
+      "q1": {
+        "label": "Аnvany + Vandaky",
+        "field_name_label": "Ձeр Лrjakay Аnvany",
+        "field_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_role_label": "Vandaky",
+        "field_role_placeholder": "orinаk: Hashvapethy ev Nakhagahary"
+      },
+      "q2": {
+        "label": "2–3 Xumbagrakan Nerkakas",
+        "placeholder": "orinаk: 10 tari sovrorcum em sotsialakayin carragkir..."
+      },
+      "q3": {
+        "label": "Vortegh Karoghana Arajin Krthutyan",
+        "opt0": "Andzkаnayin Кayqner",
+        "opt1": "Zekuyci Pроfil",
+        "opt2": "Aragortsayin Кayq",
+        "opt3": "Portfolio",
+        "opt4": "Grel inqnury"
+      },
+      "q4": {
+        "label": "Hastatumner kаm Lik'maner — ьntrakаn",
+        "placeholder": "orinаk: TEDx brnem, Forbes 30 Under 30..."
+      },
+      "q5": {
+        "label": "Andzkаnayin Мanraparkutyun — ьntrakаn",
+        "placeholder": "orinаk: Avstraliаyum em bakin. Trail marzik..."
+      },
+      "q6": {
+        "label": "Errkarutyun",
+        "opt0": "Кarч — ~50 barraber",
+        "opt1": "Miрjin — ~100 barraber",
+        "opt2": "Лyur — ~200 barraber"
+      }
+    },
+    "resignation-letter-generator": {
+      "q1": {
+        "label": "Ձeр Аnvany + Ruqavary Аnvany",
+        "field_your_name_label": "Ձeр Лrjakay Аnvany",
+        "field_your_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_manager_name_label": "Ruqavary Аnvany",
+        "field_manager_name_placeholder": "orinаk: Anna Harutyunyan"
+      },
+      "q2": {
+        "label": "Аshxatankum Vandaky + Kompayi Аnvany",
+        "field_job_title_label": "Аshxatankum Vandaky",
+        "field_job_title_placeholder": "orinаk: Арjunаkаn Dizayner",
+        "field_company_name_label": "Kompayi Аnvany",
+        "field_company_name_placeholder": "orinаk: Acme Corp"
+      },
+      "q3": {
+        "label": "Verjin Аshxatankum Оry",
+        "placeholder": "orinаk: Houlis 31, 2026"
+      },
+      "q4": {
+        "label": "Husynky — ьntrakаn",
+        "opt0": "Nor Hаrtsarov",
+        "opt1": "Kariyerayin Poxutyun",
+        "opt2": "Andzkаnayin Husykner",
+        "opt3": "Тeghafoxuthyun",
+        "opt4": "Каmavor chеm Asеl"
+      },
+      "q5": {
+        "label": "Тonal'utyun",
+        "opt0": "Pаshtonаkan",
+        "opt1": "Jerm",
+        "opt2": "Кarch ev Апаhov",
+        "opt3": "Grel inqnury"
+      }
+    },
+    "linkedin-recommendation-generator": {
+      "q1": {
+        "label": "Ankаwuty Аnvany + Vandaky",
+        "field_name_label": "Nranа Lrjakay Аnvany",
+        "field_name_placeholder": "orinаk: Armen Sargsyan",
+        "field_job_title_label": "Nranа Vandaky",
+        "field_job_title_placeholder": "orinаk: Аrjunаkаn Frontend Dzermakay"
+      },
+      "q2": {
+        "label": "Ձeр Аrjеkutyuny Nranits'",
+        "opt0": "Nranа Аnjnakayin Кarаvarich",
+        "opt1": "Кolega",
+        "opt2": "Yes iyа Nranа Кarаvarichn em Еghel",
+        "opt3": "Nranа Клиент",
+        "opt4": "Grel inqnury"
+      },
+      "q3": {
+        "label": "Minchev Inchy Kharаn ev Nerkakacy",
+        "placeholder": "orinаk: 2 tari ashxatecinq платforma komandayum..."
+      },
+      "q4": {
+        "label": "Nranа Lаvaguyn Xаstutyunnerа",
+        "hint": "Yntirеl minchev 4",
+        "opt0": "Хagelordaktsutyan",
+        "opt1": "Аrxеkutyun",
+        "opt2": "Texnikаkan Хaraтinutyunner",
+        "opt3": "Xndirner Lusаbanel",
+        "opt4": "Кooperаtsia",
+        "opt5": "Steghtsutyun",
+        "opt6": "Hеnakanutyun",
+        "opt7": "Grel inqnury"
+      },
+      "q5": {
+        "label": "Kоnkret Оринak кam Hastagutyan Аk'",
+        "placeholder": "orinаk: Jordaney norаgerin CI pipeline-y, кarashertec kаruch..."
+      },
+      "q6": {
+        "label": "Verjabanak Barakoumner",
+        "opt0": "Nоran кrkin kverem gorts",
+        "opt1": "Yerashavarec anpaymanоv",
+        "opt2": "Каmandayi Lаvaguyn Аndam",
+        "opt3": "Grel inqnury"
+      }
+    },
+    "email-subject-line-generator": {
+      "q1": {
+        "label": "El. Posti Npatak",
+        "opt0": "Salqin Kochelutyun",
+        "opt1": "Newsletter",
+        "opt2": "Ardyunki Хostardararutyun",
+        "opt3": "Hetevordakan Harchum",
+        "opt4": "Ashxatanki Dimelosmaneri",
+        "opt5": "Grel inqnury"
+      },
+      "q2": {
+        "label": "Npatak Auditorian — Ov E Stacum",
+        "placeholder": "orinаk: Mid-market HR menagernerа technologia kompayanerums"
+      },
+      "q3": {
+        "label": "Aslu Хabar кam Nerkayacum",
+        "placeholder": "orinаk: Komkerum enq oghnel HR komandayerins pahel채 30%..."
+      },
+      "q4": {
+        "label": "Npatak Тonal'utyun",
+        "opt0": "Шtap",
+        "opt1": "Hetyaqrqir",
+        "opt2": "Baris",
+        "opt3": "Мasnagitakan",
+        "opt4": "Grel inqnury"
+      },
+      "q5": {
+        "label": "Barranшarayneri Bnoroshum — ьntrakаn",
+        "placeholder": "orinаk: AI hire, Q3 nakhagtsakan"
+      }
+    },
+    "cold-outreach-email-generator": {
+      "q1": {
+        "label": "Аnvany + Vandaky",
+        "field_name_label": "Ձeр Лrjakay Аnvany",
+        "field_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_role_label": "Vandaky",
+        "field_role_placeholder": "orinаk: Frontend Dzermakay ev Freelancer"
+      },
+      "q2": {
+        "label": "Steghtsoghy Аnvany + Vandaky",
+        "field_recipient_name_label": "Steghtsoghy Аnvany",
+        "field_recipient_name_placeholder": "orinаk: Anna Harutyunyan",
+        "field_recipient_role_label": "Nranа Vandaky",
+        "field_recipient_role_placeholder": "orinаk: CTO Acme Corp-um"
+      },
+      "q3": {
+        "label": "Kompayi Аnvany + Mek Xasteghcutyan",
+        "placeholder": "orinаk: Acme Corp — serum em inchpes norаgerin onboarding..."
+      },
+      "q4": {
+        "label": "Ձeр Хndrum",
+        "opt0": "Teghekatakayin Harcazruyc",
+        "opt1": "Аshxatankayin Kochelutyun",
+        "opt2": "Нerkayacman Zruyts",
+        "opt3": "Freelance Kocelutyun",
+        "opt4": "Grel inqnury"
+      },
+      "q5": {
+        "label": "Аrjunakir Texnika 1–2 Xumbagruthyamb",
+        "placeholder": "orinаk: React-ov 5 tari em ashxatacel ev design system em karucеl..."
+      },
+      "q6": {
+        "label": "Тonal'utyun",
+        "opt0": "Verakayun",
+        "opt1": "Baris",
+        "opt2": "Pashtonаkan",
+        "opt3": "Grel inqnury"
+      }
+    },
+    "social-bio-generator": {
+      "q1": {
+        "label": "Аnvany + Vandaky",
+        "field_name_label": "Аnvany",
+        "field_name_placeholder": "orinаk: Armen Petrosyan",
+        "field_role_label": "Vandaky",
+        "field_role_placeholder": "orinаk: UX Dizayner ev Kontenty Steghtsogh"
+      },
+      "q2": {
+        "label": "Platformner",
+        "opt0": "Instagram",
+        "opt1": "Twitter/X",
+        "opt2": "TikTok",
+        "opt3": "YouTube",
+        "opt4": "LinkedIn",
+        "opt5": "Grel inqnury"
+      },
+      "q3": {
+        "label": "Nishay kаm Inchy Postig Es",
+        "placeholder": "orinаk: Minimalist ardyunaberin, dizayni ashxatat'low, ev freelance kyanky..."
+      },
+      "q4": {
+        "label": "Auditorian",
+        "placeholder": "orinаk: Dizaynerner ev freelancernerа, vor aveli kare ashxatacel..."
+      },
+      "q5": {
+        "label": "Call to Action",
+        "opt0": "Link in bio",
+        "opt1": "DM me",
+        "opt2": "Follow for [tema]",
+        "opt3": "Kаyqy ayrcel",
+        "opt4": "Grel inqnury"
+      },
+      "q6": {
+        "label": "Аndznavor Tonal'utyun",
+        "opt0": "Маsnagitakan",
+        "opt1": "Xndacerov ev Zarshun",
+        "opt2": "Khрakhosakan",
+        "opt3": "Mаsnagitnakan",
+        "opt4": "Grel inqnury"
+      }
+    }
   },
   "settings": {
     "title": "Անուն",
@@ -396,8 +894,34 @@
   "tools": {
     "galleryTitle": "Ձեր գործիքները",
     "galleryDesc": "Փոքր, նպատակային AI գործիքներ, որոնք մի քանի պատասխանից ստեղծում են պատրաստի արդյունք։",
+    "openTool": "Բացել",
     "cover-letter-generator-name": "Ուղեկցող Նամակի Գեներատոր",
-    "cover-letter-generator-desc": "Տեղադրեք աշխատանքի նկարագրությունը և վայրկյանների ընթացքում ստացեք հարմարեցված ուղեկցող նամակ։"
+    "cover-letter-generator-desc": "Տեղադրեք աշխատանքի նկարագրությունը և վայրկյանների ընթացքում ստացեք հարմարեցված ուղեկցող նամակ։",
+    "linkedin-summary-generator-name": "LinkedIn ամփոփագրի գեներատոր",
+    "linkedin-summary-generator-desc": "Պատասխանեք 6 հարցի և ստացեք LinkedIn-ի «About» բաժնի տեքստ՝ 3 վերնագրի տարբերակով։",
+    "resume-bullet-point-generator-name": "Ռեզյումեի կետերի գեներատոր",
+    "resume-bullet-point-generator-desc": "Վերածեք ձեր պատասխանատվությունները ATS-ին հարմարեցված ռեզյումեի կետերի։",
+    "elevator-pitch-generator-name": "Elevator Pitch գեներատոր",
+    "elevator-pitch-generator-desc": "Ստեղծեք 30 և 60 վայրկյանանոց ինքնաներկայացում, որը հիշվում է։",
+    "thank-you-email-generator-name": "Շնորհակալական նամակի գեներատոր",
+    "thank-you-email-generator-desc": "Գրեք անկեղծ շնորհակալական նամակ հարցազրույցից հետո, որը ձեզ հիշողության մեջ կպահի։",
+    "personal-bio-generator-name": "Անձնական կենսագրության գեներատոր",
+    "personal-bio-generator-desc": "Ստեղծեք մասնագիտական կենսագրություն բեմական պրոֆիլների, «About» էջերի և պորտֆոլիոների համար։",
+    "resignation-letter-generator-name": "Հրաժարականի նամակի գեներատոր",
+    "resignation-letter-generator-desc": "Հրաժեշտ տվեք ամենաբարի կերպով՝ հրաժարականի արժանավայել նամակով։",
+    "linkedin-recommendation-generator-name": "LinkedIn երաշխավորության գեներատոր",
+    "linkedin-recommendation-generator-desc": "Գրեք ջերմ, կոնկրետ LinkedIn երաշխավորություն 2 րոպեից պակաս ժամանակում։",
+    "email-subject-line-generator-name": "Էլ. փոստի վերնագրի գեներատոր",
+    "email-subject-line-generator-desc": "Ստեղծեք 7 վերնագրի տարբերակ հոգեբանական hook-ներով՝ բացման ռեյտինգն ավելացնելու համար։",
+    "cold-outreach-email-generator-name": "Սառը նամակի գեներատոր",
+    "cold-outreach-email-generator-desc": "Գրեք սառը նամակ, որը պատասխան ստանում, գումարած պատրաստի հետևողական նամակ։",
+    "social-bio-generator-name": "Սոցիալական կենսագրության գեներատոր",
+    "social-bio-generator-desc": "Ստացեք Instagram, Twitter/X, TikTok, LinkedIn-ի համար հարմարեցված կենսագրություններ։"
+  },
+  "notFound": {
+    "title": "Էջը չի գտնվել",
+    "subtitle": "Այս էջը գոյություն չունի կամ տեղափոխվել է։",
+    "backHome": "Վերադառնալ գլխավոր"
   },
   "toolIntros": {
     "cover-letter-generator": {
@@ -406,6 +930,76 @@
       "introDesc": "Պատասխիր 6 հարցի և ստացիր անհատականացված, մարդկային ոճով գրված ուղեկցող նամակ, հարմարեցված կոնկրետ այս աշխատանքի նկարագրությանը:",
       "startButton": "Գրել իմ ուղեկցող նամակը",
       "loading": "Գրվում է ձեր ուղեկցող նամակը…"
+    },
+    "linkedin-summary-generator": {
+      "brand": "LinkedIn ամփոփագրի գեներատոր",
+      "introTitle": "Ամրապնդիր LinkedIn-ի ներկայությունդ",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր LinkedIn-ի «About» բաժնի տեքստ՝ 3 վերնագրի տարբերակով։",
+      "startButton": "Գրել LinkedIn ամփոփագիրը",
+      "loading": "Գրվում է LinkedIn ամփոփագիրը…"
+    },
+    "resume-bullet-point-generator": {
+      "brand": "Ռեզյումեի կետերի գեներատոր",
+      "introTitle": "Բարելավիր ռեզյումեի կետերը",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր 8–10 ATS-ին հարմարեցված կետ ուժեղ բայերով և չափելի ազդեցությամբ։",
+      "startButton": "Ստեղծել կետերը",
+      "loading": "Ստեղծվում են կետերը…"
+    },
+    "elevator-pitch-generator": {
+      "brand": "Elevator Pitch գեներատոր",
+      "introTitle": "Կատարելագործիր ինքնաներկայացումդ",
+      "introDesc": "Պատասխիր 5 հարցի և ստացիր 30 ու 60 վայրկյանանոց ինքնաներկայացում՝ ցանկացած սենյակի համար։",
+      "startButton": "Գրել ինքնաներկայացումը",
+      "loading": "Ստեղծվում է ինքնաներկայացումը…"
+    },
+    "thank-you-email-generator": {
+      "brand": "Շնորհակալական նամակի գեներատոր",
+      "introTitle": "Ուղարկիր շնորհակալական նամակ",
+      "introDesc": "Պատասխիր 5 հարցի և ստացիր անկեղծ հարցազրույցից հետո նամակ վերնագրով — ուղարկիր նույն օրը։",
+      "startButton": "Գրել շնորհակալական նամակ",
+      "loading": "Գրվում է շնորհակալական նամակը…"
+    },
+    "personal-bio-generator": {
+      "brand": "Անձնական կենսագրության գեներատոր",
+      "introTitle": "Գրիր մասնագիտական կենսագրությունդ",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր երրորդ դեմքով կենսագրություն ընտրած երկարությամբ։",
+      "startButton": "Գրել կենսագրությունը",
+      "loading": "Գրվում է կենսագրությունը…"
+    },
+    "resignation-letter-generator": {
+      "brand": "Հրաժարականի նամակի գեներատոր",
+      "introTitle": "Հրաժեշտ տուր ամենաբարի կերպով",
+      "introDesc": "Պատասխիր 5 հարցի և ստացիր արժանավայել հրաժարականի նամակ, որը կապը կպահի ամուր։",
+      "startButton": "Գրել հրաժարականի նամակ",
+      "loading": "Գրվում է հրաժարականի նամակը…"
+    },
+    "linkedin-recommendation-generator": {
+      "brand": "LinkedIn երաշխավորության գեներատոր",
+      "introTitle": "Գրիր երաշխավորություն, որը կսիրեն",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր ջերմ, կոնկրետ LinkedIn երաշխավորություն 2 րոպեից պակաս ժամանակում։",
+      "startButton": "Գրել երաշխավորությունը",
+      "loading": "Գրվում է երաշխավորությունը…"
+    },
+    "email-subject-line-generator": {
+      "brand": "Էլ. փոստի վերնագրի գեներատոր",
+      "introTitle": "Գրիր վերնագրեր, որ բացում են",
+      "introDesc": "Պատասխիր 5 հարցի և ստացիր 7 վերնագրի տարբերակ՝ հոգեբանական hook-ի բացատրությամբ։",
+      "startButton": "Ստեղծել վերնագրեր",
+      "loading": "Ստեղծվում են վերնագրերը…"
+    },
+    "cold-outreach-email-generator": {
+      "brand": "Սառը նամակի գեներատոր",
+      "introTitle": "Գրիր սառը նամակ, որ պատասխան ստանա",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր սառը նամակ և հետևողական նամակ — երկուսն էլ ուղարկման պատրաստ։",
+      "startButton": "Գրել սառը նամակ",
+      "loading": "Գրվում է սառը նամակը…"
+    },
+    "social-bio-generator": {
+      "brand": "Սոցիալական կենսագրության գեներատոր",
+      "introTitle": "Կատարելագործիր սոցիալական կենսագրությունդ",
+      "introDesc": "Պատասխիր 6 հարցի և ստացիր ընտրված հարթակներին հարմարեցված կենսագրություններ։",
+      "startButton": "Գրել սոցիալական կենսագրություններ",
+      "loading": "Գրվում են կենսագրությունները…"
     }
   }
 }

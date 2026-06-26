@@ -7,7 +7,7 @@
 
 ## Overview
 
-Add 10 new AI generator tools to artagers.design, each creating a new indexed landing page at `/[locale]/tools/[slug]`. All tools target the existing career-focused audience (job seekers, professionals, personal branding). The homepage gallery and header navigation are updated to accommodate the expanded tool set.
+Add 10 new AI generator tools to project, each creating a new indexed landing page at `/[locale]/tools/[slug]`. All tools target the existing career-focused audience (job seekers, professionals, personal branding). The homepage gallery and header navigation are updated to accommodate the expanded tool set.
 
 ---
 

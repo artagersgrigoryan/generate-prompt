@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import {
-  getAllCategories,
-  getPostsByCategory,
-  getCategoryLabel,
-} from "@/lib/blog";
+import { getAllCategories, getPostsByCategory, getCategoryLabel } from "@/lib/blog";
 import { routing } from "@/i18n/routing";
 import { buildAlternates } from "@/app/[locale]/layout";
 import { PostCard } from "@/components/blog/PostCard";
+import { CategoryStrip } from "@/components/blog/CategoryStrip";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -25,16 +22,11 @@ export async function generateMetadata({
   const { locale, category } = await params;
   const label = getCategoryLabel(category);
   return {
-    title: `${label} — Blog`,
-    description: `Blog posts about ${label}.`,
+    title: `${label} — Guides & Tips`,
+    description: `Practical guides on ${label.toLowerCase()} — tips, templates, and examples to get better results faster.`,
     alternates: buildAlternates(locale, `/blog/category/${category}`),
   };
 }
-
-const activePill =
-  "rounded-full border border-neutral-900 bg-neutral-900 px-3 py-1 text-sm text-white dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900";
-const inactivePill =
-  "rounded-full border border-neutral-200 px-3 py-1 text-sm text-neutral-600 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-neutral-500";
 
 export default async function CategoryPage({
   params,
@@ -52,34 +44,22 @@ export default async function CategoryPage({
 
   return (
     <main className="min-h-screen bg-white px-6 py-16 dark:bg-neutral-950">
-      <div className="mx-auto max-w-2xl">
-        <Link
-          href="/blog"
-          className="text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
-        >
-          ← All posts
-        </Link>
-
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
-          {label}
-        </h1>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          <Link href="/blog" className={inactivePill}>
-            All
+      <div className="mx-auto max-w-3xl">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/blog"
+            className="shrink-0 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+          >
+            ←
           </Link>
-          {categories.map((cat) => (
-            <Link
-              key={cat}
-              href={`/blog/category/${cat}`}
-              className={cat === category ? activePill : inactivePill}
-            >
-              {getCategoryLabel(cat)}
-            </Link>
-          ))}
+          <h1 className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+            {label}
+          </h1>
         </div>
 
-        <ul className="mt-2 divide-y divide-neutral-100 dark:divide-neutral-800">
+        <CategoryStrip categories={categories} activeCategory={category} />
+
+        <ul className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} locale={locale} showCategory={false} />
           ))}

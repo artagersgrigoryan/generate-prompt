@@ -23,7 +23,7 @@ export default async function DashboardPage({
       where: { userId },
       orderBy: { createdAt: "desc" },
       take: 5,
-      select: { id: true, result: true, model: true, isFavorite: true, createdAt: true },
+      select: { id: true, result: true, model: true, isFavorite: true, createdAt: true, toolSlug: true },
     }),
     prisma.prompt.count({ where: { userId } }),
     prisma.prompt.count({ where: { userId, isFavorite: true } }),

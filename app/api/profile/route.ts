@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
+import { requireAuth } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const result = await requireAuth();
+  if (result instanceof NextResponse) return result;
+  const userId = result;
 
   const toolSlug = req.nextUrl.searchParams.get("toolSlug");
   if (!toolSlug) {
@@ -14,7 +13,7 @@ export async function GET(req: NextRequest) {
   }
 
   const profile = await prisma.userToolProfile.findUnique({
-    where: { userId_toolSlug: { userId: session.user.id, toolSlug } },
+    where: { userId_toolSlug: { userId, toolSlug } },
   });
 
   if (!profile) {
@@ -25,21 +24,33 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const result = await requireAuth();
+  if (result instanceof NextResponse) return result;
+  const userId = result;
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const body = await req.json();
   const { toolSlug, answers } = body as { toolSlug: string; answers: Record<string, string> };
-  if (!toolSlug || !answers) {
+  if (!toolSlug || !answers || typeof answers !== "object") {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
+  // Merge with existing answers so a partial save never silently drops previously-stored keys.
+  const existing = await prisma.userToolProfile.findUnique({
+    where: { userId_toolSlug: { userId, toolSlug } },
+    select: { answers: true },
+  });
+  const merged = { ...(existing?.answers as Record<string, string> ?? {}), ...answers };
+
   await prisma.userToolProfile.upsert({
-    where: { userId_toolSlug: { userId: session.user.id, toolSlug } },
-    create: { userId: session.user.id, toolSlug, answers },
-    update: { answers },
+    where: { userId_toolSlug: { userId, toolSlug } },
+    create: { userId, toolSlug, answers: merged },
+    update: { answers: merged },
   });
 
   return NextResponse.json({ ok: true });
