@@ -30,7 +30,7 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Website Prompt Generator — Blog</title>
+    <title>Prompt Station — Blog</title>
     <link>${escapeXml(`${siteUrl}/en/blog`)}</link>
     <description>Guides, updates, and tips for turning ideas into AI-built websites.</description>
     <language>en</language>

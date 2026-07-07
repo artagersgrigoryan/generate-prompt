@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getPostBySlug } from "@/lib/blog";
 
-export const alt = "Website Prompt Generator — Blog";
+export const alt = "Prompt Station — Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default async function Image({
       >
         <div style={{ display: "flex", alignItems: "center", fontSize: 30, color: "#a3a3a3" }}>
           <span style={{ marginRight: 14, color: "#ffffff" }}>✦</span>
-          Website Prompt Generator
+          Prompt Station
         </div>
         <div
           style={{

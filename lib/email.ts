@@ -1,6 +1,6 @@
 import type { EmailConfig } from "next-auth/providers/email";
 
-const BRAND = "Website Prompt Generator";
+const BRAND = "Prompt Station";
 
 /**
  * Custom magic-link email for the Auth.js Resend provider.

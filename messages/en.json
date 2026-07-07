@@ -1,6 +1,6 @@
 {
   "nav": {
-    "brand": "Website Prompt Generator",
+    "brand": "Prompt Station",
     "getStarted": "Get started",
     "signIn": "Sign in",
     "howItWorks": "How it works",
@@ -82,7 +82,7 @@
     "ctaTitle": "Ready to write better?",
     "ctaDesc": "12 tools, 3 languages, no signup required.",
     "ctaButton": "Explore all tools",
-    "footerTagline": "Website Prompt Generator — generate AI briefs for your next web project",
+    "footerTagline": "Prompt Station — generate AI briefs for your next web project",
     "footerProductTitle": "Product",
     "footerHowLink": "How it works",
     "footerExamplesLink": "Examples",

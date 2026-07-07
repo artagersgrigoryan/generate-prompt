@@ -1,4 +1,4 @@
-# Website Prompt Generator
+# Prompt Station
 
 A multi-tool AI prompt platform. Each tool is a short, focused wizard that asks the right questions and produces a structured prompt you can paste directly into any AI builder.
 
@@ -48,7 +48,7 @@ RESEND_API_KEY=            # https://resend.com/
 DATABASE_URL=              # Prisma connection string
 
 # Required for absolute OG image / RSS URLs in production
-NEXT_PUBLIC_SITE_URL=      # e.g. https://artagers.design
+NEXT_PUBLIC_SITE_URL=      # e.g. https://promptstation.online
 
 # Optional analytics
 TELEGRAM_BOT_TOKEN=

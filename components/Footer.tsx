@@ -70,7 +70,7 @@ export function Footer() {
                 </svg>
               </div>
               <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-                Website Prompt Generator
+                Prompt Station
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
@@ -132,7 +132,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-14 border-t border-neutral-100 pt-8 dark:border-neutral-800">
           <p className="text-xs text-neutral-400 dark:text-neutral-600">
-            © {year} Website Prompt Generator · Built by Artagers Grigoryan
+            © {year} Prompt Station · Built by Artagers Grigoryan
           </p>
         </div>
       </div>
