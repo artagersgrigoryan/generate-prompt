@@ -54,8 +54,8 @@ export async function generateMetadata({
     // routes). Without this, Next falls back to localhost.
     ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
     title: {
-      template: "%s | artagers.design",
-      default: "AI Writing Tools for Career & Code — artagers.design",
+      template: "%s | Prompt Station",
+      default: "AI Writing Tools for Career & Code — Prompt Station",
     },
     description:
       "12 AI generators for cover letters, LinkedIn profiles, resume bullets, cold emails, personal bios, website briefs, and more. Free, 2 minutes each.",
@@ -121,7 +121,7 @@ export default async function LocaleLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "artagers.design",
+                name: "Prompt Station",
                 url: process.env.NEXT_PUBLIC_SITE_URL,
               }).replace(/</g, "\\u003c"),
             }}

@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { locale } = await params;
   return {
     title: {
-      absolute: "AI Writing Tools for Career & Code — artagers.design",
+      absolute: "AI Writing Tools for Career & Code — Prompt Station",
     },
     description:
       "12 AI generators for cover letters, LinkedIn profiles, resume bullets, cold emails, personal bios, website briefs, and more. Free, 2 minutes each.",

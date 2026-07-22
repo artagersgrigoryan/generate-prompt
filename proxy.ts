@@ -9,12 +9,27 @@ const intlMiddleware = createIntlMiddleware(routing);
 
 const PROTECTED_SEGMENTS = ["/dashboard", "/settings"];
 
+// The default *.vercel.app deployment domain serves the same content as the
+// custom domain, which Google treats as duplicate content. Vercel's Domains UI
+// can't redirect the system domain, so we do it here: permanently send every
+// generate-prompt-five.vercel.app request to the canonical custom domain.
+const CANONICAL_HOST = "www.promptstation.online";
+const VERCEL_HOST = "generate-prompt-five.vercel.app";
+
 function isProtected(pathname: string): boolean {
   const withoutLocale = pathname.replace(/^\/(en|hy|ru)/, "") || "/";
   return PROTECTED_SEGMENTS.some((seg) => withoutLocale.startsWith(seg));
 }
 
 export default auth((req) => {
+  if (req.headers.get("host") === VERCEL_HOST) {
+    const url = req.nextUrl.clone();
+    url.host = CANONICAL_HOST;
+    url.protocol = "https";
+    url.port = "";
+    return NextResponse.redirect(url, 308);
+  }
+
   if (req.nextUrl.pathname === "/") {
     const url = req.nextUrl.clone();
     url.pathname = "/en";
