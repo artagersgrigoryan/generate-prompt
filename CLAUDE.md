@@ -186,6 +186,7 @@ Blog posts can be batch-generated and drip-published automatically instead of co
 - `.github/workflows/publish-blog-post.yml` runs that script daily via cron (`0 13 * * *`) and supports manual `workflow_dispatch` for testing. The resulting push triggers Vercel's existing auto-deploy on `main`.
 - `scripts/verify-batch.js` is a reusable sanity check for a freshly generated batch (required frontmatter fields present, no duplicate dates among drafts) — run it before committing a new batch.
 - Requires the repo's Settings → Actions → General → "Workflow permissions" to be "Read and write permissions", otherwise the workflow's push fails with a 403.
+- GitHub automatically disables scheduled workflows after 60 days of repository inactivity (no commits/pushes at all). If the draft queue runs dry and the repo goes quiet for that long, the cron must be manually re-enabled from the Actions tab before it resumes — otherwise the next monthly batch top-up won't actually get published on schedule.
 
 ### Authentication
 

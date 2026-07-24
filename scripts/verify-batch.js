@@ -23,10 +23,14 @@ function verifyDrafts() {
     if (!Array.isArray(post.data.tags) || post.data.tags.length === 0) {
       errors.push(`${post.file}: "tags" must be a non-empty array`);
     }
-    if (seenDates.has(post.data.date)) {
-      errors.push(`${post.file}: duplicate date "${post.data.date}" among drafts`);
+    const dateStr = String(post.data.date);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      errors.push(`${post.file}: date must be a quoted "YYYY-MM-DD" string`);
     }
-    seenDates.add(post.data.date);
+    if (seenDates.has(dateStr)) {
+      errors.push(`${post.file}: duplicate date "${dateStr}" among drafts`);
+    }
+    seenDates.add(dateStr);
   }
 
   if (errors.length > 0) {
