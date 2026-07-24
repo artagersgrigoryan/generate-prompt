@@ -177,6 +177,16 @@ File-based MDX blog powered by `next-mdx-remote` v6 (RSC) and `gray-matter`.
 
 To add a post: create a `.mdx` file in `content/blog/` with the required frontmatter. No code changes needed.
 
+### Automated blog publishing
+
+Blog posts can be batch-generated and drip-published automatically instead of committed one at a time:
+
+- Generating a batch is a Claude Code session task (not a script) — it invokes the content-strategy skill against the existing posts to pick real topic gaps, then writes full `.mdx` files to `content/blog/` with `draft: true` and sequential dates (one per calendar day), and commits the batch. Ask for this roughly monthly, or whenever the draft queue runs low.
+- `scripts/publish-next-post.js` is the deterministic publish step: it finds the earliest-dated `draft: true` post and flips it to `draft: false`. No AI calls at publish time — content is already written.
+- `.github/workflows/publish-blog-post.yml` runs that script daily via cron (`0 13 * * *`) and supports manual `workflow_dispatch` for testing. The resulting push triggers Vercel's existing auto-deploy on `main`.
+- `scripts/verify-batch.js` is a reusable sanity check for a freshly generated batch (required frontmatter fields present, no duplicate dates among drafts) — run it before committing a new batch.
+- Requires the repo's Settings → Actions → General → "Workflow permissions" to be "Read and write permissions", otherwise the workflow's push fails with a 403.
+
 ### Authentication
 
 Auth is handled by Auth.js v5 (next-auth). Providers: Google OAuth, GitHub OAuth, and Resend magic-link email.
