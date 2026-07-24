@@ -61,7 +61,7 @@ The push to `main` is picked up by Vercel's existing auto-deploy — no Vercel-s
 
 ### Part C — Initial test (this week)
 
-1. Claude generates the 7-post batch per Part A, dated today → today+6, all `draft: true`, and pushes.
+1. Claude generates the 7-post batch per Part A (with /condent-strategy skill), dated today → today+6, all `draft: true`, and pushes.
 2. User verifies the GitHub Actions "Workflow permissions" setting.
 3. Manually trigger the workflow once (`workflow_dispatch`) to confirm the full chain end-to-end: frontmatter flips → commit → push → Vercel deploy → post visible and no longer filtered by `getAllPosts()`/`getPostBySlug()`.
 4. Daily schedule takes over for the remaining 6 posts.
