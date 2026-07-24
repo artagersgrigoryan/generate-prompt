@@ -20,7 +20,7 @@ function loadDrafts(blogDir) {
       const filePath = path.join(blogDir, file);
       const raw = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(raw);
-      return { file, filePath, data, content };
+      return { file, filePath, raw, data, content };
     })
     .filter((post) => post.data.draft === true);
 
@@ -30,8 +30,11 @@ function loadDrafts(blogDir) {
 
 /** Flips `draft` to false on disk for the given loadDrafts() entry. */
 function publishPost(entry) {
-  const updatedData = { ...entry.data, draft: false };
-  fs.writeFileSync(entry.filePath, matter.stringify(entry.content, updatedData));
+  const updated = entry.raw.replace(/^draft:\s*true\s*$/m, "draft: false");
+  if (updated === entry.raw) {
+    throw new Error(`Could not find a "draft: true" line to flip in ${entry.filePath}`);
+  }
+  fs.writeFileSync(entry.filePath, updated);
 }
 
 function main() {
