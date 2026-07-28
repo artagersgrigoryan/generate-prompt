@@ -9,6 +9,7 @@ import { routing } from "@/i18n/routing";
 import { getAllPosts, getPostBySlug, getCategoryLabel, getReadingTime } from "@/lib/blog";
 import { BlogCover } from "@/components/blog/BlogCover";
 import { buildAlternates } from "@/app/[locale]/layout";
+import { SITE_URL } from "@/lib/site-url";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -129,7 +130,7 @@ export default async function BlogPostPage({
   const categoryLabel = getCategoryLabel(category);
   const readingTime = getReadingTime(post.content);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = SITE_URL ?? "";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",

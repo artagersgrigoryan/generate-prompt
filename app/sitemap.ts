@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { listTools } from "@/lib/tools";
 import { getAllPosts, getAllCategories } from "@/lib/blog";
+import { SITE_URL } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = SITE_URL ?? "";
 
   const paths: Array<{ path: string; priority: number }> = [
     { path: "", priority: 1.0 },

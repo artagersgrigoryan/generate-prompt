@@ -10,6 +10,7 @@ import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { auth } from "@/lib/auth";
 import { listTools, toPublicTool } from "@/lib/tools";
+import { SITE_URL } from "@/lib/site-url";
 import "../globals.css";
 
 const geist = Geist({
@@ -29,7 +30,7 @@ export function generateStaticParams() {
 }
 
 function buildAlternates(locale: string, path: string = "") {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const siteUrl = SITE_URL;
   if (!siteUrl) return {};
   return {
     canonical: `${siteUrl}/${locale}${path}`,
@@ -48,7 +49,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const siteUrl = SITE_URL;
   return {
     // Absolute base for resolving OG/Twitter image URLs (incl. opengraph-image
     // routes). Without this, Next falls back to localhost.
@@ -114,7 +115,7 @@ export default async function LocaleLayout({
       </head>
 
       <body className="min-h-full bg-white font-[family-name:var(--font-geist-sans)] dark:bg-neutral-950" suppressHydrationWarning>
-        {process.env.NEXT_PUBLIC_SITE_URL && (
+        {SITE_URL && (
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -122,7 +123,7 @@ export default async function LocaleLayout({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 name: "Prompt Station",
-                url: process.env.NEXT_PUBLIC_SITE_URL,
+                url: SITE_URL,
               }).replace(/</g, "\\u003c"),
             }}
           />

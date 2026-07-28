@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildAlternates } from "@/app/[locale]/layout";
 import { getTool } from "@/lib/tools";
+import { SITE_URL } from "@/lib/site-url";
 
 export async function generateMetadata({
   params,
@@ -32,9 +33,7 @@ const softwareSchema = (name: string, description: string, slug: string) =>
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    url: process.env.NEXT_PUBLIC_SITE_URL
-      ? `${process.env.NEXT_PUBLIC_SITE_URL}/en/tools/${slug}`
-      : undefined,
+    url: SITE_URL ? `${SITE_URL}/en/tools/${slug}` : undefined,
   }).replace(/</g, "\\u003c");
 
 const breadcrumbSchema = (name: string, slug: string) =>
@@ -42,9 +41,9 @@ const breadcrumbSchema = (name: string, slug: string) =>
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: process.env.NEXT_PUBLIC_SITE_URL ?? "/" },
-      { "@type": "ListItem", position: 2, name: "Tools", item: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/en` : "/" },
-      { "@type": "ListItem", position: 3, name, item: process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/en/tools/${slug}` : `/tools/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL ?? "/" },
+      { "@type": "ListItem", position: 2, name: "Tools", item: SITE_URL ? `${SITE_URL}/en` : "/" },
+      { "@type": "ListItem", position: 3, name, item: SITE_URL ? `${SITE_URL}/en/tools/${slug}` : `/tools/${slug}` },
     ],
   }).replace(/</g, "\\u003c");
 

@@ -6,6 +6,7 @@ import { buildAlternates } from "@/app/[locale]/layout";
 import { ToolsGallery } from "@/components/ToolsGallery";
 import OutputTicker from "@/components/OutputTicker";
 import { getToolIcon } from "@/lib/toolIcons";
+import { SITE_URL } from "@/lib/site-url";
 
 export async function generateMetadata({
   params,
@@ -24,9 +25,7 @@ export async function generateMetadata({
       description:
         "12 focused AI generators — cover letters, LinkedIn summaries, resume bullets, cold outreach, personal bios, website briefs, and more. Free. Under 2 minutes each.",
       type: "website",
-      url: process.env.NEXT_PUBLIC_SITE_URL
-        ? `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}`
-        : undefined,
+      url: SITE_URL ? `${SITE_URL}/${locale}` : undefined,
       images: [
         {
           url: "/og-image.png",

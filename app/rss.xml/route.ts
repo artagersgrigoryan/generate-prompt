@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/blog";
+import { SITE_URL } from "@/lib/site-url";
 
 // Single canonical (English) RSS 2.0 feed for the blog.
 // Per-locale feeds are deferred (the blog serves one content set per locale).
@@ -10,7 +11,7 @@ function escapeXml(s: string): string {
 }
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+  const siteUrl = SITE_URL ?? "";
   const posts = getAllPosts();
 
   const items = posts
