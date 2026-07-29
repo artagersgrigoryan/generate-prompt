@@ -5,16 +5,16 @@ import { setRequestLocale } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { Link } from "@/i18n/routing";
-import { routing } from "@/i18n/routing";
 import { getAllPosts, getPostBySlug, getCategoryLabel, getReadingTime } from "@/lib/blog";
 import { BlogCover } from "@/components/blog/BlogCover";
-import { buildAlternates } from "@/app/[locale]/layout";
+import { buildBlogAlternates } from "@/app/[locale]/layout";
 import { SITE_URL } from "@/lib/site-url";
 
+// The blog has no per-locale translations, so only the /en pages are built;
+// hy/ru requests 301 to the /en equivalent before reaching this route (see
+// next.config.ts) and never need a static page of their own.
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    getAllPosts().map((post) => ({ locale, slug: post.slug }))
-  );
+  return getAllPosts().map((post) => ({ locale: "en", slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -22,14 +22,14 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.title,
     description: post.description,
     alternates: {
-      ...buildAlternates(locale, `/blog/${slug}`),
+      ...buildBlogAlternates(`/blog/${slug}`),
       types: { "application/rss+xml": "/rss.xml" },
     },
     openGraph: {

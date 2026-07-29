@@ -64,6 +64,19 @@ export async function generateMetadata({
   };
 }
 
+// Blog content has no per-locale translations — hy/ru blog URLs 301 to the
+// /en equivalent (see next.config.ts), so canonical/hreflang must point only
+// at the English URL rather than claiming hy/ru variants exist.
+export function buildBlogAlternates(path: string = "") {
+  const siteUrl = SITE_URL;
+  if (!siteUrl) return {};
+  const url = `${siteUrl}/en${path}`;
+  return {
+    canonical: url,
+    languages: { "x-default": url },
+  };
+}
+
 export { buildAlternates };
 
 export default async function LocaleLayout({

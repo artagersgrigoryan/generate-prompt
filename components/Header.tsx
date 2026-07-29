@@ -136,7 +136,7 @@ export function Header({ tools = [] }: { tools?: ToolPublicConfig[] }) {
 
               <NavigationMenu.Item>
                 <NavigationMenu.Link asChild>
-                  <Link href="/blog" className={cn(linkCn, "rounded-lg px-3 py-2 block")}>
+                  <Link href="/blog" locale="en" className={cn(linkCn, "rounded-lg px-3 py-2 block")}>
                     {t("blog")}
                   </Link>
                 </NavigationMenu.Link>
@@ -252,7 +252,7 @@ export function Header({ tools = [] }: { tools?: ToolPublicConfig[] }) {
                 </a>
               );
             })}
-            <Link href="/blog" onClick={() => setMenuOpen(false)}
+            <Link href="/blog" locale="en" onClick={() => setMenuOpen(false)}
               className="rounded-lg px-3 py-2.5 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100">
               {t("blog")}
             </Link>

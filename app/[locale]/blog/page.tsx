@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getAllPosts, getAllCategories } from "@/lib/blog";
-import { buildAlternates } from "@/app/[locale]/layout";
+import { buildBlogAlternates } from "@/app/[locale]/layout";
 import { PostCard } from "@/components/blog/PostCard";
 import { CategoryStrip } from "@/components/blog/CategoryStrip";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const base = buildAlternates(locale, "/blog");
+export async function generateMetadata(): Promise<Metadata> {
+  const base = buildBlogAlternates("/blog");
   return {
     title: "Blog — Career Writing Guides & AI Tips",
     description:

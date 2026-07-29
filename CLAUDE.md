@@ -173,9 +173,11 @@ File-based MDX blog powered by `next-mdx-remote` v6 (RSC) and `gray-matter`.
 | `app/[locale]/blog/opengraph-image.tsx` | Static branded OG card for blog index |
 | `app/[locale]/blog/[slug]/opengraph-image.tsx` | Dynamic per-post OG image via `next/og` |
 | `app/rss.xml/route.ts` | RSS 2.0 feed; `Content-Type: application/xml` |
-| `app/sitemap.ts` | Includes all blog post URLs driven by `getAllPosts()` |
+| `app/sitemap.ts` | Includes all blog post URLs driven by `getAllPosts()` (English only — see below) |
 
 To add a post: create a `.mdx` file in `content/blog/` with the required frontmatter. No code changes needed.
+
+**Blog is English-only, deliberately.** `content/blog/*.mdx` has no locale variants and `lib/blog.ts` ignores the `locale` param, so `/hy/blog/...` and `/ru/blog/...` used to render byte-identical English content under a translated URL wrapper — Google flagged this as near-duplicate content ("Discovered - currently not indexed" in Search Console). `next.config.ts`'s `redirects()` now 301s any `/hy/blog/*` or `/ru/blog/*` request to the `/en` equivalent, `app/sitemap.ts` only lists blog URLs under `/en`, and blog pages call `buildBlogAlternates()` (in `app/[locale]/layout.tsx`) instead of the generic `buildAlternates()` so canonical/hreflang only ever point at the English URL. `generateStaticParams` for `blog/[slug]` and `blog/category/[category]` only builds `locale: "en"`. If the blog is ever translated per-locale, all of this reverts to the generic `buildAlternates()` pattern used elsewhere.
 
 ### Automated blog publishing
 

@@ -19,6 +19,15 @@ const nextConfig: NextConfig = {
         destination: "/:locale/tools/website-prompt-generator",
         permanent: true,
       },
+      // The blog has no per-locale translations — hy/ru blog URLs served
+      // duplicate English content under a different locale wrapper, which
+      // Google flagged as "Discovered - currently not indexed". Collapse
+      // them onto the single canonical /en URL instead of indexing 3x.
+      {
+        source: "/:locale(hy|ru)/blog/:path*",
+        destination: "/en/blog/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -3,28 +3,28 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { getAllCategories, getPostsByCategory, getCategoryLabel } from "@/lib/blog";
-import { routing } from "@/i18n/routing";
-import { buildAlternates } from "@/app/[locale]/layout";
+import { buildBlogAlternates } from "@/app/[locale]/layout";
 import { PostCard } from "@/components/blog/PostCard";
 import { CategoryStrip } from "@/components/blog/CategoryStrip";
 
+// The blog has no per-locale translations, so only the /en pages are built;
+// hy/ru requests 301 to the /en equivalent before reaching this route (see
+// next.config.ts) and never need a static page of their own.
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    getAllCategories().map((category) => ({ locale, category }))
-  );
+  return getAllCategories().map((category) => ({ locale: "en", category }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string; category: string }>;
+  params: Promise<{ category: string }>;
 }): Promise<Metadata> {
-  const { locale, category } = await params;
+  const { category } = await params;
   const label = getCategoryLabel(category);
   return {
     title: `${label} — Guides & Tips`,
     description: `Practical guides on ${label.toLowerCase()} — tips, templates, and examples to get better results faster.`,
-    alternates: buildAlternates(locale, `/blog/category/${category}`),
+    alternates: buildBlogAlternates(`/blog/category/${category}`),
   };
 }
 
