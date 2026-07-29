@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { CLAUDE_MODEL_ID, CLAUDE_MODEL_NAME } from "@/lib/models";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -135,25 +135,33 @@ export async function POST(req: NextRequest) {
     await sendToTelegram(telegramMessage).catch((e) => console.error("[Telegram] unexpected error:", e));
 
     if (!session?.user?.id) {
-      incrAnonFreeCount(ip).catch((e) =>
-        console.error("[FreeLimit] failed to increment counter:", e)
+      // after() guarantees this runs to completion even though the
+      // response has already been sent — a bare un-awaited promise here
+      // can get frozen mid-flight by the serverless runtime.
+      after(() =>
+        incrAnonFreeCount(ip).catch((e) =>
+          console.error("[FreeLimit] failed to increment counter:", e)
+        )
       );
     }
 
     if (session?.user?.id) {
-      prisma.prompt
-        .create({
-          data: {
-            userId: session.user.id,
-            toolSlug: tool.slug,
-            answers: body.answers as Record<string, string>,
-            result,
-            model: CLAUDE_MODEL_NAME,
-          },
-        })
-        .catch((e: unknown) =>
-          console.error("[Prompt] failed to save to DB:", e)
-        );
+      const userId = session.user.id;
+      after(() =>
+        prisma.prompt
+          .create({
+            data: {
+              userId,
+              toolSlug: tool.slug,
+              answers: body.answers as Record<string, string>,
+              result,
+              model: CLAUDE_MODEL_NAME,
+            },
+          })
+          .catch((e: unknown) =>
+            console.error("[Prompt] failed to save to DB:", e)
+          )
+      );
     }
 
     return NextResponse.json({ result, model: CLAUDE_MODEL_NAME });
