@@ -12,7 +12,7 @@
   },
   "home": {
     "badge": "12 AI գործիք · Անվճար",
-    "heroH1Lead": "Պրոֆեսիոնալ գրավոր,",
+    "heroH1Lead": "Պրոֆեսիոնալ պրոմպտ,",
     "heroH1Emphasis": "րոպեների մեջ։",
     "heroSubtitle": "Ուղղիչ նամակներից մինչև LinkedIn պրոֆիլ, կայքի բրիֆ կամ սառը նամակ։ Պատասխանիր հարցերին, ստացիր փորձագիտական արդյունք։",
     "heroCta": "Դիտել գործիքները",
@@ -519,7 +519,7 @@
     "resume-bullet-point-generator": {
       "q1": {
         "label": "Աշխատանքային պաշտոնը",
-        "placeholder": "օրինակ՝ Ավագ ծրագրավորող"
+        "placeholder": "օրինակ՝ Ավագ ծրապրոմպտող"
       },
       "q2": {
         "label": "Ոլորտը",
@@ -690,7 +690,7 @@
         "field_name_label": "Նրա լրիվ անունը",
         "field_name_placeholder": "օրինակ՝ Արմեն Սարգսյան",
         "field_job_title_label": "Նրա պաշտոնը",
-        "field_job_title_placeholder": "օրինակ՝ Ավագ Frontend ծրագրավորող"
+        "field_job_title_placeholder": "օրինակ՝ Ավագ Frontend ծրապրոմպտող"
       },
       "q2": {
         "label": "Ձեր մասնագիտական կապը/փոխհարաբերությունը",
@@ -765,7 +765,7 @@
         "field_name_label": "Ձեր լրիվ անունը",
         "field_name_placeholder": "օրինակ՝ Արմեն Պետրոսյան",
         "field_role_label": "Պաշտոնը / Դերը",
-        "field_role_placeholder": "օրինակ՝ Frontend ծրագրավորող և ֆրիլանսեր"
+        "field_role_placeholder": "օրինակ՝ Frontend ծրապրոմպտող և ֆրիլանսեր"
       },
       "q2": {
         "label": "Ստացողի անունը և պաշտոնը",
